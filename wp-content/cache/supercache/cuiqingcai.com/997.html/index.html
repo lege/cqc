@@ -1,0 +1,719 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="baidu-tc-verification" content="0fb041a64ee71333c957d8c784961cc8" />
+<meta property="qc:admins" content="145637425211673116375" />
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Python爬虫实战三之计算大学本学期绩点 | 静觅</title>
+<script>
+window._deel = {name: '静觅',url: 'http://cuiqingcai.com/wp-content/themes/Yusi', ajaxpager: '', commenton: 1, roll: [0,0]}
+</script>
+
+<!-- All in One SEO Pack 2.2.6.2 by Michael Torbert of Semper Fi Web Design[392,431] -->
+<meta name="description" itemprop="description" content="大家好，本次为大家带来的项目是计算大学本学期绩点。首先说明的是，博主来自山东大学，有属于个人的学生成绩管理系统，需要学号密码才可以登录，不过可能广大读者没有这个学号密码，不能实际进行操作，所以最主要的还是获取它的原理。最主要的是了解cookie的相关操作。 本篇目标 1.模拟登录学生成绩管理系统 2.抓取本学" />
+
+<meta name="keywords" itemprop="keywords" content="python,爬虫" />
+
+<!-- /all in one seo pack -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/cuiqingcai.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.5"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='crayon-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-theme-github-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/themes/github/github.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-monaco-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='page-list-style-css'  href='http://cuiqingcai.com/wp-content/plugins/sitemap/css/page-list.css?ver=4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='http://cuiqingcai.com/wp-content/themes/Yusi/style.css?ver=33' type='text/css' media='all' />
+<script type="text/javascript">
+var duoshuoQuery = {"short_name":"cuiqingcai","sso":{"login":"http:\/\/cuiqingcai.com\/wp-login.php?action=duoshuo_login","logout":"http:\/\/cuiqingcai.com\/wp-login.php?action=logout&_wpnonce=d6fca5fc89"},"theme":"default","stylePatch":"wordpress\/\u9759\u89c5"};
+duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+</script>
+<script type="text/javascript" src="http://static.duoshuo.com/embed.js" charset="UTF-8" async="async"></script>
+<script type='text/javascript' src='//libs.baidu.com/jquery/1.8.3/jquery.min.js?ver=1.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"2.7.1","is_admin":"0","ajaxurl":"http:\/\/cuiqingcai.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"\u4f7f\u7528 %s \u590d\u5236\uff0c\u4f7f\u7528 %s \u7c98\u8d34\u3002","minimize":"\u70b9\u51fb\u5c55\u5f00\u4ee3\u7801"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=2.7.1'></script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/themes/Yusi/js/jquery.fitvids.js?ver=2.0.110526'></script>
+<link rel='prev' title='Python爬虫实战二之爬取百度贴吧帖子' href='http://cuiqingcai.com/993.html' />
+<link rel='next' title='Python爬虫实战四之抓取淘宝MM照片' href='http://cuiqingcai.com/1001.html' />
+<link rel='canonical' href='http://cuiqingcai.com/997.html' />
+<link rel='shortlink' href='http://cuiqingcai.com/?p=997' />
+<meta name="keywords" content="Python, 爬虫, Python">
+<meta name="description" content="大家好，本次为大家带来的项目是计算大学本学期绩点。首先说明的是，博主来自山东大学，有属于个人的学生成绩管理系统，需要学号密码才可以登录，不过可能广大读者没有这个学号密码，不能实际进行操作，所以最主要的还是获取它的原理。最主要的是了解cookie的相关操作。 本篇目标 1.模拟登录学生成绩管理系统  2.抓取本学期成绩界面  3.计算打印本学期成绩 1.URL的获取 恩，博主来自山东大学~  先贴一个URL，让大家知道我们学校学生信息系统">
+        <script type="text/javascript">
+            jQuery(document).ready( function() {
+                jQuery('.video').fitVids();
+            });
+        </script><!--[if lt IE 9]><script src="http://cuiqingcai.com/wp-content/themes/Yusi/js/html5.js"></script><![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3ef185224776ec2561c9f7066ead4f24";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
+<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="http://cuiqingcai.com/fav.png" />
+<script type="text/javascript">
+$(document).ready(function(){
+	var imgs = new Array();
+	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
+	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
+	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
+	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
+	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
+	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
+	$('.ds-avatar img[src*="cdncache"]').each(function(){
+		var rand = Math.floor(Math.random()*imgs.length);
+		$(this).attr("src",imgs[rand]);
+	})
+});
+</script>
+</head>
+<body class="single single-post postid-997 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="/">
+                        <h1>
+                                                        <span class="yusi-mono">静觅</span>
+                                                        <span class="yusi-bloger">静静寻觅生活的美好</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-44"><a href="http://cuiqingcai.com">首页</a></li>
+<li id="menu-item-14" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-14"><a href="http://cuiqingcai.com/category/life">生活笔记</a>
+<ul class="sub-menu">
+	<li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-19"><a href="http://cuiqingcai.com/category/life/notes">个人随笔</a></li>
+	<li id="menu-item-18" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-18"><a href="http://cuiqingcai.com/category/life/daily">个人日记</a></li>
+	<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15"><a href="http://cuiqingcai.com/category/life/presatation">个人展示</a></li>
+</ul>
+</li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-7"><a href="http://cuiqingcai.com/category/technique">技术杂谈</a>
+<ul class="sub-menu">
+	<li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="http://cuiqingcai.com/category/technique/cc">C/C++</a></li>
+	<li id="menu-item-11" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="http://cuiqingcai.com/category/technique/java">Java</a></li>
+	<li id="menu-item-17" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="http://cuiqingcai.com/category/technique/php">PHP</a></li>
+	<li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-153"><a href="http://cuiqingcai.com/category/technique/html">HTML</a></li>
+	<li id="menu-item-960" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-960"><a href="http://cuiqingcai.com/category/technique/python">Python</a></li>
+	<li id="menu-item-1277" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1277"><a href="http://cuiqingcai.com/category/technique/javascript">JS</a></li>
+	<li id="menu-item-16" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16"><a href="http://cuiqingcai.com/category/technique/other">Other</a></li>
+</ul>
+</li>
+<li id="menu-item-418" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-418"><a href="http://cuiqingcai.com/category/resources">福利专区</a></li>
+<li id="menu-item-851" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851"><a href="http://cuiqingcai.com/about">关于自己</a></li>
+<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="http://cuiqingcai.com/contact">给我留言</a></li>
+<li id="menu-item-1131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1131"><a href="http://cuiqingcai.com/donate">赞助作者</a></li>
+<li style="float:right;">
+                    <div class="toggle-search"><i class="fa fa-search"></i></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='http://cuiqingcai.com/?s=' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="/"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='search...';" onfocus="if(this.value=='search...')this.value='';" value="search..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+					<div class="pull-right">
+				<i class="fa fa-user"></i> <a href="/wp-login.php?action=register">投稿</a>&nbsp;&nbsp;&nbsp;   <i class="fa fa-power-off"></i> <a href="http://cuiqingcai.com/wp-login.php">登录</a>			</div>
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong>    欢迎来到我的博客，浏览文章时点击一下广告是您对我最大的支持，谢谢啦！</div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+<div class="breadcrumbs"><a title="返回首页" href="http://cuiqingcai.com"><i class="fa fa-home"></i></a> <small>></small> <a href="http://cuiqingcai.com/category/technique">技术杂谈</a> <small>></small> <a href="http://cuiqingcai.com/category/technique/python">Python</a> <small>></small> <span class="muted">Python爬虫实战三之计算大学本学期绩点</span></div>
+				<header class="article-header">
+			<h1 class="article-title"><a href="http://cuiqingcai.com/997.html">Python爬虫实战三之计算大学本学期绩点</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://cuiqingcai.com/category/technique/python"> Python</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="http://cuiqingcai.com/author/cqcre">崔庆才</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 9个月前 (02-20)</time>
+				<span class="muted"><i class="fa fa-eye"></i> 12465℃</span>
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="http://cuiqingcai.com/997.html#comments">32评论</a></span>							</div>
+		</header>
+<div class="banner banner-post"><!-- tuici -->
+<script type="text/javascript">
+    /* 创建于 2015-02-23*/
+var cpro_id = "u1959022";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cnw.js" type="text/javascript"></script>
+<!-- biaoqian -->
+<script type="text/javascript">
+    /*860*60 创建于 2015-02-25*/
+    var cpro_id = "u1959939";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+</div>		<article class="article-content">
+			<p>大家好，本次为大家带来的项目是计算大学本学期绩点。首先说明的是，博主来自山东大学，有属于个人的学生成绩管理系统，需要学号密码才可以登录，不过可能广大读者没有这个学号密码，不能实际进行操作，所以最主要的还是获取它的原理。最主要的是了解cookie的相关操作。</p>
+<h2>本篇目标</h2>
+<p>1.模拟登录学生成绩管理系统</p>
+<p>2.抓取本学期成绩界面</p>
+<p>3.计算打印本学期成绩</p>
+<h2>1.URL的获取</h2>
+<p>恩，博主来自山东大学~</p>
+<p>先贴一个URL，让大家知道我们学校学生信息系统的网站构架，主页是 <a href="http://jwxt.sdu.edu.cn:7890/zhxt_bks/zhxt_bks.html">http://jwxt.sdu.edu.cn:7890/zhxt_bks/zhxt_bks.html</a>，山东大学学生个人信息系统，进去之后，Oh不，他竟然用了frame，一个多么古老的而又任性的写法，真是惊出一身冷汗~</p>
+<p>算了，就算他是frame又能拿我怎么样？我们点到登录界面，审查一下元素，先看看登录界面的URL是怎样的？</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220211218.jpg"><img class="alignnone size-full wp-image-1032" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220211218.jpg" alt="QQ截图20150220211218" width="832" height="678" /></a></p>
+<p>恩，看到了右侧的frame名称，src=&#8221;xk_login.html&#8221;，可以分析出完整的登录界面的网址为 <a href="http://jwxt.sdu.edu.cn:7890/zhxt_bks/xk_login.html">http://jwxt.sdu.edu.cn:7890/zhxt_bks/xk_login.html</a>，点进去看看，真是棒棒哒，他喵的竟然是清华大学选课系统，醉了，你说你抄袭就抄袭吧，改改名字也不错啊~</p>
+<p>算了，就不和他计较了。现在，我们登录一下，用浏览器监听网络。</p>
+<p>我用的是猎豹浏览器，审查元素时会有一个网络的选项，如果大家用的Chrome，也有相对应的功能，Firefox需要装插件HttpFox，同样可以实现。</p>
+<p>这个网络监听功能可以监听表单的传送以及请求头，响应头等等的信息。截个图看一下，恩，我偷偷把密码隐藏了，你看不到~</p>
+<p>大家看到的是登录之后出现的信息以及NetWork监听，显示了hearders的详细信息。</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220212025.jpg"><img class="alignnone size-full wp-image-1033" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220212025.jpg" alt="QQ截图20150220212025" width="1324" height="699" /></a></p>
+<p>最主要的内容，我们可以发现有一个表单提交的过程，提交方式为POST，两个参数分别为stuid和pwd。</p>
+<p>请求的URL为 <a href="http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login">http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login</a>，没错，找到表单数据和目标地址就是这么简单。</p>
+<p>在这里注意，刚才的 <a href="http://jwxt.sdu.edu.cn:7890/zhxt_bks/xk_login.html">http://jwxt.sdu.edu.cn:7890/zhxt_bks/xk_login.html</a> 只是登录界面的地址，刚刚得到的这个地址才是登录索要提交到的真正的URL。希望大家这里不要混淆。</p>
+<p>不知道山大这个系统有没有做headers的检查，我们先不管这么多，先尝试一下模拟登录并保存Cookie。</p>
+<h2>2.模拟登录</h2>
+<p>好，通过以上信息，我们已经找到了登录的目标地址为 <a href="http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login">http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login</a></p>
+<p>有一个表单提交到这个URL，表单的两个内容分别为stuid和pwd，学号和密码，没有其他的隐藏信息，提交方式为POST。</p>
+<p>好，现在我们首先构造以下代码来完成登录。看看会不会获取到登录之后的提示页面。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce473528949761198" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+__author__ = 'CQC'
+# -*- coding:utf-8 -*-
+
+import urllib
+import urllib2
+import cookielib
+import re
+
+#山东大学绩点运算
+class SDU:
+
+    def __init__(self):
+        self.loginUrl = 'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'
+        self.cookies = cookielib.CookieJar()
+        self.postdata = urllib.urlencode({
+            'stuid':'201200131012',
+            'pwd':'xxxxxx'
+         })
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookies))
+
+    def getPage(self):
+        request  = urllib2.Request(
+            url = self.loginUrl,
+            data = self.postdata)
+        result = self.opener.open(request)
+        #打印登录内容
+        print result.read().decode('gbk')
+
+
+sdu = SDU()
+sdu.getPage()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce473528949761198-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-2">2</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-4">4</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-6">6</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-8">8</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-10">10</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-12">12</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-14">14</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-16">16</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-18">18</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-20">20</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-22">22</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-24">24</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-26">26</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-28">28</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473528949761198-30">30</div><div class="crayon-num" data-line="crayon-5645bce473528949761198-31">31</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce473528949761198-1"><span class="crayon-v">__author__</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'CQC'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-2"><span class="crayon-p"># -*- coding:utf-8 -*-</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-4"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-5"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-6"><span class="crayon-e">import </span><span class="crayon-e">cookielib</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-7"><span class="crayon-e">import </span><span class="crayon-v">re</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-8">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473528949761198-9"><span class="crayon-p">#山东大学绩点运算</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-10"><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-v">SDU</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-11">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">def </span><span class="crayon-e">__init__</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">cookielib</span><span class="crayon-sy">.</span><span class="crayon-e">CookieJar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'stuid'</span><span class="crayon-o">:</span><span class="crayon-s">'201200131012'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'pwd'</span><span class="crayon-o">:</span><span class="crayon-s">'xxxxxx'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">build_opener</span><span class="crayon-sy">(</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">HTTPCookieProcessor</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-20">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473528949761198-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">def </span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">request</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#打印登录内容</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">print </span><span class="crayon-v">result</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">decode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-28">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473528949761198-29">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473528949761198-30"><span class="crayon-v">sdu</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">SDU</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473528949761198-31"><span class="crayon-v">sdu</span><span class="crayon-sy">.</span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0040 seconds] -->
+<p>测试一下，竟然成功了，山大这网竟然没有做headers检查，很顺利就登录进去了。</p>
+<p>说明一下，在这里我们利用了前面所说的cookie，用到了CookieJar这个对象来保存cookies，另外通过构建opener，利用open方法实现了登录。如果大家觉得这里有疑惑，请看 <a href="http://cuiqingcai.com/968.html">Python爬虫入门六之Cookie的使用</a>，这篇文章说得比较详细。</p>
+<p>好，我们看一下运行结果</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220214238.jpg"><img class="alignnone size-full wp-image-1035" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220214238.jpg" alt="QQ截图20150220214238" width="629" height="600" /></a></p>
+<p>酸爽啊，接下来我们只要再获取到本学期成绩界面然后把成绩抓取出来就好了。</p>
+<h2>3.抓取本学期成绩</h2>
+<p>让我们先在浏览器中找到本学期成绩界面，点击左边的本学期成绩。</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220220000.jpg"><img class="alignnone size-full wp-image-1037" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220220000.jpg" alt="QQ截图20150220220000" width="1321" height="662" /></a></p>
+<p>重新审查元素，你会发现这个frame的src还是没有变，仍然是xk_login.html，引起这个页面变化的原因是在左边的本学期成绩这个超链接设置了一个目标frame，所以，那个页面就显示在右侧了。</p>
+<p>所以，让我们再审查一下本学期成绩这个超链接的内容是什么~</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220220338.jpg"><img class="alignnone size-full wp-image-1038" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220220338.jpg" alt="QQ截图20150220220338" width="827" height="384" /></a></p>
+<p>恩，找到它了，&lt;a href=&#8221;/pls/wwwbks/bkscjcx.curscopre&#8221; target=&#8221;w_right&#8221;&gt;本学期成绩&lt;/a&gt;</p>
+<p>那么，完整的URL就是 <a href="http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre">http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre</a>，好，URL已经找到了，我们继续完善一下代码，获取这个页面。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce473542734652376" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+__author__ = 'CQC'
+# -*- coding:utf-8 -*-
+
+import urllib
+import urllib2
+import cookielib
+import re
+
+#山东大学绩点运算
+class SDU:
+
+    def __init__(self):
+        #登录URL
+        self.loginUrl = 'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'
+        #本学期成绩URL
+        self.gradeUrl = 'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'
+        self.cookies = cookielib.CookieJar()
+        self.postdata = urllib.urlencode({
+            'stuid':'201200131012',
+            'pwd':'xxxxxx'
+         })
+        #构建opener
+        self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookies))
+
+    #获取本学期成绩页面
+    def getPage(self):
+        request  = urllib2.Request(
+            url = self.loginUrl,
+            data = self.postdata)
+        result = self.opener.open(request)
+        result = self.opener.open(self.gradeUrl)
+        #打印登录内容
+        print result.read().decode('gbk')
+
+
+sdu = SDU()
+sdu.getPage()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce473542734652376-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-2">2</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-4">4</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-6">6</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-8">8</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-10">10</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-12">12</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-14">14</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-16">16</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-18">18</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-20">20</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-22">22</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-24">24</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-26">26</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-28">28</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-30">30</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-32">32</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-34">34</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473542734652376-36">36</div><div class="crayon-num" data-line="crayon-5645bce473542734652376-37">37</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce473542734652376-1"><span class="crayon-v">__author__</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'CQC'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-2"><span class="crayon-p"># -*- coding:utf-8 -*-</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-4"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-5"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-6"><span class="crayon-e">import </span><span class="crayon-e">cookielib</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-7"><span class="crayon-e">import </span><span class="crayon-v">re</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-8">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473542734652376-9"><span class="crayon-p">#山东大学绩点运算</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-10"><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-v">SDU</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-11">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-12"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">def </span><span class="crayon-e">__init__</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-13"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#登录URL</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#本学期成绩URL</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">gradeUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">cookielib</span><span class="crayon-sy">.</span><span class="crayon-e">CookieJar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'stuid'</span><span class="crayon-o">:</span><span class="crayon-s">'201200131012'</span><span class="crayon-sy">,</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'pwd'</span><span class="crayon-o">:</span><span class="crayon-s">'xxxxxx'</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#构建opener</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">build_opener</span><span class="crayon-sy">(</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">HTTPCookieProcessor</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-24">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473542734652376-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#获取本学期成绩页面</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">def </span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">request</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">gradeUrl</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-32"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#打印登录内容</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-e">print </span><span class="crayon-v">result</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">decode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-34">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473542734652376-35">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473542734652376-36"><span class="crayon-v">sdu</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">SDU</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473542734652376-37"><span class="crayon-v">sdu</span><span class="crayon-sy">.</span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0048 seconds] -->
+<p>上面的代码，我们最主要的是增加了</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce473553481678310" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+result = self.opener.open(self.gradeUrl)</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce473553481678310-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce473553481678310-1"><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">gradeUrl</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0005 seconds] -->
+<p>这句代码，用原来的opener 访问一个本学期成绩的URL即可。运行结果如下</p>
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220221909.jpg"><img class="alignnone size-full wp-image-1039" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/QQ截图20150220221909.jpg" alt="QQ截图20150220221909" width="1118" height="560" /></a></p>
+<p>恩，本学期成绩的页面已经被我们抓取下来了，接下来用正则表达式提取一下，然后计算学分即可</p>
+<h2>4.抓取有效信息</h2>
+<p>接下来我们就把页面内容提取一下，最主要的便是学分以及分数了。</p>
+<p>平均绩点 = ∑（每科学分*每科分数）/总学分</p>
+<p>所以我们把每科的学分以及分数抓取下来就好了，对于有些课打了良好或者优秀等级的，我们不进行抓取。</p>
+<p>我们可以发现每一科都是TR标签，然后是一系列的td标签</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce47355a720124514" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+&lt;TR&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;&lt;INPUT TYPE="checkbox" NAME="p_pm" VALUE="013320131012015011294 面向对象技术"&gt;&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;0133201310&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;面向对象技术&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;1&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;2.5&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;20150112&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;94&lt;/p&gt;&lt;/td&gt;
+&lt;td bgcolor="#EAE2F3"&gt;&lt;p align="center"&gt;必修&lt;/p&gt;&lt;/td&gt;
+&lt;/TR&gt;</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce47355a720124514-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce47355a720124514-2">2</div><div class="crayon-num" data-line="crayon-5645bce47355a720124514-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce47355a720124514-4">4</div><div class="crayon-num" data-line="crayon-5645bce47355a720124514-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce47355a720124514-6">6</div><div class="crayon-num" data-line="crayon-5645bce47355a720124514-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce47355a720124514-8">8</div><div class="crayon-num" data-line="crayon-5645bce47355a720124514-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce47355a720124514-10">10</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce47355a720124514-1"><span class="crayon-o">&lt;</span><span class="crayon-v">TR</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce47355a720124514-2"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-e">INPUT </span><span class="crayon-v">TYPE</span><span class="crayon-o">=</span><span class="crayon-s">"checkbox"</span><span class="crayon-h"> </span><span class="crayon-v">NAME</span><span class="crayon-o">=</span><span class="crayon-s">"p_pm"</span><span class="crayon-h"> </span><span class="crayon-v">VALUE</span><span class="crayon-o">=</span><span class="crayon-s">"013320131012015011294 面向对象技术"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-5645bce47355a720124514-3"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-cn">0133201310</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce47355a720124514-4"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span>面向对象技术<span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-5645bce47355a720124514-5"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-cn">1</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce47355a720124514-6"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-cn">2.5</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-5645bce47355a720124514-7"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-cn">20150112</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce47355a720124514-8"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span><span class="crayon-cn">94</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line" id="crayon-5645bce47355a720124514-9"><span class="crayon-o">&lt;</span><span class="crayon-e">td </span><span class="crayon-v">bgcolor</span><span class="crayon-o">=</span><span class="crayon-s">"#EAE2F3"</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-i">p</span><span class="crayon-h"> </span><span class="crayon-v">align</span><span class="crayon-o">=</span><span class="crayon-s">"center"</span><span class="crayon-o">&gt;</span>必修<span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">p</span><span class="crayon-o">&gt;</span><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">td</span><span class="crayon-o">&gt;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce47355a720124514-10"><span class="crayon-o">&lt;</span><span class="crayon-o">/</span><span class="crayon-v">TR</span><span class="crayon-o">&gt;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0047 seconds] -->
+<p>我们用下面的正则表达式进行提取即可，部分代码如下</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce473560059757799" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+page = self.getPage()
+myItems = re.findall('&lt;TR&gt;.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;/TR&gt;',page,re.S) 
+for item in myItems:
+   self.credit.append(item[0].encode('gbk'))
+   self.grades.append(item[1].encode('gbk'))</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce473560059757799-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473560059757799-2">2</div><div class="crayon-num" data-line="crayon-5645bce473560059757799-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473560059757799-4">4</div><div class="crayon-num" data-line="crayon-5645bce473560059757799-5">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce473560059757799-1"><span class="crayon-v">page</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473560059757799-2"><span class="crayon-v">myItems</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">re</span><span class="crayon-sy">.</span><span class="crayon-e">findall</span><span class="crayon-sy">(</span><span class="crayon-s">'&lt;TR&gt;.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;/TR&gt;'</span><span class="crayon-sy">,</span><span class="crayon-v">page</span><span class="crayon-sy">,</span><span class="crayon-v">re</span><span class="crayon-sy">.</span><span class="crayon-v">S</span><span class="crayon-sy">)</span><span class="crayon-h"> </span></div><div class="crayon-line" id="crayon-5645bce473560059757799-3"><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-e">item </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">myItems</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473560059757799-4"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-v">item</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">encode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473560059757799-5"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">grades</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-v">item</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">encode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0017 seconds] -->
+<p>主要利用了findall方法，这个方法在此就不多介绍了，前面我们已经用过多次了。</p>
+<p>得到的学分和分数我们都用列表list进行存储，所以用了 append 方法，每获取到一个信息就把它加进去。</p>
+<h2>5.整理计算最后绩点</h2>
+<p>恩，像上面那样把学分绩点都保存到列表list中了，所以我们最后用一个公式来计算学分绩点就好了，最后整理后的代码如下：</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645bce473566035603373" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+# -*- coding: utf-8 -*-  
+
+import urllib
+import urllib2
+import cookielib
+import re
+import string
+
+#绩点运算
+class SDU:
+   
+   #类的初始化
+   def __init__(self):
+      #登录URL
+      self.loginUrl = 'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'
+      #成绩URL
+      self.gradeUrl = 'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'
+      #CookieJar对象
+      self.cookies = cookielib.CookieJar()
+      #表单数据
+      self.postdata = urllib.urlencode({
+            'stuid':'201200131012',
+            'pwd':'xxxxx'
+         })
+      #构建opener
+      self.opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(self.cookies))
+      #学分list
+      self.credit = []
+      #成绩list
+      self.grades = []
+      
+   def getPage(self):
+      req  = urllib2.Request(
+            url = self.loginUrl,
+            data = self.postdata)
+      result = self.opener.open(req)
+      result = self.opener.open(self.gradeUrl)
+      #返回本学期成绩页面
+      return result.read().decode('gbk')
+   
+   def getGrades(self):
+      #获得本学期成绩页面
+      page = self.getPage()
+      #正则匹配
+      myItems = re.findall('&lt;TR&gt;.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;/TR&gt;',page,re.S) 
+      for item in myItems:
+         self.credit.append(item[0].encode('gbk'))
+         self.grades.append(item[1].encode('gbk'))
+      self.getGrade()
+      
+   def getGrade(self):
+      #计算总绩点
+      sum = 0.0
+      weight = 0.0
+      for i in range(len(self.credit)):
+         if(self.grades[i].isdigit()):
+            sum += string.atof(self.credit[i])*string.atof(self.grades[i])
+            weight += string.atof(self.credit[i])
+      
+      print u"本学期绩点为:",sum/weight
+      
+sdu = SDU()
+sdu.getGrades()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645bce473566035603373-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-2">2</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-4">4</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-6">6</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-8">8</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-10">10</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-12">12</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-13">13</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-14">14</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-15">15</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-16">16</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-17">17</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-18">18</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-19">19</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-20">20</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-21">21</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-22">22</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-23">23</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-24">24</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-25">25</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-26">26</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-27">27</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-28">28</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-29">29</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-30">30</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-31">31</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-32">32</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-33">33</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-34">34</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-35">35</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-36">36</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-37">37</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-38">38</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-39">39</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-40">40</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-41">41</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-42">42</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-43">43</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-44">44</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-45">45</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-46">46</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-47">47</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-48">48</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-49">49</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-50">50</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-51">51</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-52">52</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-53">53</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-54">54</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-55">55</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-56">56</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-57">57</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-58">58</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-59">59</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-60">60</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-61">61</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645bce473566035603373-62">62</div><div class="crayon-num" data-line="crayon-5645bce473566035603373-63">63</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645bce473566035603373-1"><span class="crayon-p"># -*- coding: utf-8 -*-&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-2">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473566035603373-3"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-4"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-5"><span class="crayon-e">import </span><span class="crayon-e">cookielib</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-6"><span class="crayon-e">import </span><span class="crayon-e">re</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-7"><span class="crayon-e">import </span><span class="crayon-t">string</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-8">&nbsp;</div><div class="crayon-line" id="crayon-5645bce473566035603373-9"><span class="crayon-p">#绩点运算</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-10"><span class="crayon-t">class</span><span class="crayon-h"> </span><span class="crayon-v">SDU</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-11"><span class="crayon-h">&nbsp;&nbsp; </span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-12"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-p">#类的初始化</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-13"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-e">def </span><span class="crayon-e">__init__</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-14"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#登录URL</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-15"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bks_login2.login'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-16"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#成绩URL</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-17"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">gradeUrl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">'http://jwxt.sdu.edu.cn:7890/pls/wwwbks/bkscjcx.curscopre'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-18"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#CookieJar对象</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-19"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">cookielib</span><span class="crayon-sy">.</span><span class="crayon-e">CookieJar</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-20"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#表单数据</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-21"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-sy">{</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-22"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'stuid'</span><span class="crayon-o">:</span><span class="crayon-s">'201200131012'</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-23"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-s">'pwd'</span><span class="crayon-o">:</span><span class="crayon-s">'xxxxx'</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-24"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-sy">}</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-25"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#构建opener</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-26"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">build_opener</span><span class="crayon-sy">(</span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">HTTPCookieProcessor</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">cookies</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-27"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#学分list</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-28"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-29"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#成绩list</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-30"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">grades</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">[</span><span class="crayon-sy">]</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-31"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-32"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-e">def </span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-33"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">req</span><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-34"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">loginUrl</span><span class="crayon-sy">,</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-35"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">postdata</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-36"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-v">req</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-37"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">result</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">opener</span><span class="crayon-sy">.</span><span class="crayon-e">open</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">gradeUrl</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-38"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#返回本学期成绩页面</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-39"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">return</span><span class="crayon-h"> </span><span class="crayon-v">result</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">.</span><span class="crayon-e">decode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-40"><span class="crayon-h">&nbsp;&nbsp; </span></div><div class="crayon-line" id="crayon-5645bce473566035603373-41"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-e">def </span><span class="crayon-e">getGrades</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-42"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#获得本学期成绩页面</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-43"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">page</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-e">getPage</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-44"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#正则匹配</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-45"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">myItems</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">re</span><span class="crayon-sy">.</span><span class="crayon-e">findall</span><span class="crayon-sy">(</span><span class="crayon-s">'&lt;TR&gt;.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;p.*?&lt;p.*?&gt;(.*?)&lt;/p&gt;.*?&lt;/TR&gt;'</span><span class="crayon-sy">,</span><span class="crayon-v">page</span><span class="crayon-sy">,</span><span class="crayon-v">re</span><span class="crayon-sy">.</span><span class="crayon-v">S</span><span class="crayon-sy">)</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-46"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-e">item </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-v">myItems</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-47"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-v">item</span><span class="crayon-sy">[</span><span class="crayon-cn">0</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">encode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-48"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">grades</span><span class="crayon-sy">.</span><span class="crayon-e">append</span><span class="crayon-sy">(</span><span class="crayon-v">item</span><span class="crayon-sy">[</span><span class="crayon-cn">1</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">encode</span><span class="crayon-sy">(</span><span class="crayon-s">'gbk'</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-49"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-e">getGrade</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-50"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-51"><span class="crayon-h">&nbsp;&nbsp; </span><span class="crayon-e">def </span><span class="crayon-e">getGrade</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-52"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-p">#计算总绩点</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-53"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">sum</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0.0</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-54"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">weight</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-cn">0.0</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-55"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-st">for</span><span class="crayon-h"> </span><span class="crayon-i">i</span><span class="crayon-h"> </span><span class="crayon-st">in</span><span class="crayon-h"> </span><span class="crayon-e">range</span><span class="crayon-sy">(</span><span class="crayon-e">len</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-56"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span class="crayon-st">if</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">grades</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">.</span><span class="crayon-e">isdigit</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span><span class="crayon-sy">)</span><span class="crayon-o">:</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-57"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">sum</span><span class="crayon-h"> </span><span class="crayon-o">+=</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">.</span><span class="crayon-e">atof</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span><span class="crayon-o">*</span><span class="crayon-t">string</span><span class="crayon-sy">.</span><span class="crayon-e">atof</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">grades</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-58"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-v">weight</span><span class="crayon-h"> </span><span class="crayon-o">+=</span><span class="crayon-h"> </span><span class="crayon-t">string</span><span class="crayon-sy">.</span><span class="crayon-e">atof</span><span class="crayon-sy">(</span><span class="crayon-r">self</span><span class="crayon-sy">.</span><span class="crayon-v">credit</span><span class="crayon-sy">[</span><span class="crayon-v">i</span><span class="crayon-sy">]</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-59"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-60"><span class="crayon-h">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="crayon-i">print</span><span class="crayon-h"> </span><span class="crayon-i">u</span><span class="crayon-s">"本学期绩点为:"</span><span class="crayon-sy">,</span><span class="crayon-v">sum</span><span class="crayon-o">/</span><span class="crayon-e">weight</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-61"><span class="crayon-e">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645bce473566035603373-62"><span class="crayon-v">sdu</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-e">SDU</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645bce473566035603373-63"><span class="crayon-v">sdu</span><span class="crayon-sy">.</span><span class="crayon-e">getGrades</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0101 seconds] -->
+<p>好，最后就会打印输出本学期绩点是多少，小伙伴们最主要的了解上面的编程思路就好。</p>
+<p>最主要的内容就是Cookie的使用，模拟登录的功能。</p>
+<p>本文思路参考来源：<a href="http://blog.csdn.net/pleasecallmewhy/article/details/9305229">汪海的爬虫</a></p>
+<p>希望小伙伴们加油，加深一下理解。</p>
+<p>转载请注明：<a href="http://cuiqingcai.com">静觅</a> &raquo; <a href="http://cuiqingcai.com/997.html">Python爬虫实战三之计算大学本学期绩点</a></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="997" id="Addlike" class="action"><i class="fa fa-heart-o"></i>喜欢 (<span class="count">35</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享0次">0</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="qq fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_renren fa fa-renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more"></a></div></div></div></span>	
+</div>
+	</article>	
+				<div style="background:#fff;padding-bottom:20px;font-size:14px;">
+			<p style="text-align: center;margin-bottom:20px;padding:0px 20px">您的支持是博主写作最大的动力，如果您喜欢我的文章，感觉我的文章对您有帮助，请狠狠点击下面的</p>
+			<p style="text-align: center;"><a href="http://cuiqingcai.com/donate"> <input style="width: 310px; margin: 10px auto 0px; background-color: #f58a87; color: #ffffff; height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" type="button" value="我要小额赞助" /></a>
+		</div>
+		<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="http://cuiqingcai.com/tag/python" rel="tag">Python</a><a href="http://cuiqingcai.com/tag/%e7%88%ac%e8%99%ab" rel="tag">爬虫</a></div>		</footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="http://cuiqingcai.com/993.html" rel="prev">Python爬虫实战二之爬取百度贴吧帖子</a></span>
+			<span class="article-nav-next"><a href="http://cuiqingcai.com/1001.html" rel="next">Python爬虫实战四之抓取淘宝MM照片</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="http://cuiqingcai.com/2083.html" title="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" target="_blank">
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265780.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" />	<br><span class="r_title">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://cuiqingcai.com/1972.html" title="Python爬虫实战六之抓取爱问知识人问题并保存至数据库" target="_blank">
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265771.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫实战六之抓取爱问知识人问题并保存至数据库" />	<br><span class="r_title">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://cuiqingcai.com/1707.html" title="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" target="_blank">
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5263464.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" />	<br><span class="r_title">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" target="_blank">
+<img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" />	<br><span class="r_title">Python爬虫入门八之Beautiful Soup的用法</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/2083.html">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1972.html">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1707.html">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1319.html">Python爬虫入门八之Beautiful Soup的用法</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1076.html">Python爬虫实战五之模拟登录淘宝并获取所有订单</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1052.html">Python爬虫学习系列教程</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/1001.html">Python爬虫实战四之抓取淘宝MM照片</a></li><li><i class="fa fa-minus"></i><a href="http://cuiqingcai.com/993.html">Python爬虫实战二之爬取百度贴吧帖子</a></li>
+</ul></div></div>		</div>
+						<a name="comments"></a>
+
+<div class="ds-thread" data-thread-key="997" data-author-key="1" data-title="Python爬虫实战三之计算大学本学期绩点" data-url="http://cuiqingcai.com/997.html"></div>
+
+<script type="text/javascript">
+	if (typeof DUOSHUO !== 'undefined')
+		DUOSHUO.EmbedThread('.ds-thread');
+</script>
+	<div id="ds-ssr">
+
+				<nav id="comment-nav-above">
+			<h1 class="assistive-text">Comment navigation</h1>
+			<div class="nav-previous"><a href="http://cuiqingcai.com/997.html/comment-page-1#comments" >&larr; Older Comments</a></div>
+			<div class="nav-next"></div>
+		</nav>
+		
+            <ol id="commentlist">
+                		<li class="comment even thread-even depth-1" id="li-comment-997">
+			<article id="comment-997" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">sdupjj</span> on <a rel="nofollow" href="http://cuiqingcai.com/997.html/comment-page-2#comment-997"><time pubdate datetime="2015-11-10T21:57:31+00:00">2015年11月10日 at 下午9:57</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>试了我当年的学号，居然还能登陆，感慨良多</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="duoshuo odd alt thread-odd thread-alt depth-1" id="li-comment-926">
+			<article id="comment-926" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">ryangu</span> on <a rel="nofollow" href="http://cuiqingcai.com/997.html/comment-page-2#comment-926"><time pubdate datetime="2015-10-21T18:18:20+00:00">2015年10月21日 at 下午6:18</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>楼主，我在爬学校的网站的时候，有一堆隐藏表单，还有一个(unable to decode value)的post项，研究一下后发现，这一项是‘登 录’的gb2312的编码后的格式，而urlencode不是用的utf－8么，我就直接将source编码后的作为提交，没有用urlencode，不知道这样可以么，可是我还是登录不上去啊，望帮忙啊，谢啦</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+            </ol>
+
+				<nav id="comment-nav-below">
+			<h1 class="assistive-text">Comment navigation</h1>
+			<div class="nav-previous"><a href="http://cuiqingcai.com/997.html/comment-page-1#comments" >&larr; Older Comments</a></div>
+			<div class="nav-next"></div>
+		</nav>
+		            
+    </div>			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="http://weibo.com/u/2830678474" rel="external nofollow" title="新浪微博" target="_blank"><i class="sinaweibo fa fa-weibo"></i></a><a  href="http://t.qq.com/CQCcqc123456?preview" rel="external nofollow" title="腾讯微博" target="_blank"><i class="tencentweibo fa fa-tencent-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title"></div><div class="popover-content"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/img/weixin.gif" ></div></div></div></a>
+<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=cqc@cuiqingcai.com" rel="external nofollow" title="Email" target="_blank"><i class="email fa fa-envelope-o"></i></a><a href="?feed=rss2" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_archive"><div class="title"><h2>文章归档</h2></div>		<ul>
+	<li><a href='http://cuiqingcai.com/date/2015/11'>2015年十一月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/10'>2015年十月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/09'>2015年九月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/08'>2015年八月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/07'>2015年七月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/06'>2015年六月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/05'>2015年五月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/04'>2015年四月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/03'>2015年三月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/02'>2015年二月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2015/01'>2015年一月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2014/12'>2014年十二月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2014/11'>2014年十一月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2014/10'>2014年十月</a></li>
+	<li><a href='http://cuiqingcai.com/date/2014/09'>2014年九月</a></li>
+		</ul>
+</div><div class="widget widget_text"><div class="title"><h2>原创游戏</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">BallEscape丨博主开发的一款休闲益智虐心游戏 </p><p style="
+    margin-left: 10px;
+">
+<a href="http://res.cuiqingcai.com/ballescape/">
+<input type="button" value="了解更多" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
+		</div><div class="widget d_postlist"><div class="title"><h2>猜你喜欢</h2></div><ul><li><a href="http://cuiqingcai.com/990.html" title="Python爬虫实战一之爬取糗事百科段子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228661.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战一之爬取糗事百科段子" /></span><span class="text">Python爬虫实战一之爬取糗事百科段子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="990" data-replace="1">123评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/1001.html" title="Python爬虫实战四之抓取淘宝MM照片" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270641.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战四之抓取淘宝MM照片" /></span><span class="text">Python爬虫实战四之抓取淘宝MM照片</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="1001" data-replace="1">81评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/1076.html" title="Python爬虫实战五之模拟登录淘宝并获取所有订单" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5226152.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战五之模拟登录淘宝并获取所有订单" /></span><span class="text">Python爬虫实战五之模拟登录淘宝并获取所有订单</span><span class="muted">2015-02-24</span><span class="muted"><span class="ds-thread-count" data-thread-key="1076" data-replace="1">79评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/993.html" title="Python爬虫实战二之爬取百度贴吧帖子" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265936.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战二之爬取百度贴吧帖子" /></span><span class="text">Python爬虫实战二之爬取百度贴吧帖子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="993" data-replace="1">51评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/1052.html" title="Python爬虫学习系列教程" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫学习系列教程" /></span><span class="text">Python爬虫学习系列教程</span><span class="muted">2015-02-21</span><span class="muted"><span class="ds-thread-count" data-thread-key="1052" data-replace="1">44评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/968.html" title="Python爬虫入门六之Cookie的使用" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5258536-1.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门六之Cookie的使用" /></span><span class="text">Python爬虫入门六之Cookie的使用</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="968" data-replace="1">37评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/997.html" title="Python爬虫实战三之计算大学本学期绩点" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265978.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战三之计算大学本学期绩点" /></span><span class="text">Python爬虫实战三之计算大学本学期绩点</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="997" data-replace="1">32评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/912.html" title="Python爬虫进阶一之爬虫框架Scrapy安装配置" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/d52a2834349b033b20721ee016ce36d3d539bd16.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫进阶一之爬虫框架Scrapy安装配置" /></span><span class="text">Python爬虫进阶一之爬虫框架Scrapy安装配置</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="912" data-replace="1">29评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" /></span><span class="text">Python爬虫入门八之Beautiful Soup的用法</span><span class="muted">2015-03-11</span><span class="muted"><span class="ds-thread-count" data-thread-key="1319" data-replace="1">26评论</span></span></a></li>
+<li><a href="http://cuiqingcai.com/977.html" title="Python爬虫入门七之正则表达式" ><span class="thumbnail"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270713.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门七之正则表达式" /></span><span class="text">Python爬虫入门七之正则表达式</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="977" data-replace="1">21评论</span></span></a></li>
+</ul></div><div class="widget widget_text"><div class="title"><h2>我要投稿</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">想让自己的文章出现在这里吗?赶快注册投稿吧！</p><p style="
+    margin-left: 10px;
+">
+<a href="http://cuiqingcai.com/wp-login.php?action=register">
+<input type="button" value="点我投稿" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>标签云</h2></div><div class="d_tags"><a title="26个话题" href="http://cuiqingcai.com/tag/php">PHP (26)</a><a title="20个话题" href="http://cuiqingcai.com/tag/python">Python (20)</a><a title="16个话题" href="http://cuiqingcai.com/tag/%e7%88%ac%e8%99%ab">爬虫 (16)</a><a title="14个话题" href="http://cuiqingcai.com/tag/js">JS (14)</a><a title="10个话题" href="http://cuiqingcai.com/tag/opengl">OpenGL (10)</a><a title="9个话题" href="http://cuiqingcai.com/tag/html">HTML (9)</a><a title="7个话题" href="http://cuiqingcai.com/tag/linux">Linux (7)</a><a title="6个话题" href="http://cuiqingcai.com/tag/jquery">jQuery (6)</a><a title="6个话题" href="http://cuiqingcai.com/tag/winpcap">Winpcap (6)</a><a title="5个话题" href="http://cuiqingcai.com/tag/wordpress">WordPress (5)</a><a title="4个话题" href="http://cuiqingcai.com/tag/git">Git (4)</a><a title="4个话题" href="http://cuiqingcai.com/tag/security">Security (4)</a><a title="3个话题" href="http://cuiqingcai.com/tag/java">Java (3)</a><a title="3个话题" href="http://cuiqingcai.com/tag/mysql">Mysql (3)</a><a title="3个话题" href="http://cuiqingcai.com/tag/net">Net (3)</a><a title="2个话题" href="http://cuiqingcai.com/tag/cocos2d-x">Cocos2d-x (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/jsp">JSP (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/matlab">Matlab (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/bootstrap">Bootstrap (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/photoshop">Photoshop (2)</a><a title="2个话题" href="http://cuiqingcai.com/tag/css">CSS (2)</a><a title="1个话题" href="http://cuiqingcai.com/tag/json">Json (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/redis">Redis (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/less">LESS (1)</a><a title="1个话题" href="http://cuiqingcai.com/tag/nginx">Nginx (1)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.anotherhome.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_5264963.jpg"  alt="Anotherhome "  /> Anotherhome</a></li>
+<li><a href="http://zhouchenwen.com" rel="acquaintance" target="_blank"><img src="http://zhouchenwen-wordpress.stor.sinaapp.com/uploads/2015/03/beatiful.jpg"  alt="ColdCoder "  /> ColdCoder</a></li>
+<li><a href="http://www.findspace.name" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254666.jpg"  alt="Findspace "  /> Findspace</a></li>
+<li><a href="http://blog.hickwu.com/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5270857.jpg"  alt="Hick "  /> Hick</a></li>
+<li><a href="http://www.nopcn.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5263470.jpg"  alt="nopcommerce "  /> nopcommerce</a></li>
+<li><a href="http://www.atrail.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg"  alt="从前以后 "  /> 从前以后</a></li>
+<li><a href="http://www.superqq.com/"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/wallpaper_5265810.jpg"  alt="刚刚在线 "  /> 刚刚在线</a></li>
+<li><a href="http://www.lvtao.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228675.jpg"  alt="吕滔博客 "  /> 吕滔博客</a></li>
+<li><a href="http://www.fddcn.cn" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5228669.jpg"  alt="奋斗的承诺 "  /> 奋斗的承诺</a></li>
+<li><a href="http://www.zuilizhi.net/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5247812.jpg"  alt="最励志网 "  /> 最励志网</a></li>
+<li><a href="http://www.lishengcn.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5266007.jpg"  alt="李胜的脚步 "  /> 李胜的脚步</a></li>
+<li><a href="http://liaoyuming.cn" rel="acquaintance" target="_blank"><img src="http://liaoyuming.cn/wp-content/uploads/2015/03/3-750x300.jpg"  alt="永远站 "  /> 永远站</a></li>
+<li><a href="http://www.hubwiz.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/08/wallpaper_5269088.jpg"  alt="汇智网 "  /> 汇智网</a></li>
+<li><a href="http://www.zoeys.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/10/wallpaper_5234204-e1446021079981.jpg"  alt="糊糊 "  /> 糊糊</a></li>
+<li><a href="http://www.leyle.com/" target="_blank"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5259137-1.jpg&amp;h=123&amp;w=200&amp;q=90&amp;zc=1&amp;ct=1"  alt="遗落岛 "  /> 遗落岛</a></li>
+
+	</ul>
+</div>
+<div class="widget widget_text"><div class="title"><h2>本站热门</h2></div>			<div class="textwidget"><div class = "taobaotextad" style="margin-top:-10px;"><script>document.write(unescape('%3Cdiv id="hm_t_59089"%3E%3C/div%3E%3Cscript charset="utf-8" src="http://crs.baidu.com/t.js?siteId=3ef185224776ec2561c9f7066ead4f24&planId=59089&async=0&referer=') + encodeURIComponent(document.referrer) + '&title=' + encodeURIComponent(document.title) + '&rnd=' + (+new Date) + unescape('"%3E%3C/script%3E'));</script>
+</div></div>
+		</div><div class="widget widget_text"><div class="title"><h2>休闲一下</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">累了吧？玩个游戏休息一下吧 </p><p style="
+    margin-left: 10px;
+">
+<a href="http://res.cuiqingcai.com/2048">
+<input type="button" value="放松一下" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
+		</div><div class="widget widget_text"><div class="title"><h2>新浪微博</h2></div>			<div class="textwidget"><iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=2830678474&verifier=7468dc7b&dpc=1"></iframe></div>
+		</div><div class="widget widget_text"><div class="title"><h2>精品推荐</h2></div>			<div class="textwidget"><div class = "taobaotextad">
+<script type="text/javascript">
+var cpro_id="u1974136";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"338",rsi1:"330",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"0",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"",rss2:"#00a67c",titSU:"0",ptbg:"70",piw:"130",pih:"80",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div></div>
+		</div></aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="http://cuiqingcai.com " title="静觅">静觅</a> 版权所有丨采用<a href="http://yusi123.com/"> 欲思 </a>主题丨基于<a href="http://cn.wordpress.org/" title="WordPress"> WordPress </a>构建   © 2015丨托管于 <a rel="nofollow" target="_blank" href="http://www.aliyun.com/">阿里云主机</a> & <a rel="nofollow" target="_blank" href="http://www.qiniu.com/">七牛云存储 </a>丨鲁ICP备14030596号
+		 <div>
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253486800'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253486800%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+		 </div>
+		</div>
+        
+    </div>
+</footer>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/cuiqingcai.com\/wp-admin\/admin-ajax.php","post_id":"997"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/plugins/wp-postviews/postviews-cache.js?ver=1.68'></script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/themes/Yusi/js/jquery.js?ver=1.0'></script>
+<script>with(document)0[(getElementsByTagName("head")[0]||body).appendChild(createElement("script")).src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="+~(-new Date()/36e5)];</script><!-- xuanfu -->
+ <script type="text/javascript">
+    /*300*25 创建于 2015-02-23*/
+    var cpro_id = "u1959047";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/s.js" type="text/javascript"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ef185224776ec2561c9f7066ead4f24' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>
+<!-- Dynamic page generated in 0.308 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-11-13 18:35:16 -->
+
+<!-- super cache -->

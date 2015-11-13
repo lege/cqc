@@ -1,0 +1,5 @@
+User-Agent: Baiduspider
+Allow: /wp-includes/
+Allow: /wp-admin/
+Allow: /wp-content/
+

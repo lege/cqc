@@ -1,0 +1,920 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="baidu-tc-verification" content="0fb041a64ee71333c957d8c784961cc8" />
+<meta property="qc:admins" content="145637425211673116375" />
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>Python爬虫入门三之Urllib库的使用 | 静觅</title>
+<script>
+window._deel = {name: '静觅',url: 'http://cuiqingcai.com/wp-content/themes/Yusi', ajaxpager: '', commenton: 1, roll: [0,0]}
+</script>
+
+<!-- All in One SEO Pack 2.2.6.2 by Michael Torbert of Semper Fi Web Design[392,434] -->
+<meta name="description" itemprop="description" content="那么接下来，小伙伴们就一起和我真正迈向我们的爬虫之路吧。 1.分分钟扒一个网页下来 怎样扒网页呢？其实就是根据URL来获取它的网页信息，虽然我们在浏览器中看到的是一幅幅优美的画面，但是其实是由浏览器解释才呈现出来的，实质它是一段HTML代码，加" />
+
+<meta name="keywords" itemprop="keywords" content="python,爬虫" />
+
+<!-- /all in one seo pack -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/blog.cuiqingcai.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.5"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='crayon-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/css/min/crayon.min.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-theme-github-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/themes/github/github.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='crayon-font-monaco-css'  href='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/fonts/monaco.css?ver=2.7.1' type='text/css' media='all' />
+<link rel='stylesheet' id='page-list-style-css'  href='http://cuiqingcai.com/wp-content/plugins/sitemap/css/page-list.css?ver=4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='http://cuiqingcai.com/wp-content/themes/Yusi/style.css?ver=33' type='text/css' media='all' />
+<script type="text/javascript">
+var duoshuoQuery = {"short_name":"cuiqingcai","sso":{"login":"http:\/\/blog.cuiqingcai.com\/wp-login.php?action=duoshuo_login","logout":"http:\/\/blog.cuiqingcai.com\/wp-login.php?action=logout&_wpnonce=d6fca5fc89"},"theme":"default","stylePatch":"wordpress\/\u9759\u89c5"};
+duoshuoQuery.sso.login += '&redirect_to=' + encodeURIComponent(window.location.href);
+duoshuoQuery.sso.logout += '&redirect_to=' + encodeURIComponent(window.location.href);
+</script>
+<script type="text/javascript" src="http://static.duoshuo.com/embed.js" charset="UTF-8" async="async"></script>
+<script type='text/javascript' src='//libs.baidu.com/jquery/1.8.3/jquery.min.js?ver=1.0'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var CrayonSyntaxSettings = {"version":"2.7.1","is_admin":"0","ajaxurl":"http:\/\/blog.cuiqingcai.com\/wp-admin\/admin-ajax.php","prefix":"crayon-","setting":"crayon-setting","selected":"crayon-setting-selected","changed":"crayon-setting-changed","special":"crayon-setting-special","orig_value":"data-orig-value","debug":""};
+var CrayonSyntaxStrings = {"copy":"\u4f7f\u7528 %s \u590d\u5236\uff0c\u4f7f\u7528 %s \u7c98\u8d34\u3002","minimize":"\u70b9\u51fb\u5c55\u5f00\u4ee3\u7801"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/plugins/crayon-syntax-highlighter/js/min/crayon.min.js?ver=2.7.1'></script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/themes/Yusi/js/jquery.fitvids.js?ver=2.0.110526'></script>
+<link rel='prev' title='Python爬虫入门二之爬虫基础了解' href='http://blog.cuiqingcai.com/942.html' />
+<link rel='next' title='Python爬虫入门四之Urllib库的高级用法' href='http://blog.cuiqingcai.com/954.html' />
+<link rel='canonical' href='http://blog.cuiqingcai.com/947.html' />
+<link rel='shortlink' href='http://blog.cuiqingcai.com/?p=947' />
+<meta name="keywords" content="Python, 爬虫, Python">
+<meta name="description" content="那么接下来，小伙伴们就一起和我真正迈向我们的爬虫之路吧。 1.分分钟扒一个网页下来 怎样扒网页呢？其实就是根据URL来获取它的网页信息，虽然我们在浏览器中看到的是一幅幅优美的画面，但是其实是由浏览器解释才呈现出来的，实质它是一段HTML代码，加 JS、CSS，如果把网页比作一个人，那么HTML便是他的骨架，JS便是他的肌肉，CSS便是它的衣服。所以最重要的部分是存在于HTML中的，下面我们就写个例子来扒一个网页下来。 [crayon-5">
+        <script type="text/javascript">
+            jQuery(document).ready( function() {
+                jQuery('.video').fitVids();
+            });
+        </script><!--[if lt IE 9]><script src="http://cuiqingcai.com/wp-content/themes/Yusi/js/html5.js"></script><![endif]-->
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?3ef185224776ec2561c9f7066ead4f24";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<meta name="360-site-verification" content="bdc579accc68a98f1258ebcce2266afa" />
+<script type="text/javascript" name="baidu-tc-cerfication" data-appid="5411405" src="http://apps.bdimg.com/cloudaapi/lightapp.js"></script>
+<link rel="shortcut icon" type="image/x-icon" href="http://blog.cuiqingcai.com/fav.png" />
+<script type="text/javascript">
+$(document).ready(function(){
+	var imgs = new Array();
+	imgs[0] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111154.jpg';
+	imgs[1] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525111447.jpg';
+	imgs[2] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112058.jpg';
+	imgs[3] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112112.jpg';
+	imgs[4] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112129.jpg';
+	imgs[5] = 'http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/20150525112155.jpg';
+	$('.ds-avatar img[src*="cdncache"]').each(function(){
+		var rand = Math.floor(Math.random()*imgs.length);
+		$(this).attr("src",imgs[rand]);
+	})
+});
+</script>
+</head>
+<body class="single single-post postid-947 single-format-standard">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="/">
+                        <h1>
+                                                        <span class="yusi-mono">静觅</span>
+                                                        <span class="yusi-bloger">静静寻觅生活的美好</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li id="menu-item-44" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-44"><a href="http://cuiqingcai.com">首页</a></li>
+<li id="menu-item-14" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-14"><a href="http://blog.cuiqingcai.com/category/life">生活笔记</a>
+<ul class="sub-menu">
+	<li id="menu-item-19" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-19"><a href="http://blog.cuiqingcai.com/category/life/notes">个人随笔</a></li>
+	<li id="menu-item-18" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-18"><a href="http://blog.cuiqingcai.com/category/life/daily">个人日记</a></li>
+	<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15"><a href="http://blog.cuiqingcai.com/category/life/presatation">个人展示</a></li>
+</ul>
+</li>
+<li id="menu-item-7" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor menu-item-has-children menu-item-7"><a href="http://blog.cuiqingcai.com/category/technique">技术杂谈</a>
+<ul class="sub-menu">
+	<li id="menu-item-9" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-9"><a href="http://blog.cuiqingcai.com/category/technique/cc">C/C++</a></li>
+	<li id="menu-item-11" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="http://blog.cuiqingcai.com/category/technique/java">Java</a></li>
+	<li id="menu-item-17" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-17"><a href="http://blog.cuiqingcai.com/category/technique/php">PHP</a></li>
+	<li id="menu-item-153" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-153"><a href="http://blog.cuiqingcai.com/category/technique/html">HTML</a></li>
+	<li id="menu-item-960" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-960"><a href="http://blog.cuiqingcai.com/category/technique/python">Python</a></li>
+	<li id="menu-item-1277" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-1277"><a href="http://blog.cuiqingcai.com/category/technique/javascript">JS</a></li>
+	<li id="menu-item-16" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16"><a href="http://blog.cuiqingcai.com/category/technique/other">Other</a></li>
+</ul>
+</li>
+<li id="menu-item-418" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-418"><a href="http://blog.cuiqingcai.com/category/resources">福利专区</a></li>
+<li id="menu-item-851" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-851"><a href="http://blog.cuiqingcai.com/about">关于自己</a></li>
+<li id="menu-item-251" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-251"><a href="http://blog.cuiqingcai.com/contact">给我留言</a></li>
+<li id="menu-item-1131" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1131"><a href="http://blog.cuiqingcai.com/donate">赞助作者</a></li>
+<li style="float:right;">
+                    <div class="toggle-search"><i class="fa fa-search"></i></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='http://blog.cuiqingcai.com/?s=' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="/"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='search...';" onfocus="if(this.value=='search...')this.value='';" value="search..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+					<div class="pull-right">
+				<i class="fa fa-user"></i> <a href="/wp-login.php?action=register">投稿</a>&nbsp;&nbsp;&nbsp;   <i class="fa fa-power-off"></i> <a href="http://blog.cuiqingcai.com/wp-login.php">登录</a>			</div>
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong>    欢迎来到我的博客，浏览文章时点击一下广告是您对我最大的支持，谢谢啦！</div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+<div class="breadcrumbs"><a title="返回首页" href="http://blog.cuiqingcai.com"><i class="fa fa-home"></i></a> <small>></small> <a href="http://blog.cuiqingcai.com/category/technique">技术杂谈</a> <small>></small> <a href="http://blog.cuiqingcai.com/category/technique/python">Python</a> <small>></small> <span class="muted">Python爬虫入门三之Urllib库的基本使用</span></div>
+				<header class="article-header">
+			<h1 class="article-title"><a href="http://blog.cuiqingcai.com/947.html">Python爬虫入门三之Urllib库的基本使用</a></h1>
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i><a href="http://blog.cuiqingcai.com/category/technique/python"> Python</a></span>				<span class="muted"><i class="fa fa-user"></i> <a href="http://blog.cuiqingcai.com/author/cqcre">崔庆才</a></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> 9个月前 (02-12)</time>
+				<span class="muted"><i class="fa fa-eye"></i> 34565℃</span>
+				<span class="muted"><i class="fa fa-comments-o"></i> <a href="http://blog.cuiqingcai.com/947.html#comments">20评论</a></span>							</div>
+		</header>
+<div class="banner banner-post"><!-- tuici -->
+<script type="text/javascript">
+    /* 创建于 2015-02-23*/
+var cpro_id = "u1959022";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/cnw.js" type="text/javascript"></script>
+<!-- biaoqian -->
+<script type="text/javascript">
+    /*860*60 创建于 2015-02-25*/
+    var cpro_id = "u1959939";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+
+</div>		<article class="article-content">
+			<p>那么接下来，小伙伴们就一起和我真正迈向我们的爬虫之路吧。</p>
+<h2>1.分分钟扒一个网页下来</h2>
+<p>怎样扒网页呢？其实就是根据URL来获取它的网页信息，虽然我们在浏览器中看到的是一幅幅优美的画面，但是其实是由浏览器解释才呈现出来的，实质它是一段HTML代码，加 JS、CSS，如果把网页比作一个人，那么HTML便是他的骨架，JS便是他的肌肉，CSS便是它的衣服。所以最重要的部分是存在于HTML中的，下面我们就写个例子来扒一个网页下来。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba047752801182" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+import urllib2
+
+response = urllib2.urlopen("http://www.baidu.com")
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba047752801182-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba047752801182-2">2</div><div class="crayon-num" data-line="crayon-5645b7e4ba047752801182-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba047752801182-4">4</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba047752801182-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba047752801182-2">&nbsp;</div><div class="crayon-line" id="crayon-5645b7e4ba047752801182-3"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-s">"http://www.baidu.com"</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba047752801182-4"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+<p>是的你没看错，真正的程序就两行，把它保存成 demo.py，进入该文件的目录，执行如下命令查看运行结果，感受一下。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba072905868397" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+python demo.py</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba072905868397-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba072905868397-1"><span class="crayon-e">python </span><span class="crayon-v">demo</span><span class="crayon-sy">.</span><span class="crayon-v">py</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p><a href="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/2015-02-13-000909-的屏幕截图.png"><img class="alignnone size-full wp-image-948" src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/2015-02-13-000909-的屏幕截图.png" alt="2015-02-13 00:09:09 的屏幕截图" width="722" height="462" /></a></p>
+<p>看，这个网页的源码已经被我们扒下来了，是不是很酸爽？</p>
+<h2>2.分析扒网页的方法</h2>
+<p>那么我们来分析这两行代码，第一行</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba079979167503" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+response = urllib2.urlopen("http://www.baidu.com")</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba079979167503-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba079979167503-1"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-s">"http://www.baidu.com"</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0003 seconds] -->
+<p>首先我们调用的是urllib2库里面的urlopen方法，传入一个URL，这个网址是百度首页，协议是HTTP协议，当然你也可以把HTTP换做FTP,FILE,HTTPS 等等，只是代表了一种访问控制协议，urlopen一般接受三个参数，它的参数如下：</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba07f165689357" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+urlopen(url, data, timeout)</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba07f165689357-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba07f165689357-1"><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">url</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">data</span><span class="crayon-sy">,</span><span class="crayon-h"> </span><span class="crayon-v">timeout</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p>第一个参数url即为URL，第二个参数data是访问URL时要传送的数据，第三个timeout是设置超时时间。</p>
+<p>第二三个参数是可以不传送的，data默认为空None，timeout默认为 socket._GLOBAL_DEFAULT_TIMEOUT</p>
+<p>第一个参数URL是必须要传送的，在这个例子里面我们传送了百度的URL，执行urlopen方法之后，返回一个response对象，返回信息便保存在这里面。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba084123004330" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba084123004330-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba084123004330-1"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p>response对象有一个read方法，可以返回获取到的网页内容。</p>
+<p style="text-align: left;">如果不加read直接<span style="color: #000000;"><span style="background-color: #efd200;">打印</span></span>会是什么？答案如下：</p>
+<p></p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba089815940144" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+&lt;addinfourl at 139728495260376 whose fp = &lt;socket._fileobject object at 0x7f1513fb3ad0&gt;&gt;</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba089815940144-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba089815940144-1"><span class="crayon-o">&lt;</span><span class="crayon-e">addinfourl </span><span class="crayon-i">at</span><span class="crayon-h"> </span><span class="crayon-cn">139728495260376</span><span class="crayon-h"> </span><span class="crayon-e">whose </span><span class="crayon-v">fp</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-o">&lt;</span><span class="crayon-v">socket</span><span class="crayon-sy">.</span><span class="crayon-e">_fileobject </span><span class="crayon-t">object</span><span class="crayon-h"> </span><span class="crayon-i">at</span><span class="crayon-h"> </span><span class="crayon-cn">0x7f1513fb3ad0</span><span class="crayon-o">&gt;&gt;</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0006 seconds] -->
+<p>直接打印出了该对象的描述，所以记得一定要加read方法，否则它不出来内容可就不怪我咯！</p>
+<h2>3.构造Requset</h2>
+<p>其实上面的urlopen参数可以传入一个request请求,它其实就是一个Request类的实例，构造时需要传入Url,Data等等的内容。比如上面的两行代码，我们可以这么改写</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba08e588490536" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+import urllib2
+
+request = urllib2.Request("http://www.baidu.com")
+response = urllib2.urlopen(request)
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba08e588490536-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba08e588490536-2">2</div><div class="crayon-num" data-line="crayon-5645b7e4ba08e588490536-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba08e588490536-4">4</div><div class="crayon-num" data-line="crayon-5645b7e4ba08e588490536-5">5</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba08e588490536-1"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba08e588490536-2">&nbsp;</div><div class="crayon-line" id="crayon-5645b7e4ba08e588490536-3"><span class="crayon-v">request</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-s">"http://www.baidu.com"</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba08e588490536-4"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645b7e4ba08e588490536-5"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0008 seconds] -->
+<p>运行结果是完全一样的，只不过中间多了一个request对象，推荐大家这么写，因为在构建请求时还需要加入好多内容，通过构建一个request，服务器响应请求得到应答，这样显得逻辑上清晰明确。</p>
+<h2>4.POST和GET数据传送</h2>
+<p>上面的程序演示了最基本的网页抓取，不过，现在大多数网站都是动态网页，需要你动态地传递参数给它，它做出对应的响应。所以，在访问时，我们需要传递数据给它。最常见的情况是什么？对了，就是登录注册的时候呀。</p>
+<p>把数据用户名和密码传送到一个URL，然后你得到服务器处理之后的响应，这个该怎么办？下面让我来为小伙伴们揭晓吧！</p>
+<p>数据传送分为POST和GET两种方式，两种方式有什么区别呢？</p>
+<p>最重要的区别是GET方式是直接以链接形式访问，链接中包含了所有的参数，当然如果包含了密码的话是一种不安全的选择，不过你可以直观地看到自己提交了什么内容。POST则不会在网址上显示所有的参数，不过如果你想直接查看提交了什么就不太方便了，大家可以酌情选择。</p>
+<h3>POST方式：</h3>
+<p>上面我们说了data参数是干嘛的？对了，它就是用在这里的，我们传送的数据就是这个参数data，下面演示一下POST方式。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba094496941818" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+import urllib
+import urllib2
+
+values = {"username":"1016903103@qq.com","password":"XXXX"}
+data = urllib.urlencode(values) 
+url = "https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"
+request = urllib2.Request(url,data)
+response = urllib2.urlopen(request)
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba094496941818-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba094496941818-2">2</div><div class="crayon-num" data-line="crayon-5645b7e4ba094496941818-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba094496941818-4">4</div><div class="crayon-num" data-line="crayon-5645b7e4ba094496941818-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba094496941818-6">6</div><div class="crayon-num" data-line="crayon-5645b7e4ba094496941818-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba094496941818-8">8</div><div class="crayon-num" data-line="crayon-5645b7e4ba094496941818-9">9</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba094496941818-1"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba094496941818-2"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line" id="crayon-5645b7e4ba094496941818-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba094496941818-4"><span class="crayon-v">values</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-s">"username"</span><span class="crayon-o">:</span><span class="crayon-s">"1016903103@qq.com"</span><span class="crayon-sy">,</span><span class="crayon-s">"password"</span><span class="crayon-o">:</span><span class="crayon-s">"XXXX"</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5645b7e4ba094496941818-5"><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-v">values</span><span class="crayon-sy">)</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba094496941818-6"><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"https://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"</span></div><div class="crayon-line" id="crayon-5645b7e4ba094496941818-7"><span class="crayon-v">request</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-v">url</span><span class="crayon-sy">,</span><span class="crayon-v">data</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba094496941818-8"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645b7e4ba094496941818-9"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0015 seconds] -->
+<p>我们引入了urllib库，现在我们模拟登陆CSDN，当然上述代码可能登陆不进去，因为还要做一些设置头部header的工作，或者还有一些参数没有设置全，还没有提及到在此就不写上去了，在此只是说明登录的原理。我们需要定义一个字典，名字为values，参数我设置了username和password，下面利用urllib的urlencode方法将字典编码，命名为data，构建request时传入两个参数，url和data，运行程序，即可实现登陆，返回的便是登陆后呈现的页面内容。当然你可以自己搭建一个服务器来测试一下。</p>
+<p>注意上面字典的定义方式还有一种，下面的写法是等价的</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba09a142986233" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+import urllib
+import urllib2
+
+values = {}
+values['username'] = "1016903103@qq.com"
+values['password'] = "XXXX"
+data = urllib.urlencode(values) 
+url = "http://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"
+request = urllib2.Request(url,data)
+response = urllib2.urlopen(request)
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba09a142986233-2">2</div><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba09a142986233-4">4</div><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba09a142986233-6">6</div><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba09a142986233-8">8</div><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba09a142986233-10">10</div><div class="crayon-num" data-line="crayon-5645b7e4ba09a142986233-11">11</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-1"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba09a142986233-2"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba09a142986233-4"><span class="crayon-v">values</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-sy">{</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-5"><span class="crayon-v">values</span><span class="crayon-sy">[</span><span class="crayon-s">'username'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"1016903103@qq.com"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba09a142986233-6"><span class="crayon-v">values</span><span class="crayon-sy">[</span><span class="crayon-s">'password'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"XXXX"</span></div><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-7"><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-v">values</span><span class="crayon-sy">)</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba09a142986233-8"><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"http://passport.csdn.net/account/login?from=http://my.csdn.net/my/mycsdn"</span></div><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-9"><span class="crayon-v">request</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-v">url</span><span class="crayon-sy">,</span><span class="crayon-v">data</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba09a142986233-10"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645b7e4ba09a142986233-11"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0017 seconds] -->
+<p>以上方法便实现了POST方式的传送</p>
+<h3>GET方式：</h3>
+<p>至于GET方式我们可以直接把参数写到网址上面，直接构建一个带参数的URL出来即可。</p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba0a0803593890" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+import urllib
+import urllib2
+
+values={}
+values['username'] = "1016903103@qq.com"
+values['password']="XXXX"
+data = urllib.urlencode(values) 
+url = "http://passport.csdn.net/account/login"
+geturl = url + "?"+data
+request = urllib2.Request(geturl)
+response = urllib2.urlopen(request)
+print response.read()</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-2">2</div><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-4">4</div><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-6">6</div><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-8">8</div><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-10">10</div><div class="crayon-num" data-line="crayon-5645b7e4ba0a0803593890-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-5645b7e4ba0a0803593890-12">12</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-1"><span class="crayon-e">import </span><span class="crayon-e">urllib</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-2"><span class="crayon-e">import </span><span class="crayon-e">urllib2</span></div><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-3">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-4"><span class="crayon-v">values</span><span class="crayon-o">=</span><span class="crayon-sy">{</span><span class="crayon-sy">}</span></div><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-5"><span class="crayon-v">values</span><span class="crayon-sy">[</span><span class="crayon-s">'username'</span><span class="crayon-sy">]</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"1016903103@qq.com"</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-6"><span class="crayon-v">values</span><span class="crayon-sy">[</span><span class="crayon-s">'password'</span><span class="crayon-sy">]</span><span class="crayon-o">=</span><span class="crayon-s">"XXXX"</span></div><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-7"><span class="crayon-v">data</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib</span><span class="crayon-sy">.</span><span class="crayon-e">urlencode</span><span class="crayon-sy">(</span><span class="crayon-v">values</span><span class="crayon-sy">)</span><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-8"><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-s">"http://passport.csdn.net/account/login"</span></div><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-9"><span class="crayon-v">geturl</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">url</span><span class="crayon-h"> </span><span class="crayon-o">+</span><span class="crayon-h"> </span><span class="crayon-s">"?"</span><span class="crayon-o">+</span><span class="crayon-e">data</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-10"><span class="crayon-v">request</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">Request</span><span class="crayon-sy">(</span><span class="crayon-v">geturl</span><span class="crayon-sy">)</span></div><div class="crayon-line" id="crayon-5645b7e4ba0a0803593890-11"><span class="crayon-v">response</span><span class="crayon-h"> </span><span class="crayon-o">=</span><span class="crayon-h"> </span><span class="crayon-v">urllib2</span><span class="crayon-sy">.</span><span class="crayon-e">urlopen</span><span class="crayon-sy">(</span><span class="crayon-v">request</span><span class="crayon-sy">)</span></div><div class="crayon-line crayon-striped-line" id="crayon-5645b7e4ba0a0803593890-12"><span class="crayon-e">print </span><span class="crayon-v">response</span><span class="crayon-sy">.</span><span class="crayon-e">read</span><span class="crayon-sy">(</span><span class="crayon-sy">)</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0019 seconds] -->
+<p></p>
+<p style="text-align: left;">你可以print geturl，<span style="color: #000000;"><span style="background-color: #efd200;">打印</span></span>输出一下url，发现其实就是原来的url加？然后加编码后的参数</p>
+<p></p><!-- Crayon Syntax Highlighter v2.7.1 -->
+
+		<div id="crayon-5645b7e4ba0a6176879218" class="crayon-syntax crayon-theme-github crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover wrap" style=" margin-top: 12px; margin-bottom: 12px; float: left; font-size: 12px !important; line-height: 15px !important;">
+		
+			<div class="crayon-toolbar" data-settings=" mouseover overlay hide delay" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="切换是否显示行编号"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="纯文本显示代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="切换自动换行"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="点击展开代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="复制代码"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="在新窗口中显示代码"><div class="crayon-button-icon"></div></div></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea  class="crayon-plain print-no" data-settings="dblclick" readonly style="-moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4; font-size: 12px !important; line-height: 15px !important;">
+http://passport.csdn.net/account/login?username=1016903103%40qq.com&amp;password=XXXX</textarea></div>
+			<div class="crayon-main" style="">
+				<table class="crayon-table">
+					<tr class="crayon-row">
+				<td class="crayon-nums " data-settings="show">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-5645b7e4ba0a6176879218-1">1</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-5645b7e4ba0a6176879218-1"><span class="crayon-v">http</span><span class="crayon-o">:</span><span class="crayon-c">//passport.csdn.net/account/login?username=1016903103%40qq.com&amp;password=XXXX</span></div></div></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0002 seconds] -->
+<p>和我们平常GET访问方式一模一样，这样就实现了数据的GET方式传送。</p>
+<p>本节讲解了一些基本使用，可以抓取到一些基本的网页信息，小伙伴们加油！</p>
+<div id="KSFIND_MASK" style="opacity: 0.22; position: absolute !important; left: 0px !important; top: 0px !important; border: 0px none !important; padding: 0px !important; z-index: 1000000 !important; height: 0px; width: 0px; display: none; cursor: text; background: #000000;"></div>
+<p>转载请注明：<a href="http://blog.cuiqingcai.com">静觅</a> &raquo; <a href="http://blog.cuiqingcai.com/947.html">Python爬虫入门三之Urllib库的基本使用</a></p>
+
+      
+<div class="article-social">
+			<a href="javascript:;" data-action="ding" data-id="947" id="Addlike" class="action"><i class="fa fa-heart-o"></i>喜欢 (<span class="count">208</span>)</a><span class="or">or</span><span class="action action-share bdsharebuttonbox"><i class="fa fa-share-alt"></i>分享 (<span class="bds_count" data-cmd="count" title="累计分享0次">0</span>)<div class="action-popover"><div class="popover top in"><div class="arrow"></div><div class="popover-content"><a href="#" class="sinaweibo fa fa-weibo" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone fa fa-star" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="tencentweibo fa fa-tencent-weibo" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="qq fa fa-qq" data-cmd="sqq" title="分享到QQ好友"></a><a href="#" class="bds_renren fa fa-renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin fa fa-weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_more fa fa-ellipsis-h" data-cmd="more"></a></div></div></div></span>	
+</div>
+	</article>	
+				<div style="background:#fff;padding-bottom:20px;font-size:14px;">
+			<p style="text-align: center;margin-bottom:20px;padding:0px 20px">您的支持是博主写作最大的动力，如果您喜欢我的文章，感觉我的文章对您有帮助，请狠狠点击下面的</p>
+			<p style="text-align: center;"><a href="http://cuiqingcai.com/donate"> <input style="width: 310px; margin: 10px auto 0px; background-color: #f58a87; color: #ffffff; height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" type="button" value="我要小额赞助" /></a>
+		</div>
+		<footer class="article-footer">
+			<div class="article-tags"><i class="fa fa-tags"></i><a href="http://blog.cuiqingcai.com/tag/python" rel="tag">Python</a><a href="http://blog.cuiqingcai.com/tag/%e7%88%ac%e8%99%ab" rel="tag">爬虫</a></div>		</footer>
+	<nav class="article-nav">
+			<span class="article-nav-prev"><i class="fa fa-angle-double-left"></i> <a href="http://blog.cuiqingcai.com/942.html" rel="prev">Python爬虫入门二之爬虫基础了解</a></span>
+			<span class="article-nav-next"><a href="http://blog.cuiqingcai.com/954.html" rel="next">Python爬虫入门四之Urllib库的高级用法</a>  <i class="fa fa-angle-double-right"></i></span>
+		</nav>
+
+		<div class="related_top">
+			<div class="related_posts"><ul class="related_img">
+
+		<li class="related_box"  >
+		<a href="http://blog.cuiqingcai.com/2083.html" title="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" target="_blank">
+<img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265780.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="自己动手实现山东大学QLSC_STU无线网络掉线后自动重连" />	<br><span class="r_title">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://blog.cuiqingcai.com/1972.html" title="Python爬虫实战六之抓取爱问知识人问题并保存至数据库" target="_blank">
+<img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/09/wallpaper_5265771.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫实战六之抓取爱问知识人问题并保存至数据库" />	<br><span class="r_title">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://blog.cuiqingcai.com/1707.html" title="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" target="_blank">
+<img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5263464.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python中ValueError: invalid literal for int() with base 10 的实用解决办法" />	<br><span class="r_title">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</span></a>
+		</li>
+	
+		<li class="related_box"  >
+		<a href="http://blog.cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" target="_blank">
+<img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=110&w=185&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" />	<br><span class="r_title">Python爬虫入门八之Beautiful Soup的用法</span></a>
+		</li>
+	</ul>
+
+<div class="relates">
+<ul>
+<li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/2083.html">自己动手实现山东大学QLSC_STU无线网络掉线后自动重连</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1972.html">Python爬虫实战六之抓取爱问知识人问题并保存至数据库</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1707.html">Python中ValueError: invalid literal for int() with base 10 的实用解决办法</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1319.html">Python爬虫入门八之Beautiful Soup的用法</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1076.html">Python爬虫实战五之模拟登录淘宝并获取所有订单</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1052.html">Python爬虫学习系列教程</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/1001.html">Python爬虫实战四之抓取淘宝MM照片</a></li><li><i class="fa fa-minus"></i><a href="http://blog.cuiqingcai.com/997.html">Python爬虫实战三之计算大学本学期绩点</a></li>
+</ul></div></div>		</div>
+						<a name="comments"></a>
+
+<div class="ds-thread" data-thread-key="947" data-author-key="1" data-title="Python爬虫入门三之Urllib库的基本使用" data-url="http://blog.cuiqingcai.com/947.html"></div>
+
+<script type="text/javascript">
+	if (typeof DUOSHUO !== 'undefined')
+		DUOSHUO.EmbedThread('.ds-thread');
+</script>
+	<div id="ds-ssr">
+
+		
+            <ol id="commentlist">
+                		<li class="comment even thread-even depth-1" id="li-comment-898">
+			<article id="comment-898" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">eyeder</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-898"><time pubdate datetime="2015-10-09T15:33:08+00:00">2015年10月9日 at 下午3:33</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>在IDE里直接运行就OK吗？为什么我的只打印出登陆的页面，并没有登陆，什么反应也没有。需要在浏览器上进行什么操作吗？</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-692">
+			<article id="comment-692" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">coco</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-692"><time pubdate datetime="2015-08-16T22:37:31+00:00">2015年8月16日 at 下午10:37</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>就是这里<br />
+&quot;保存成 demo.py，进入该文件的目录，执行如下命令查看运行结果，感受一下。&quot;我的是macbook，把sublime中<br />
+“import urlib2<br />
+response = urlib2.urlopne(&quot;<a href="http://wwww.baidu.com&#038;quot" rel="nofollow">http://wwww.baidu.com&#038;quot</a>😉<br />
+print response.read()”<br />
+保存成demo.py然后在终端中执行，却发现no such files or directory</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment even depth-2" id="li-comment-693">
+			<article id="comment-693" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">chris</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-693"><time pubdate datetime="2015-08-17T15:45:59+00:00">2015年8月17日 at 下午3:45</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>保存在哪里了，你要在终端里进入这个文件夹再运行呀</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="li-comment-884">
+			<article id="comment-884" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">布日古德</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-884"><time pubdate datetime="2015-10-03T00:02:56+00:00">2015年10月3日 at 上午12:02</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>cmd中只是显示，没有运行</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-2" id="li-comment-848">
+			<article id="comment-848" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://weibo.com/1966707205' rel='external nofollow' class='url'>许敏俊xi</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-848"><time pubdate datetime="2015-09-23T16:37:29+00:00">2015年9月23日 at 下午4:37</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>wwww?</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment odd alt thread-even depth-1" id="li-comment-355">
+			<article id="comment-355" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">sardinescn</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-355"><time pubdate datetime="2015-05-06T22:06:55+00:00">2015年5月6日 at 下午10:06</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>按get方式登录csdn，我用打印的geturl字符串直接拷贝到浏览器中，能正常登陆， 但随后的response.read()读出了的内容还是在登陆页面， 是什么原因？</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment byuser comment-author-cqcre bypostauthor even depth-2" id="li-comment-374">
+			<article id="comment-374" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-374"><time pubdate datetime="2015-05-11T16:33:10+00:00">2015年5月11日 at 下午4:33</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>浏览器中应该又做了处理和跳转吧。</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="li-comment-553">
+			<article id="comment-553" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">rg</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-553"><time pubdate datetime="2015-07-14T16:15:10+00:00">2015年7月14日 at 下午4:15</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>这种跳转怎么解决？</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even depth-2" id="li-comment-708">
+			<article id="comment-708" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://t.qq.com/shi_cb' rel='external nofollow' class='url'>师成兵</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-708"><time pubdate datetime="2015-08-23T16:14:19+00:00">2015年8月23日 at 下午4:14</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>我也遇到同样的问题，，data 没起作用，，没有登陆进去用户页面，，爬下来的还是登陆页面。</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="li-comment-782">
+			<article id="comment-782" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">python菜鸟</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-782"><time pubdate datetime="2015-09-08T22:54:09+00:00">2015年9月8日 at 下午10:54</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>我也遇到了，怎么解决呢？</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="li-comment-328">
+			<article id="comment-328" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://t.qq.com/zhaozilong52888' rel='external nofollow' class='url'>赵子龙</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-328"><time pubdate datetime="2015-04-30T22:43:01+00:00">2015年4月30日 at 下午10:43</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>赞助了10块钱！博主多写啊！</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment byuser comment-author-cqcre bypostauthor odd alt depth-2" id="li-comment-333">
+			<article id="comment-333" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-333"><time pubdate datetime="2015-04-30T23:24:29+00:00">2015年4月30日 at 下午11:24</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>嗯哪，看到啦，我已经记录到了赞助页面啦。我会加油的</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-even depth-1" id="li-comment-191">
+			<article id="comment-191" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://t.qq.com/chunksing' rel='external nofollow' class='url'>FFF团</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-191"><time pubdate datetime="2015-03-25T22:50:28+00:00">2015年3月25日 at 下午10:50</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>补充下：新版本的python可能不太支持您的语法。import urllib.requestrequest = urllib.request.Request(&#8216;<a href="http://www.baidu.com" rel="nofollow">http://www.baidu.com</a>&#8216;)response = urllib.request.urlopen(request)html = response.read()print(html)</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment byuser comment-author-cqcre bypostauthor odd alt depth-2" id="li-comment-195">
+			<article id="comment-195" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-195"><time pubdate datetime="2015-03-26T11:20:04+00:00">2015年3月26日 at 上午11:20</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>非常感谢 <img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/40/hearta_org.gif" /> </p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+		<li class="comment even thread-odd thread-alt depth-1" id="li-comment-164">
+			<article id="comment-164" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">小毛驴</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-164"><time pubdate datetime="2015-03-19T11:52:11+00:00">2015年3月19日 at 上午11:52</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>为什么打印一直是答应尼。 <img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/b6/sb_org.gif" />  我被答应晕了。</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment byuser comment-author-cqcre bypostauthor odd alt depth-2" id="li-comment-165">
+			<article id="comment-165" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-165"><time pubdate datetime="2015-03-19T12:05:31+00:00">2015年3月19日 at 下午12:05</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p> <img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/af/cry.gif" /> </p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="comment byuser comment-author-cqcre bypostauthor even depth-2" id="li-comment-166">
+			<article id="comment-166" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-166"><time pubdate datetime="2015-03-19T12:06:37+00:00">2015年3月19日 at 下午12:06</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>没明白你的意思 <img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/af/cry.gif" /> </p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment odd alt depth-3" id="li-comment-175">
+			<article id="comment-175" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">小毛驴</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-175"><time pubdate datetime="2015-03-21T11:06:26+00:00">2015年3月21日 at 上午11:06</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>文章中出现了很多个答应，我想应该是打印吧。</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+		<li class="comment even depth-3" id="li-comment-176">
+			<article id="comment-176" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn">小毛驴</span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-176"><time pubdate datetime="2015-03-21T11:06:54+00:00">2015年3月21日 at 上午11:06</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>如果不加read直接答应会是什么？答案如下： <img src="http://img.t.sinajs.cn/t35/style/images/common/face/ext/normal/af/cry.gif" /> </p>
+</div>
+				
+			</article><!-- #comment-## -->
+		<ul class="children">
+		<li class="comment byuser comment-author-cqcre bypostauthor odd alt depth-4" id="li-comment-198">
+			<article id="comment-198" class="comment">
+				<footer class="comment-meta">
+					<cite class="comment-author vcard">
+						<span class="fn"><a href='http://cuiqingcai.com/' rel='external nofollow' class='url'>崔庆才</a></span> on <a rel="nofollow" href="http://blog.cuiqingcai.com/947.html/comment-page-1#comment-198"><time pubdate datetime="2015-03-26T11:24:22+00:00">2015年3月26日 at 上午11:24</time></a> <span class="says">said:</span>					</cite><!-- .comment-author .vcard -->
+				</footer>
+	
+				<div class="comment-content"><p>谢谢提醒哈，已经修改过来啦</p>
+</div>
+				
+			</article><!-- #comment-## -->
+		</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+            </ol>
+
+		            
+    </div>			</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="http://weibo.com/u/2830678474" rel="external nofollow" title="新浪微博" target="_blank"><i class="sinaweibo fa fa-weibo"></i></a><a  href="http://t.qq.com/CQCcqc123456?preview" rel="external nofollow" title="腾讯微博" target="_blank"><i class="tencentweibo fa fa-tencent-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title"></div><div class="popover-content"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/img/weixin.gif" ></div></div></div></a>
+<a href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=cqc@cuiqingcai.com" rel="external nofollow" title="Email" target="_blank"><i class="email fa fa-envelope-o"></i></a><a href="?feed=rss2" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_archive"><div class="title"><h2>文章归档</h2></div>		<ul>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/11'>2015年十一月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/10'>2015年十月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/09'>2015年九月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/08'>2015年八月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/07'>2015年七月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/06'>2015年六月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/05'>2015年五月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/04'>2015年四月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/03'>2015年三月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/02'>2015年二月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2015/01'>2015年一月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2014/12'>2014年十二月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2014/11'>2014年十一月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2014/10'>2014年十月</a></li>
+	<li><a href='http://blog.cuiqingcai.com/date/2014/09'>2014年九月</a></li>
+		</ul>
+</div><div class="widget widget_text"><div class="title"><h2>原创游戏</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">BallEscape丨博主开发的一款休闲益智虐心游戏 </p><p style="
+    margin-left: 10px;
+">
+<a href="http://res.cuiqingcai.com/ballescape/">
+<input type="button" value="了解更多" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
+		</div><div class="widget d_postlist"><div class="title"><h2>猜你喜欢</h2></div><ul><li><a href="http://blog.cuiqingcai.com/990.html" title="Python爬虫实战一之爬取糗事百科段子" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228661.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战一之爬取糗事百科段子" /></span><span class="text">Python爬虫实战一之爬取糗事百科段子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="990" data-replace="1">123评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/1001.html" title="Python爬虫实战四之抓取淘宝MM照片" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270641.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战四之抓取淘宝MM照片" /></span><span class="text">Python爬虫实战四之抓取淘宝MM照片</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="1001" data-replace="1">81评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/1076.html" title="Python爬虫实战五之模拟登录淘宝并获取所有订单" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5226152.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战五之模拟登录淘宝并获取所有订单" /></span><span class="text">Python爬虫实战五之模拟登录淘宝并获取所有订单</span><span class="muted">2015-02-24</span><span class="muted"><span class="ds-thread-count" data-thread-key="1076" data-replace="1">79评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/993.html" title="Python爬虫实战二之爬取百度贴吧帖子" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265936.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战二之爬取百度贴吧帖子" /></span><span class="text">Python爬虫实战二之爬取百度贴吧帖子</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="993" data-replace="1">51评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/1052.html" title="Python爬虫学习系列教程" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫学习系列教程" /></span><span class="text">Python爬虫学习系列教程</span><span class="muted">2015-02-21</span><span class="muted"><span class="ds-thread-count" data-thread-key="1052" data-replace="1">44评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/968.html" title="Python爬虫入门六之Cookie的使用" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5258536-1.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门六之Cookie的使用" /></span><span class="text">Python爬虫入门六之Cookie的使用</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="968" data-replace="1">37评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/997.html" title="Python爬虫实战三之计算大学本学期绩点" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5265978.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫实战三之计算大学本学期绩点" /></span><span class="text">Python爬虫实战三之计算大学本学期绩点</span><span class="muted">2015-02-20</span><span class="muted"><span class="ds-thread-count" data-thread-key="997" data-replace="1">32评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/912.html" title="Python爬虫进阶一之爬虫框架Scrapy安装配置" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/d52a2834349b033b20721ee016ce36d3d539bd16.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫进阶一之爬虫框架Scrapy安装配置" /></span><span class="text">Python爬虫进阶一之爬虫框架Scrapy安装配置</span><span class="muted">2015-02-17</span><span class="muted"><span class="ds-thread-count" data-thread-key="912" data-replace="1">29评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/1319.html" title="Python爬虫入门八之Beautiful Soup的用法" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_52546561.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门八之Beautiful Soup的用法" /></span><span class="text">Python爬虫入门八之Beautiful Soup的用法</span><span class="muted">2015-03-11</span><span class="muted"><span class="ds-thread-count" data-thread-key="1319" data-replace="1">26评论</span></span></a></li>
+<li><a href="http://blog.cuiqingcai.com/977.html" title="Python爬虫入门七之正则表达式" ><span class="thumbnail"><img src="http://blog.cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5270713.jpg&h=64&w=100&q=90&zc=1&ct=1" alt="Python爬虫入门七之正则表达式" /></span><span class="text">Python爬虫入门七之正则表达式</span><span class="muted">2015-02-15</span><span class="muted"><span class="ds-thread-count" data-thread-key="977" data-replace="1">21评论</span></span></a></li>
+</ul></div><div class="widget widget_text"><div class="title"><h2>我要投稿</h2></div>			<div class="textwidget"><div class="taobaotextad">
+<p style="
+    margin-left: 20px;
+    color: #00a67c;
+">想让自己的文章出现在这里吗?赶快注册投稿吧！</p><p style="
+    margin-left: 10px;
+">
+<a href="http://cuiqingcai.com/wp-login.php?action=register">
+<input type="button" value="点我投稿" style="width: 310px; margin: 10px auto 0px; background-color: rgb(245, 138, 135); color: rgb(255, 255, 255); height: 40px; border: none; font-family: 'Microsoft Yahei'; font-size: 16px; letter-spacing: 2px;" onmouseover="this.style.backgroundColor='rgb(252, 125, 121)'" onmouseout="this.style.backgroundColor='#F58A87'"></a>
+</p></div></div>
+		</div><div class="widget d_tag"><div class="title"><h2>标签云</h2></div><div class="d_tags"><a title="26个话题" href="http://blog.cuiqingcai.com/tag/php">PHP (26)</a><a title="20个话题" href="http://blog.cuiqingcai.com/tag/python">Python (20)</a><a title="16个话题" href="http://blog.cuiqingcai.com/tag/%e7%88%ac%e8%99%ab">爬虫 (16)</a><a title="14个话题" href="http://blog.cuiqingcai.com/tag/js">JS (14)</a><a title="10个话题" href="http://blog.cuiqingcai.com/tag/opengl">OpenGL (10)</a><a title="9个话题" href="http://blog.cuiqingcai.com/tag/html">HTML (9)</a><a title="7个话题" href="http://blog.cuiqingcai.com/tag/linux">Linux (7)</a><a title="6个话题" href="http://blog.cuiqingcai.com/tag/jquery">jQuery (6)</a><a title="6个话题" href="http://blog.cuiqingcai.com/tag/winpcap">Winpcap (6)</a><a title="5个话题" href="http://blog.cuiqingcai.com/tag/wordpress">WordPress (5)</a><a title="4个话题" href="http://blog.cuiqingcai.com/tag/git">Git (4)</a><a title="4个话题" href="http://blog.cuiqingcai.com/tag/security">Security (4)</a><a title="3个话题" href="http://blog.cuiqingcai.com/tag/java">Java (3)</a><a title="3个话题" href="http://blog.cuiqingcai.com/tag/mysql">Mysql (3)</a><a title="3个话题" href="http://blog.cuiqingcai.com/tag/net">Net (3)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/cocos2d-x">Cocos2d-x (2)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/jsp">JSP (2)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/matlab">Matlab (2)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/bootstrap">Bootstrap (2)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/photoshop">Photoshop (2)</a><a title="2个话题" href="http://blog.cuiqingcai.com/tag/css">CSS (2)</a><a title="1个话题" href="http://blog.cuiqingcai.com/tag/json">Json (1)</a><a title="1个话题" href="http://blog.cuiqingcai.com/tag/redis">Redis (1)</a><a title="1个话题" href="http://blog.cuiqingcai.com/tag/less">LESS (1)</a><a title="1个话题" href="http://blog.cuiqingcai.com/tag/nginx">Nginx (1)</a></div></div><div class="widget widget_links"><div class="title"><h2>友情链接</h2></div>
+	<ul class='xoxo blogroll'>
+<li><a href="http://www.anotherhome.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/03/wallpaper_5264963.jpg"  alt="Anotherhome "  /> Anotherhome</a></li>
+<li><a href="http://zhouchenwen.com" rel="acquaintance" target="_blank"><img src="http://zhouchenwen-wordpress.stor.sinaapp.com/uploads/2015/03/beatiful.jpg"  alt="ColdCoder "  /> ColdCoder</a></li>
+<li><a href="http://www.findspace.name" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254666.jpg"  alt="Findspace "  /> Findspace</a></li>
+<li><a href="http://blog.hickwu.com/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5270857.jpg"  alt="Hick "  /> Hick</a></li>
+<li><a href="http://www.nopcn.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5263470.jpg"  alt="nopcommerce "  /> nopcommerce</a></li>
+<li><a href="http://www.atrail.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5254665-e1424499272248.jpg"  alt="从前以后 "  /> 从前以后</a></li>
+<li><a href="http://www.superqq.com/"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/05/wallpaper_5265810.jpg"  alt="刚刚在线 "  /> 刚刚在线</a></li>
+<li><a href="http://www.lvtao.net" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5228675.jpg"  alt="吕滔博客 "  /> 吕滔博客</a></li>
+<li><a href="http://www.fddcn.cn" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5228669.jpg"  alt="奋斗的承诺 "  /> 奋斗的承诺</a></li>
+<li><a href="http://www.zuilizhi.net/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/07/wallpaper_5247812.jpg"  alt="最励志网 "  /> 最励志网</a></li>
+<li><a href="http://www.lishengcn.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/02/wallpaper_5266007.jpg"  alt="李胜的脚步 "  /> 李胜的脚步</a></li>
+<li><a href="http://liaoyuming.cn" rel="acquaintance" target="_blank"><img src="http://liaoyuming.cn/wp-content/uploads/2015/03/3-750x300.jpg"  alt="永远站 "  /> 永远站</a></li>
+<li><a href="http://www.hubwiz.com" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/08/wallpaper_5269088.jpg"  alt="汇智网 "  /> 汇智网</a></li>
+<li><a href="http://www.zoeys.cn/" target="_blank"><img src="http://qiniu.cuiqingcai.com/wp-content/uploads/2015/10/wallpaper_5234204-e1446021079981.jpg"  alt="糊糊 "  /> 糊糊</a></li>
+<li><a href="http://www.leyle.com/" target="_blank"><img src="http://cuiqingcai.com/wp-content/themes/Yusi/timthumb.php?src=http://qiniu.cuiqingcai.com/wp-content/uploads/2015/04/wallpaper_5259137-1.jpg&amp;h=123&amp;w=200&amp;q=90&amp;zc=1&amp;ct=1"  alt="遗落岛 "  /> 遗落岛</a></li>
+
+	</ul>
+</div>
+<div class="widget widget_text"><div class="title"><h2>本站热门</h2></div>			<div class="textwidget"><div class = "taobaotextad" style="margin-top:-10px;"><script>document.write(unescape('%3Cdiv id="hm_t_59089"%3E%3C/div%3E%3Cscript charset="utf-8" src="http://crs.baidu.com/t.js?siteId=3ef185224776ec2561c9f7066ead4f24&planId=59089&async=0&referer=') + encodeURIComponent(document.referrer) + '&title=' + encodeURIComponent(document.title) + '&rnd=' + (+new Date) + unescape('"%3E%3C/script%3E'));</script>
+</div></div>
+		</div><div class="widget widget_text"><div class="title"><h2>休闲一下</h2></div>			<div class="textwidget"><div  style = "text-align: center" width="100%"><a href = "http://res.cuiqingcai.com/2048">
+<img src = "http://cuiqingcai.com/wp-content/uploads/2014/11/2048.jpg" style="margin:10px 0 10px 0" alt = "2048游戏"/>
+</a></div></div>
+		</div><div class="widget widget_text"><div class="title"><h2>新浪微博</h2></div>			<div class="textwidget"><iframe width="100%" height="550" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=550&fansRow=2&ptype=1&speed=0&skin=1&isTitle=0&noborder=0&isWeibo=1&isFans=1&uid=2830678474&verifier=7468dc7b&dpc=1"></iframe></div>
+		</div><div class="widget widget_text"><div class="title"><h2>精品推荐</h2></div>			<div class="textwidget"><div class = "taobaotextad">
+<script type="text/javascript">
+var cpro_id="u1974136";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"338",rsi1:"330",pat:"6",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"0",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"",rss2:"#00a67c",titSU:"0",ptbg:"70",piw:"130",pih:"80",ptp:"0"}
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/c.js" type="text/javascript"></script>
+</div></div>
+		</div></aside></section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="http://blog.cuiqingcai.com " title="静觅">静觅</a> 版权所有丨采用<a href="http://yusi123.com/"> 欲思 </a>主题丨基于<a href="http://cn.wordpress.org/" title="WordPress"> WordPress </a>构建   © 2015丨托管于 <a rel="nofollow" target="_blank" href="http://www.aliyun.com/">阿里云主机</a> & <a rel="nofollow" target="_blank" href="http://www.qiniu.com/">七牛云存储 </a>丨鲁ICP备14030596号
+		 <div>
+			<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1253486800'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s4.cnzz.com/z_stat.php%3Fid%3D1253486800%26online%3D1%26show%3Dline' type='text/javascript'%3E%3C/script%3E"));</script>
+		 </div>
+		</div>
+        
+    </div>
+</footer>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var viewsCacheL10n = {"admin_ajax_url":"http:\/\/blog.cuiqingcai.com\/wp-admin\/admin-ajax.php","post_id":"947"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/plugins/wp-postviews/postviews-cache.js?ver=1.68'></script>
+<script type='text/javascript' src='http://cuiqingcai.com/wp-content/themes/Yusi/js/jquery.js?ver=1.0'></script>
+<script>with(document)0[(getElementsByTagName("head")[0]||body).appendChild(createElement("script")).src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="+~(-new Date()/36e5)];</script><!-- xuanfu -->
+ <script type="text/javascript">
+    /*300*25 创建于 2015-02-23*/
+    var cpro_id = "u1959047";
+</script>
+<script src="http://cpro.baidustatic.com/cpro/ui/s.js" type="text/javascript"></script>
+<script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F3ef185224776ec2561c9f7066ead4f24' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+</body>
+</html>
+<!-- Dynamic page generated in 0.305 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-11-13 18:13:56 -->
+
+<!-- super cache -->
