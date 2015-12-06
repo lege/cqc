@@ -4845,3 +4845,17 @@ function wp_delete_file( $file ) {
 		@unlink( $delete );
 	}
 }
+/**
+function mail_smtp( $phpmailer ) {
+	$phpmailer->From = "legeishere@qq.com"; //发件人
+	$phpmailer->FromName = "lege"; //发件人昵称
+	$phpmailer->Host = "smtp.qq.com"; //SMTP服务器地址
+	$phpmailer->Port = 25; //SMTP端口，常用的有25、465、587，具体谷歌百度
+	$phpmailer->SMTPSecure = ""; //SMTP加密方式，常用的有SSL/TLS，具体谷歌百度
+	$phpmailer->Username = "legeishere@qq.com"; //邮箱帐号
+	$phpmailer->Password = jing425119; //邮箱密码（缙哥哥就用星号代替了）
+	$phpmailer->IsSMTP(); //使用SMTP发送
+	$phpmailer->SMTPAuth = true; //启用SMTPAuth服务
+}
+add_action('phpmailer_init','mail_smtp');
+*/

@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<title>失眠猪的博客 | lege is here</title>
+<script>
+window._deel = {name: '失眠猪的博客',url: 'http://103.200.113.178/wp-content/themes/yusi1.0', ajaxpager: '', commenton: 0, roll: [0,0]}
+</script>
+
+<!-- All in One SEO Pack 2.2.6.2 by Michael Torbert of Semper Fi Web Design[247,272] -->
+<meta name="description" itemprop="description" content="1. 服务端安装 官方推荐 Ubuntu 14.04 LTS 作为服务器以便使用 TCP Fast Open。服务器端的安装非常简单。 Debian / Ubuntu: apt-get install python-pip pip install" />
+
+<meta name="keywords" itemprop="keywords" content="network" />
+
+<link rel="canonical" href="http://www.legeblog.com/" />
+<meta property="og:title" content="失眠猪的博客" />
+<meta property="og:url" content="http://www.legeblog.com/" />
+<meta property="og:image" content="http://103.200.113.178/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" />
+<meta property="og:site_name" content="失眠猪的博客" />
+<meta property="og:description" content="1. 服务端安装 官方推荐 Ubuntu 14.04 LTS 作为服务器以便使用 TCP Fast Open。服务器端的安装非常简单。 Debian / Ubuntu: apt-get install python-pip pip install shadowsocks 然后直接在后台运行： ssserver -p 8000 -k password -m rc4-md5 -d start 当然也可以使用配置文件进行配置，方法创建etc/shadowsocks.json文件，填入如下内容： { &quot;server&quot;:&quot;my_server_ip&quot;, &quot;server_port&quot;:8000, &quot;local_address&quot;: &quot;127.0.0.1&quot;, &quot;local_port&quot;:1080, &quot;password&quot;:&quot;mypassword&quot;, &quot;timeout&quot;:300, &quot;method&quot;:&quot;rc4-md5&quot; } 如配置多端口： { &quot;timeout&quot;: 600, &quot;method&quot;: &quot;aes-256-cfb&quot;, &quot;port_password&quot;: { &quot;40001&quot;: &quot;password1&quot;, &quot;40002&quot;: &quot;password2&quot;, &quot;40003&quot;: &quot;password3&quot; }, &quot;_comment&quot;: { &quot;40001&quot;: &quot;xiaoming&quot;, &quot;40002&quot;: &quot;lilei&quot;, &quot;40003&quot;: &quot;mike&quot; } } 然后使用配置文件在后台运行： ssserver -c /etc/shadowsocks.json -d start 如果要停止运行，将命令中的start改成stop。 TIPS: 加密方式推荐使用rc4-md5，因为 RC4 比 AES 速度快好几倍，如果用在路由器上会带来显著性能提升。旧的 RC4 加密之所以不安全是因为 Shadowsocks 在每个连接上重复使用 key，没有使用 IV。现在已经重新正确实现，可以放心使用。更多可以看 issue。 2. 客户端安装 客户端安装比较入门，这里就不说了，可以参考这篇文章。 3. 加速优化 下面介绍几种简单的优化方法，也是比较推荐的几种，能够得到立竿见影的效果。当然还有一些黑科技我没提到，如有大神路过，也可留言指出。 3.1 内核参数优化 首先，将 Linux 内核升级到 3.5 或以上。" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="1. 服务端安装 官方推荐 Ubuntu 14.04 LTS 作为服务器以便使用 TCP Fast Open。服务器端的安装非常简单。 Debian / Ubuntu: apt-get install python-pip pip install shadowsocks 然后直接在后台运行： ssserver -p 8000 -k password -m rc4-md5 -d start 当然也可以使用配置文件进行配置，方法创建etc/shadowsocks.json文件，填入如下内容： { &quot;server&quot;:&quot;my_server_ip&quot;, &quot;server_port&quot;:8000, &quot;local_address&quot;: &quot;127.0.0.1&quot;, &quot;local_port&quot;:1080, &quot;password&quot;:&quot;mypassword&quot;, &quot;timeout&quot;:300, &quot;method&quot;:&quot;rc4-md5&quot; } 如配置多端口： { &quot;timeout&quot;: 600, &quot;method&quot;: &quot;aes-256-cfb&quot;, &quot;port_password&quot;: { &quot;40001&quot;: &quot;password1&quot;, &quot;40002&quot;: &quot;password2&quot;, &quot;40003&quot;: &quot;password3&quot; }, &quot;_comment&quot;: { &quot;40001&quot;: &quot;xiaoming&quot;, &quot;40002&quot;: &quot;lilei&quot;, &quot;40003&quot;: &quot;mike&quot; } } 然后使用配置文件在后台运行： ssserver -c /etc/shadowsocks.json -d start 如果要停止运行，将命令中的start改成stop。 TIPS: 加密方式推荐使用rc4-md5，因为 RC4 比 AES 速度快好几倍，如果用在路由器上会带来显著性能提升。旧的 RC4 加密之所以不安全是因为 Shadowsocks 在每个连接上重复使用 key，没有使用 IV。现在已经重新正确实现，可以放心使用。更多可以看 issue。 2. 客户端安装 客户端安装比较入门，这里就不说了，可以参考这篇文章。 3. 加速优化 下面介绍几种简单的优化方法，也是比较推荐的几种，能够得到立竿见影的效果。当然还有一些黑科技我没提到，如有大神路过，也可留言指出。 3.1 内核参数优化 首先，将 Linux 内核升级到 3.5 或以上。" />
+<meta itemprop="image" content="http://103.200.113.178/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png" />
+<!-- /all in one seo pack -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"http:\/\/s.w.org\/images\/core\/emoji\/72x72\/","ext":".png","source":{"concatemoji":"http:\/\/www.legeblog.com\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.2.5"}};
+			!function(a,b,c){function d(a){var c=b.createElement("canvas"),d=c.getContext&&c.getContext("2d");return d&&d.fillText?(d.textBaseline="top",d.font="600 32px Arial","flag"===a?(d.fillText(String.fromCharCode(55356,56812,55356,56807),0,0),c.toDataURL().length>3e3):(d.fillText(String.fromCharCode(55357,56835),0,0),0!==d.getImageData(16,16,1,1).data[0])):!1}function e(a){var c=b.createElement("script");c.src=a,c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var f,g;c.supports={simple:d("simple"),flag:d("flag")},c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.simple&&c.supports.flag||(g=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",g,!1),a.addEventListener("load",g,!1)):(a.attachEvent("onload",g),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),f=c.source||{},f.concatemoji?e(f.concatemoji):f.wpemoji&&f.twemoji&&(e(f.twemoji),e(f.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='page-list-style-css'  href='http://103.200.113.178/wp-content/plugins/sitemap/css/page-list.css?ver=4.3' type='text/css' media='all' />
+<link rel='stylesheet' id='style-css'  href='http://103.200.113.178/wp-content/themes/yusi1.0/style.css?ver=1.0' type='text/css' media='all' />
+<script type='text/javascript' src='http://103.200.113.178/wp-includes/js/jquery/jquery.js?ver=1.11.2'></script>
+<script type='text/javascript' src='http://103.200.113.178/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='http://103.200.113.178/wp-content/themes/yusi1.0/js/jquery.js?ver=1.0'></script>
+<!-- <meta name="NextGEN" version="2.0.79" /> -->
+<link href='http://103.200.113.178/wp-content/plugins/search-by-category/sbc-style.css' type='text/css' rel='stylesheet' /><meta name="description" content="">
+<!--[if lt IE 9]><script src="http://103.200.113.178/wp-content/themes/yusi1.0/js/html5.js"></script><![endif]-->
+<link rel='stylesheet' id='wp-markdown-prettify-css'  href='http://103.200.113.178/wp-content/plugins/markdown/css/prettify.css?ver=1.5.1' type='text/css' media='all' />
+</head>
+<body class="home blog">
+
+<header id="header" class="header">
+<div class="container-inner">
+ <div class="yusi-logo">
+                    <a href="/">
+                        <h1>
+                                                        <span class="yusi-mono">失眠猪的博客</span>
+                                                        <span class="yusi-bloger">lege is here</span>
+                                                    </h1>
+                    </a>
+    </div>
+</div>
+
+	<div id="nav-header" class="navbar">
+		
+		<ul class="nav">
+			<li id="menu-item-18" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-18"><a href="http://www.legeblog.com">首页</a></li>
+<li id="menu-item-11" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-11"><a href="http://www.legeblog.com/?cat=8">SA</a></li>
+<li id="menu-item-12" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-12"><a href="http://www.legeblog.com/?cat=2">技术分享</a>
+<ul class="sub-menu">
+	<li id="menu-item-16" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-16"><a href="http://www.legeblog.com/?cat=4">system</a></li>
+	<li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-13"><a href="http://www.legeblog.com/?cat=5">network</a></li>
+	<li id="menu-item-14" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-14"><a href="http://www.legeblog.com/?cat=3">Python</a></li>
+	<li id="menu-item-15" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-15"><a href="http://www.legeblog.com/?cat=6">shell</a></li>
+</ul>
+</li>
+<li id="menu-item-17" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-17"><a href="http://www.legeblog.com/?cat=9">网络安全</a>
+<ul class="sub-menu">
+	<li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-27"><a href="http://www.legeblog.com/?cat=12">kali</a></li>
+</ul>
+</li>
+<li id="menu-item-21" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-21"><a href="http://www.legeblog.com/?page_id=19">给我留言</a></li>
+<li id="menu-item-39" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-39"><a href="http://www.legeblog.com/?page_id=37">About Me</a></li>
+<li style="float:right;">
+                    <div class="toggle-search"><i class="fa fa-search"></i></div>
+<div class="search-expand" style="display: none;"><div class="search-expand-inner"><form method="get" class="searchform themeform" onsubmit="location.href='/?s=' + encodeURIComponent(this.s.value).replace(/%20/g, '+'); return false;" action="/"><div> <input type="ext" class="search" name="s" onblur="if(this.value=='')this.value='search...';" onfocus="if(this.value=='search...')this.value='';" value="search..."></div></form></div></div>
+</li>
+		</ul>
+	</div>
+	</div>
+</header>
+<section class="container"><div class="speedbar">
+				<div class="toptip"><strong class="text-success"><i class="fa fa-volume-up"></i> </strong> 本人blog刚刚建立，都是自己平时遇到的点滴记录，有啥不对的地方欢迎多多交流，给我留言，谢谢！lege is here</div>
+	</div>
+	<div class="content-wrap">
+	<div class="content">
+			<article class="excerpt">
+	<header><a class="label label-important" href="http://www.legeblog.com/?cat=5">network<i class="label-arrow"></i></a><h2><a target="_blank" href="http://www.legeblog.com/?p=25" title="Debian 下自建 VPN">Debian 下自建 VPN  </a></h2>
+	</header>
+	<div class="focus"><a target="_blank" href="http://www.legeblog.com/?p=25"><img class="thumb" src="http://www.legeblog.com/wp-content/themes/yusi1.0/timthumb.php?src=http://www.legeblog.com/wp-content/themes/yusi1.0/img/pic/1.jpg&h=123&w=200&q=90&zc=1&ct=1" alt="Debian 下自建 VPN" /></a></div>
+			<span class="note"> 1. 服务端安装
+官方推荐 Ubuntu 14.04 LTS 作为服务器以便使用 TCP Fast Open。服务器端的安装非常简单。
+Debian / Ubuntu:
+apt-get install python-pip
+pip install shadowsocks
+
+然后直...</span>
+<p class="auth-span">
+		<span class="muted"><i class="fa fa-user"></i> <a href="http://www.legeblog.com/?author=1">lege</a></span>
+		<span class="muted"><i class="fa fa-clock-o"></i> 2天前</span>	<span class="muted"><i class="fa fa-eye"></i> 4℃</span>	<span class="muted"><i class="fa fa-comments-o"></i> <a target="_blank" href="http://www.legeblog.com/?p=25#comments">0评论</a></span><span class="muted">
+<a href="javascript:;" data-action="ding" data-id="25" id="Addlike" class="action"><i class="fa fa-heart-o"></i><span class="count">0</span>喜欢</a></span></p>
+</article>
+	</div>
+</div>
+<aside class="sidebar">	
+<div class="widget widget_text"><div class="textwidget"><div class="social">
+
+<a href="http://weibo.com/legeishere" rel="external nofollow" title="新浪微博" target="_blank"><i class="sinaweibo fa fa-weibo"></i></a><a class="weixin"><i class="weixins fa fa-weixin"></i><div class="weixin-popover"><div class="popover bottom in"><div class="arrow"></div><div class="popover-title">lege微信“legeishere”</div><div class="popover-content"><img src="http://103.200.113.178/wp-content/themes/yusi1.0/img/weixin.gif" ></div></div></div></a><a href="" rel="external nofollow" target="_blank"  title="订阅本站"><i class="rss fa fa-rss"></i></a>
+</div></div></div>
+
+<div class="widget widget_categories"><div class="title"><h2>Categories</h2></div>		<ul>
+	<li class="cat-item cat-item-5"><a href="http://www.legeblog.com/?cat=5" >network</a>
+</li>
+		</ul>
+</div><div class="widget widget_archive"><div class="title"><h2>Archives</h2></div>		<ul>
+	<li><a href='http://www.legeblog.com/?m=201512'>December 2015</a></li>
+		</ul>
+</div><div class="widget widget_calendar"><div id="calendar_wrap"><table id="wp-calendar">
+	<caption>December 2015</caption>
+	<thead>
+	<tr>
+		<th scope="col" title="Monday">M</th>
+		<th scope="col" title="Tuesday">T</th>
+		<th scope="col" title="Wednesday">W</th>
+		<th scope="col" title="Thursday">T</th>
+		<th scope="col" title="Friday">F</th>
+		<th scope="col" title="Saturday">S</th>
+		<th scope="col" title="Sunday">S</th>
+	</tr>
+	</thead>
+
+	<tfoot>
+	<tr>
+		<td colspan="3" id="prev" class="pad">&nbsp;</td>
+		<td class="pad">&nbsp;</td>
+		<td colspan="3" id="next" class="pad">&nbsp;</td>
+	</tr>
+	</tfoot>
+
+	<tbody>
+	<tr>
+		<td colspan="1" class="pad">&nbsp;</td><td>1</td><td>2</td><td>3</td><td><a href="http://www.legeblog.com/?m=20151204" title="Debian 下自建 VPN">4</a></td><td>5</td><td id="today">6</td>
+	</tr>
+	<tr>
+		<td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td><td>13</td>
+	</tr>
+	<tr>
+		<td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td><td>20</td>
+	</tr>
+	<tr>
+		<td>21</td><td>22</td><td>23</td><td>24</td><td>25</td><td>26</td><td>27</td>
+	</tr>
+	<tr>
+		<td>28</td><td>29</td><td>30</td><td>31</td>
+		<td class="pad" colspan="3">&nbsp;</td>
+	</tr>
+	</tbody>
+	</table></div></div></aside>
+</section>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="copyright pull-left">
+         <a href="http://www.legeishere.com/" title="失眠猪的博客">失眠猪的博客</a> 版权所有，保留一切权利 ·  ·   基于WordPress构建   © 2015 ·   托管于 <a rel="nofollow" target="_blank" href="http://yusi123.com/go/aliyun">阿里云主机</a> 
+        </div>
+        <div class="trackcode pull-right">
+                    </div>
+    </div>
+</footer>
+
+<!-- ngg_resource_manager_marker --><script type='text/javascript' src='http://103.200.113.178/wp-content/plugins/markdown/js/prettify.min.js?ver=1.5.1'></script>
+<script type='text/javascript' src='http://103.200.113.178/wp-content/plugins/markdown/js/markdown.min.js?ver=1.5.1'></script>
+</body>
+</html>
+
+<!-- Dynamic page generated in 0.068 seconds. -->
+<!-- Cached page generated by WP-Super-Cache on 2015-12-06 09:37:27 -->
+
+<!-- super cache -->

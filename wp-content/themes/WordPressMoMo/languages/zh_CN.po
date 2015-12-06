@@ -1,0 +1,3205 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: WPMOMO\n"
+"POT-Creation-Date: 2015-05-07 16:04+0800\n"
+"PO-Revision-Date: 2015-05-07 16:06+0800\n"
+"Last-Translator: nikanaa <nikanaa@163.com>\n"
+"Language-Team: nikanaa <nikanaa@163.com>\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: 404.php:20
+msgid "未找到页面"
+msgstr ""
+
+#: 404.php:20
+msgid "404 NO FOUND"
+msgstr ""
+
+#: 404.php:22
+msgid "可能导致的原因"
+msgstr ""
+
+#: 404.php:24
+msgid "输入的链接有误"
+msgstr ""
+
+#: 404.php:25
+msgid "请求的页面不存在"
+msgstr ""
+
+#: 404.php:29
+msgid "看看别的吧"
+msgstr ""
+
+#: 404.php:29
+msgid "最近更新"
+msgstr ""
+
+#: archive-gift.php:22 archive-gift.php:49
+msgid "按分类："
+msgstr ""
+
+#: archive-gift.php:25 archive-gift.php:51
+msgid "全部"
+msgstr ""
+
+#: archive-gift.php:62
+msgid "以上"
+msgstr ""
+
+#: archive-gift.php:63
+msgid "以下"
+msgstr ""
+
+#: archive-gift.php:73
+#, php-format
+msgid "当前条件共找到 %s 件礼品"
+msgstr ""
+
+#: archive-gift.php:96
+msgid "开始"
+msgstr ""
+
+#: archive-gift.php:101 author.php:65 author.php:729 inc/settings-log.php:59
+#: inc/settings.php:1 inc/user-page.php:226
+msgid "积分"
+msgstr ""
+
+#: archive-gift.php:101
+msgid "免费领取"
+msgstr ""
+
+#: archive-gift.php:101
+msgid "[兑换还没开始]"
+msgstr ""
+
+#: archive.php:34
+#, php-format
+msgid "分类 : %s"
+msgstr ""
+
+#: archive.php:42
+#, php-format
+msgid "标签 : %s"
+msgstr ""
+
+#: archive.php:66
+#, php-format
+msgid "日期 : %s"
+msgstr ""
+
+#: archive.php:74 inc/seo.php:53
+msgid "归档"
+msgstr ""
+
+#: archive.php:90 inc/widget.php:1221
+#, php-format
+msgid "%s次浏览"
+msgstr ""
+
+#: author.php:59 author.php:1207 inc/user-page.php:211 inc/widget.php:41
+#: inc/widget.php:517
+msgid "文章"
+msgstr ""
+
+#: author.php:61 author.php:1247 functions.php:1143 inc/user-page.php:216
+#: inc/widget.php:525
+msgid "评论"
+msgstr ""
+
+#: author.php:63 inc/user-page.php:221
+msgid "赞"
+msgstr ""
+
+#: author.php:67 inc/user-page.php:234
+msgid "礼品"
+msgstr ""
+
+#: author.php:69
+msgid "消息"
+msgstr ""
+
+#: author.php:71
+msgid "资料"
+msgstr ""
+
+#: author.php:97
+#, php-format
+msgid "你正在查看的是%s的资料，修改请慎重！"
+msgstr ""
+
+#: author.php:109 author.php:165
+msgid "安全认证失败，请重试！"
+msgstr ""
+
+#: author.php:119
+msgid "增加"
+msgstr ""
+
+#: author.php:125
+msgid "减少"
+msgstr ""
+
+#: author.php:137 author.php:741
+msgid "备注"
+msgstr ""
+
+#: author.php:141
+#, php-format
+msgid "%1$s将你的积分%2$s %3$s 分。%4$s"
+msgstr ""
+
+#: author.php:145
+#, php-format
+msgid "操作成功！已将%1$s的积分%2$s %3$s 分。"
+msgstr ""
+
+#: author.php:183
+#, php-format
+msgid "%1$s给你发来了私信"
+msgstr ""
+
+#: author.php:185 inc/gift.php:440 inc/mail.php:90 inc/mail.php:112
+#: inc/mail.php:181 inc/mail.php:252
+#, php-format
+msgid "%1$s，你好！"
+msgstr ""
+
+#: author.php:185
+#, php-format
+msgid ""
+"%1$s给你发来了<a href=\"%2$s\" target=\"_blank\">私信</a>，快去看看吧："
+"<br> %3$s"
+msgstr ""
+
+#: author.php:191
+msgid "发送成功！"
+msgstr ""
+
+#: author.php:217
+msgid "没有找到记录"
+msgstr ""
+
+#: author.php:247 inc/settings-slide.php:57
+msgid "没有发生变化。"
+msgstr ""
+
+#: author.php:347
+msgid "基本信息已更新"
+msgstr ""
+
+#: author.php:351
+#, php-format
+msgid ""
+"（用户名没有更新，因为 %s 是非法用户名。（可能已经被其他用户使用或已被添加"
+"到黑名单）"
+msgstr ""
+
+#: author.php:371
+msgid "其他会话已清理。"
+msgstr ""
+
+#: author.php:377
+msgid "点击刷新"
+msgstr ""
+
+#: author.php:457
+#, php-format
+msgid "提交失败，文章内容至少%1$s字，最多%2$s字。"
+msgstr ""
+
+#: author.php:517
+msgid "操作失败，请重试或联系管理员。"
+msgstr ""
+
+#: author.php:537
+msgid "投稿失败，标题和内容不能为空！"
+msgstr ""
+
+#: author.php:587
+msgid "私信TA"
+msgstr ""
+
+#: author.php:594 content.php:94
+msgid "没有个人说明"
+msgstr ""
+
+#: author.php:601 author.php:603
+msgid "Y年m月d号"
+msgstr ""
+
+#: author.php:601
+msgid "注册"
+msgstr ""
+
+#: author.php:603
+msgid "最后登录"
+msgstr ""
+
+#: author.php:637
+#, php-format
+msgid "成功兑换了 %1$s 件礼品"
+msgstr ""
+
+#: author.php:647
+msgid "请注意保管你的唯一识别码，这是兑换礼品的身份凭证。"
+msgstr ""
+
+#: author.php:665
+#, php-format
+msgid "兑换了%1$s，唯一识别码是 %2$s "
+msgstr ""
+
+#: author.php:669 author.php:793 author.php:1139 author.php:1283
+#: author.php:1429 author.php:1479
+#, php-format
+msgid "第 %1$s 页，共 %2$s 页，每页显示 %3$s 条。"
+msgstr ""
+
+#: author.php:707
+msgid "积分变更（仅管理员可见）"
+msgstr ""
+
+#: author.php:717
+msgid "增加积分"
+msgstr ""
+
+#: author.php:719
+msgid "减少积分"
+msgstr ""
+
+#: author.php:749 functions.php:760 inc/settings-log.php:409
+msgid "提交"
+msgstr ""
+
+#: author.php:753
+msgid "请谨慎操作！积分数只能填写数字，备注将显示在用户的积分记录中。"
+msgstr ""
+
+#: author.php:769
+#, php-format
+msgid "共有 %1$s 个积分，其中 %2$s 个已消费， %3$s 个可用。"
+msgstr ""
+
+#: author.php:817
+msgid "积分方法"
+msgstr ""
+
+#: author.php:819
+msgid "一次得分"
+msgstr ""
+
+#: author.php:821
+msgid "可用次数"
+msgstr ""
+
+#: author.php:831
+msgid "注册奖励"
+msgstr ""
+
+#: author.php:833 author.php:843 author.php:853 author.php:863
+#: author.php:873
+#, php-format
+msgid "%1$s 分"
+msgstr ""
+
+#: author.php:835
+msgid "只有 1 次"
+msgstr ""
+
+#: author.php:841 inc/user-page.php:195
+msgid "文章投稿"
+msgstr ""
+
+#: author.php:845 author.php:855 author.php:865 author.php:875
+#, php-format
+msgid "每天 %1$s 次"
+msgstr ""
+
+#: author.php:851
+msgid "评论回复"
+msgstr ""
+
+#: author.php:861
+msgid "访问推广"
+msgstr ""
+
+#: author.php:871
+msgid "注册推广"
+msgstr ""
+
+#: author.php:909
+msgid "请发表你自己的文章"
+msgstr ""
+
+#: author.php:917 inc/settings-writing.php:185
+msgid "投稿"
+msgstr ""
+
+#: author.php:917
+msgid "POST NEW"
+msgstr ""
+
+#: author.php:923
+msgid "在此输入标题"
+msgstr ""
+
+#: author.php:941
+msgid "选择文章分类"
+msgstr ""
+
+#: author.php:965
+msgid ""
+"文章来源或版权信息，{link}代表文章链接，{title}代表文章标题，{url}代表本站"
+"首页地址，{name}代表本站名称"
+msgstr ""
+
+#: author.php:973 inc/post-meta.php:111 inc/settings-writing.php:69
+#, php-format
+msgid "原文链接：%s，转发请注明来源！"
+msgstr ""
+
+#: author.php:1001 single-gift.php:276
+msgid "确认操作"
+msgstr ""
+
+#: author.php:1023
+#, php-format
+msgid "现有%s个分类接受投稿。"
+msgstr ""
+
+#: author.php:1031
+msgid "遗憾的是，你现在登录的账号没有投稿权限！"
+msgstr ""
+
+#: author.php:1039
+msgid "点击投稿"
+msgstr ""
+
+#: author.php:1047
+#, php-format
+msgid "发表了 %s 篇文章"
+msgstr ""
+
+#: author.php:1123
+#, php-format
+msgid "共有 %1$s 条评论，其中 %2$s 条已获准， %3$s 条正等待审核。"
+msgstr ""
+
+#: author.php:1129
+msgid "这条评论正在等待审核"
+msgstr ""
+
+#: author.php:1133
+#, php-format
+msgid "%1$s 发表在 %2$s"
+msgstr ""
+
+#: author.php:1163
+#, php-format
+msgid "共有 %1$s 次赞，其中包括 %2$s 篇文章， %3$s 条评论。"
+msgstr ""
+
+#: author.php:1239 inc/settings-log.php:375
+#, php-format
+msgid "%s的评论"
+msgstr ""
+
+#: author.php:1349
+msgid "密码错误，请重新输入！"
+msgstr ""
+
+#: author.php:1349
+msgid ""
+"本操作不可逆，请谨慎操作。确定清空全部已读消息（不包括私信）请输入用户密码"
+"并回车"
+msgstr ""
+
+#: author.php:1397
+#, php-format
+msgid "共有 %1$s 条消息，其中 %2$s 条是新消息（绿色标注）。"
+msgstr ""
+
+#: author.php:1397
+msgid "清空全部已读消息（不包括私信）"
+msgstr ""
+
+#: author.php:1405
+msgid "新！"
+msgstr ""
+
+#: author.php:1421
+#, php-format
+msgid "%s发来的私信"
+msgstr ""
+
+#: author.php:1421
+msgid "查看对话"
+msgstr ""
+
+#: author.php:1425 author.php:1469
+msgid "删除这条消息"
+msgstr ""
+
+#: author.php:1443
+#, php-format
+msgid "与 %s 对话"
+msgstr ""
+
+#: author.php:1443
+msgid "查看我的消息"
+msgstr ""
+
+#: author.php:1443
+msgid "确定发送"
+msgstr ""
+
+#: author.php:1485
+#, php-format
+msgid "私信功能需要<a href=\"%s\">登录</a>才可使用！"
+msgstr ""
+
+#: author.php:1511
+msgid "默认头像"
+msgstr ""
+
+#: author.php:1513
+msgid "腾讯QQ头像"
+msgstr ""
+
+#: author.php:1515
+msgid "新浪微博头像"
+msgstr ""
+
+#: author.php:1523
+msgid "头像来源"
+msgstr ""
+
+#: author.php:1525 author.php:1657 functions.php:1386 inc/user-page.php:150
+msgid "用户名"
+msgstr ""
+
+#: author.php:1527 author.php:1687
+msgid "昵称"
+msgstr ""
+
+#: author.php:1529 author.php:1701
+msgid "站点"
+msgstr ""
+
+#: author.php:1531 author.php:1717
+msgid "个人说明"
+msgstr ""
+
+#: author.php:1551
+#, php-format
+msgid "%s来%s已经%s天了"
+msgstr ""
+
+#: author.php:1571
+msgid "基本信息"
+msgstr ""
+
+#: author.php:1571
+msgid "公开资料"
+msgstr ""
+
+#: author.php:1579
+msgid "用户ID"
+msgstr ""
+
+#: author.php:1593
+msgid "头像"
+msgstr ""
+
+#: author.php:1621
+msgid "QQ头像"
+msgstr ""
+
+#: author.php:1639
+msgid "微博头像"
+msgstr ""
+
+#: author.php:1669
+msgid "请慎重，只能修改一次！通常以英文或数字，不能包含中文和特殊符号。"
+msgstr ""
+
+#: author.php:1707
+msgid "必须是正确的网址且以 http 开头"
+msgstr ""
+
+#: author.php:1733 author.php:1905 inc/settings-credit.php:247
+#: inc/settings-discussion.php:139 inc/settings-general.php:182
+#: inc/settings-gift.php:225 inc/settings-home.php:413
+#: inc/settings-open.php:253 inc/settings-reading.php:299
+#: inc/settings-slide.php:400 inc/settings-smtp.php:303
+#: inc/settings-writing.php:247
+msgid "保存更改"
+msgstr ""
+
+#: author.php:1747
+msgid "绑定账号"
+msgstr ""
+
+#: author.php:1747
+msgid "可用于直接登录"
+msgstr ""
+
+#: author.php:1757
+msgid "QQ账号"
+msgstr ""
+
+#: author.php:1763 author.php:1791 inc/open.php:177 inc/open.php:191
+msgid "已绑定"
+msgstr ""
+
+#: author.php:1763 author.php:1791 inc/open.php:177 inc/open.php:191
+msgid "点击解绑"
+msgstr ""
+
+#: author.php:1769 inc/open.php:180
+msgid "绑定QQ账号"
+msgstr ""
+
+#: author.php:1785
+msgid "微博账号"
+msgstr ""
+
+#: author.php:1797 inc/open.php:194
+msgid "绑定微博账号"
+msgstr ""
+
+#: author.php:1819
+msgid "账号安全"
+msgstr ""
+
+#: author.php:1819
+msgid "仅自己可见"
+msgstr ""
+
+#: author.php:1825
+msgid "电子邮件 (必填)"
+msgstr ""
+
+#: author.php:1839
+#, php-format
+msgid ""
+"你申请了验证邮箱（%1$s），从 %2$s 开始五分钟内有效，请尽快打开邮件中的链接"
+"验证。"
+msgstr ""
+
+#: author.php:1851
+msgid "获取验证邮件"
+msgstr ""
+
+#: author.php:1851
+msgid "获取中请稍候"
+msgstr ""
+
+#: author.php:1859
+#, php-format
+msgid "你已验证邮箱（%1$s），所有通知都将发送到这个邮箱。"
+msgstr ""
+
+#: author.php:1863
+msgid "请验证一个邮箱地址，否则你将无法接收邮件通知！"
+msgstr ""
+
+#: author.php:1875
+msgid "新密码"
+msgstr ""
+
+#: author.php:1881
+msgid "如果您想修改您的密码，请在此输入新密码。不然请留空。"
+msgstr ""
+
+#: author.php:1889
+msgid "重复新密码"
+msgstr ""
+
+#: author.php:1895
+msgid ""
+"再输入一遍新密码。 提示：您的密码最好至少包含7个字符。为了保证密码强度，使"
+"用大小写字母、数字和符号（例如! \" ? $ % ^ & )）。"
+msgstr ""
+
+#: author.php:1929
+msgid "会话安全"
+msgstr ""
+
+#: author.php:1929
+msgid "登录状态"
+msgstr ""
+
+#: author.php:1935
+msgid "清理会话"
+msgstr ""
+
+#: author.php:1947
+#, php-format
+msgid "共有 %1$s 个会话，点击登出其他会话"
+msgstr ""
+
+#: author.php:1955
+msgid "无需清理，您只有在此处登入。"
+msgstr ""
+
+#: author.php:1963 comments.php:87 inc/user-page.php:164
+msgid "Log out of this account"
+msgstr ""
+
+#: author.php:1963 comments.php:87 inc/user-page.php:165
+msgid "Log out &raquo;"
+msgstr ""
+
+#: author.php:2047 inc/mail.php:221
+msgid "邮箱地址不能为空"
+msgstr ""
+
+#: comments.php:4
+msgid "This post is password protected. Enter the password to view comments."
+msgstr ""
+
+#: comments.php:37 inc/settings-discussion.php:55
+msgid "置顶评论"
+msgstr ""
+
+#: comments.php:66
+msgid "Leave a Reply"
+msgstr ""
+
+#: comments.php:66
+#, php-format
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: comments.php:71
+#, php-format
+msgid "You must be <a href=\"%s\">logged in</a> to post a comment."
+msgstr ""
+
+#: comments.php:82 inc/commentlist.php:106
+msgid "Log in to Reply"
+msgstr ""
+
+#: comments.php:87 inc/user-page.php:163
+#, php-format
+msgid "Logged in as <a href=\"%1$s\">%2$s</a>."
+msgstr ""
+
+#: comments.php:92 comments.php:100 comments.php:110 comments.php:118
+msgid "（必填）"
+msgstr ""
+
+#: comments.php:118
+msgid "（不会被公开）"
+msgstr ""
+
+#: comments.php:159
+msgid "表情"
+msgstr ""
+
+#: comments.php:160
+msgid "Submit Comment"
+msgstr ""
+
+#: comments.php:168 functions.php:1397 inc/shortcode.php:24
+msgid "只有评论/文章作者或更高权限的用户才可见"
+msgstr ""
+
+#: comments.php:168
+msgid "隐私内容"
+msgstr ""
+
+#: comments.php:171
+msgid "添加到评论"
+msgstr ""
+
+#: comments.php:182
+msgid "Comments are closed."
+msgstr ""
+
+#: content-archive.php:93 inc/settings-discussion.php:57
+msgid "置顶"
+msgstr ""
+
+#: content-archive.php:109
+#, php-format
+msgid ""
+"正在等待审核，你可以 <a href=\"%1$s\">预览</a> 或 <a href=\"%2$s\" data-no-"
+"instant>重新编辑</a> 。"
+msgstr ""
+
+#: content-archive.php:113
+#, php-format
+msgid ""
+"这是一篇草稿，你可以 <a href=\"%1$s\">预览</a> 或 <a href=\"%2$s\" data-no-"
+"instant>继续编辑</a> 。"
+msgstr ""
+
+#: content.php:41 single-gift.php:160
+msgid "Edit This"
+msgstr ""
+
+#: content.php:88
+msgid "Author"
+msgstr ""
+
+#: footer-colophon.php:183
+msgid "All Rights Reserved. "
+msgstr ""
+
+#: functions.php:226
+msgid "头部菜单"
+msgstr ""
+
+#: functions.php:227
+msgid "头部右侧菜单"
+msgstr ""
+
+#: functions.php:228
+msgid "底部菜单1"
+msgstr ""
+
+#: functions.php:229
+msgid "底部菜单2"
+msgstr ""
+
+#: functions.php:230
+msgid "底部菜单3"
+msgstr ""
+
+#: functions.php:231
+msgid "底部菜单4"
+msgstr ""
+
+#: functions.php:313
+msgid "主侧边栏"
+msgstr ""
+
+#: functions.php:315
+msgid "主要的侧边栏"
+msgstr ""
+
+#: functions.php:321
+msgid "底部边栏"
+msgstr ""
+
+#: functions.php:323
+msgid "显示在底部"
+msgstr ""
+
+#: functions.php:351
+msgid "设置已保存。"
+msgstr ""
+
+#: functions.php:351
+msgid "保存失败，请重试。，"
+msgstr ""
+
+#: functions.php:524
+#, php-format
+msgid "发布于 %1$s 最后编辑于 %2$s "
+msgstr ""
+
+#: functions.php:550
+#, php-format
+msgid "<span class=\"entry-meta-s\">%s 次浏览</span>"
+msgstr ""
+
+#: functions.php:760
+msgid "请输入密码 …"
+msgstr ""
+
+#: functions.php:760
+msgid "这是一篇受密码保护的文章，您需要提供访问密码。"
+msgstr ""
+
+#: functions.php:798 inc/shortcode.php:88
+msgid "分页"
+msgstr ""
+
+#: functions.php:802
+msgid "%"
+msgstr ""
+
+#: functions.php:874
+msgid "文章目录"
+msgstr ""
+
+#: functions.php:958
+#, php-format
+msgid "获得文章投稿奖励%1$s积分"
+msgstr ""
+
+#: functions.php:967
+#, php-format
+msgid "你在%1$s上有新的文章发表"
+msgstr ""
+
+#: functions.php:968
+#, php-format
+msgid "<h3>%1$s，你好！</h3><p>你的文章%2$s已经发表，快去看看吧！</p>"
+msgstr ""
+
+#: functions.php:987
+#, php-format
+msgid "获得评论回复奖励%1$s积分"
+msgstr ""
+
+#: functions.php:1019
+#, php-format
+msgid "你在%1$s上的账号已被注销"
+msgstr ""
+
+#: functions.php:1020
+#, php-format
+msgid "<h3>%1$s，你好！</h3><p>你在%2$s上的账号已被注销！</p>"
+msgstr ""
+
+#: functions.php:1072
+msgid "上一页"
+msgstr ""
+
+#: functions.php:1073
+msgid "下一页"
+msgstr ""
+
+#: functions.php:1081 inc/seo.php:75 index.php:118
+#, php-format
+msgid "第 %s 页"
+msgstr ""
+
+#: functions.php:1131
+msgid "去顶部"
+msgstr ""
+
+#: functions.php:1136
+msgid "刷新"
+msgstr ""
+
+#: functions.php:1150
+msgid "本页二维码"
+msgstr ""
+
+#: functions.php:1156
+msgid "去底部"
+msgstr ""
+
+#: functions.php:1182
+msgid "请同时按下 Ctrl + C 复制推广链接"
+msgstr ""
+
+#: functions.php:1189
+msgid "操作成功"
+msgstr ""
+
+#: functions.php:1189
+msgid "操作失败"
+msgstr ""
+
+#: functions.php:1189
+msgid "请重试"
+msgstr ""
+
+#: functions.php:1227 inc/shortcode.php:91
+msgid "绿色警告框"
+msgstr ""
+
+#: functions.php:1233 inc/shortcode.php:92
+msgid "蓝色警告框"
+msgstr ""
+
+#: functions.php:1239 inc/shortcode.php:93
+msgid "黄色警告框"
+msgstr ""
+
+#: functions.php:1245 inc/shortcode.php:94
+msgid "红色警告框"
+msgstr ""
+
+#: functions.php:1251
+msgid "巨幕"
+msgstr ""
+
+#: functions.php:1257
+msgid "默认标签"
+msgstr ""
+
+#: functions.php:1263
+msgid "深蓝标签"
+msgstr ""
+
+#: functions.php:1269
+msgid "绿色标签"
+msgstr ""
+
+#: functions.php:1275
+msgid "蓝色标签"
+msgstr ""
+
+#: functions.php:1281
+msgid "黄色标签"
+msgstr ""
+
+#: functions.php:1287
+msgid "红色标签"
+msgstr ""
+
+#: functions.php:1319
+msgid "两次输入的密码不一致！！！"
+msgstr ""
+
+#: functions.php:1328
+msgid "安全信息已更新"
+msgstr ""
+
+#: functions.php:1353
+msgid "密码"
+msgstr ""
+
+#: functions.php:1354
+msgid "设置密码访问，无需加密留空即可"
+msgstr ""
+
+#: functions.php:1386
+#, php-format
+msgid "该%s已被系统保留，不能用于注册或登录！"
+msgstr ""
+
+#: functions.php:1386
+msgid "邮箱地址"
+msgstr ""
+
+#: functions.php:1397
+msgid "邮箱已被自动隐藏"
+msgstr ""
+
+#: header-masthead.php:38
+msgid "请添加正确的邮箱以保证账户安全"
+msgstr ""
+
+#: header-masthead.php:46
+msgid "请验证一个邮箱用以接收通知"
+msgstr ""
+
+#: header-masthead.php:177
+msgid "切换菜单"
+msgstr ""
+
+#: header-masthead.php:243 searchform.php:12
+msgid "搜索 &hellip;"
+msgstr ""
+
+#: inc/cache.php:42 inc/cache.php:81
+#, php-format
+msgid "<!-- cached %s -->"
+msgstr ""
+
+#: inc/commentlist.php:50
+msgid "匿名"
+msgstr ""
+
+#: inc/commentlist.php:57
+#, php-format
+msgid "%s前"
+msgstr ""
+
+#: inc/commentlist.php:59 inc/commentlist.php:62
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#: inc/commentlist.php:67 inc/commentlist.php:106
+msgid "Reply"
+msgstr ""
+
+#: inc/commentlist.php:76
+msgid " 链接通知 : "
+msgstr ""
+
+#: inc/commentlist.php:110 inc/settings-log.php:63
+msgid "私信"
+msgstr ""
+
+#: inc/commentlist.php:119
+msgid "Edit"
+msgstr ""
+
+#: inc/commentlist.php:135
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/credit.php:55
+#, php-format
+msgid "获得%s积分"
+msgstr ""
+
+#: inc/credit.php:64
+#, php-format
+msgid "消费%s积分"
+msgstr ""
+
+#: inc/credit.php:71
+#, php-format
+msgid "更新积分为%s"
+msgstr ""
+
+#: inc/credit.php:91
+#, php-format
+msgid "消费了%s积分"
+msgstr ""
+
+#: inc/credit.php:123
+#, php-format
+msgid "获得注册推广（来自%1$s的注册）奖励%2$s积分"
+msgstr ""
+
+#: inc/credit.php:129
+#, php-format
+msgid "获得注册奖励%s积分"
+msgstr ""
+
+#: inc/credit.php:159
+#, php-format
+msgid "获得访问推广奖励%1$s积分"
+msgstr ""
+
+#: inc/credit.php:196
+#, php-format
+msgid ""
+"总积分 %1$s 已消费 %2$s <br> <a href=\"%3$s\" target=\"_blank\">修改积分</"
+"a>"
+msgstr ""
+
+#: inc/gift.php:25 inc/gift.php:26 inc/gift.php:27 inc/gift.php:28
+#: inc/seo.php:61 inc/settings-log.php:61 inc/settings.php:1
+msgid "积分换礼"
+msgstr ""
+
+#: inc/gift.php:29 inc/gift.php:30
+msgid "添加礼品"
+msgstr ""
+
+#: inc/gift.php:31
+msgid "新礼品"
+msgstr ""
+
+#: inc/gift.php:32
+msgid "编辑礼品"
+msgstr ""
+
+#: inc/gift.php:33
+msgid "查看礼品"
+msgstr ""
+
+#: inc/gift.php:34
+msgid "全部礼品"
+msgstr ""
+
+#: inc/gift.php:35
+msgid "搜索礼品"
+msgstr ""
+
+#: inc/gift.php:36
+msgid "礼品上级："
+msgstr ""
+
+#: inc/gift.php:37
+msgid "没有找到礼品"
+msgstr ""
+
+#: inc/gift.php:38
+msgid "回收站里没有礼品"
+msgstr ""
+
+#: inc/gift.php:57
+msgid "礼品目录"
+msgstr ""
+
+#: inc/gift.php:77
+msgid "无须物流"
+msgstr ""
+
+#: inc/gift.php:78
+msgid "包邮"
+msgstr ""
+
+#: inc/gift.php:79
+msgid "邮费自付"
+msgstr ""
+
+#: inc/gift.php:85
+msgid "礼品信息"
+msgstr ""
+
+#: inc/gift.php:85
+msgid "礼品内容"
+msgstr ""
+
+#: inc/gift.php:142
+msgid "填写信息只能是数字，文字会被转为 0"
+msgstr ""
+
+#: inc/gift.php:149
+msgid "物流"
+msgstr ""
+
+#: inc/gift.php:171
+msgid ""
+"以下内容在用户使用积分兑换后可见，礼品介绍请放在文章内容中。注意：编辑后需"
+"要保存文章才可保存"
+msgstr ""
+
+#: inc/gift.php:174
+msgid "选择附件"
+msgstr ""
+
+#: inc/gift.php:174
+msgid "添加附件"
+msgstr ""
+
+#: inc/gift.php:175
+msgid ""
+"附件地址会被加密，请不要泄露真实地址！名称是附件的标题，所有人都可见。注"
+"意：本功能只适合小文件传输。"
+msgstr ""
+
+#: inc/gift.php:179 inc/gift.php:211 inc/settings-slide.php:378
+#: inc/settings-slide.php:404 inc/settings-slide.php:456
+msgid "删除"
+msgstr ""
+
+#: inc/gift.php:179 inc/gift.php:211 inc/settings-slide.php:452
+msgid "名称"
+msgstr ""
+
+#: inc/gift.php:407
+msgid "库存不足！"
+msgstr ""
+
+#: inc/gift.php:416
+msgid "你已达到最大兑换数，不能再兑换！"
+msgstr ""
+
+#: inc/gift.php:424
+msgid "你的积分余额不足！"
+msgstr ""
+
+#: inc/gift.php:433
+#, php-format
+msgid "花费了%1$s积分兑换%2$s"
+msgstr ""
+
+#: inc/gift.php:437
+#, php-format
+msgid "恭喜，你已成功兑换<a href=\"%1$s\" target=\"_blank\">%2$s</a>"
+msgstr ""
+
+#: inc/gift.php:440
+#, php-format
+msgid "温馨提示：%s"
+msgstr ""
+
+#: inc/gift.php:440 inc/settings-gift.php:77 single-gift.php:199
+msgid "兑换成功后请留意信息通知，如有兑换后可见的内容可直接查看。"
+msgstr ""
+
+#: inc/gift.php:445
+msgid "礼品兑换通知"
+msgstr ""
+
+#: inc/gift.php:447
+msgid "兑换成功！"
+msgstr ""
+
+#: inc/gift.php:473 inc/gift.php:663
+msgid "兑换信息查询"
+msgstr ""
+
+#: inc/gift.php:574
+msgid "请输入唯一识别码进行查询，格式如：1-62-1417634028-62ec07f451"
+msgstr ""
+
+#: inc/gift.php:587
+msgid "错误：唯一识别码格式不正确"
+msgstr ""
+
+#: inc/gift.php:606
+msgid "错误：没有找到对应的用户"
+msgstr ""
+
+#: inc/gift.php:612
+msgid "兑换信息如下"
+msgstr ""
+
+#: inc/gift.php:616
+msgid "兑换人："
+msgstr ""
+
+#: inc/gift.php:616 inc/user-page.php:181
+msgid "个人主页"
+msgstr ""
+
+#: inc/gift.php:617
+msgid "没有验证邮箱"
+msgstr ""
+
+#: inc/gift.php:619
+msgid "兑换时间："
+msgstr ""
+
+#: inc/gift.php:621
+msgid "礼品标题："
+msgstr ""
+
+#: inc/gift.php:623
+msgid "市场价格："
+msgstr ""
+
+#: inc/gift.php:625 single-gift.php:95
+msgid "免费"
+msgstr ""
+
+#: inc/gift.php:626
+msgid "所需积分："
+msgstr ""
+
+#: inc/gift.php:629
+msgid "物流配送："
+msgstr ""
+
+#: inc/gift.php:633
+msgid "错误：没有找到对应的礼品信息"
+msgstr ""
+
+#: inc/gift.php:641
+msgid "错误：没有找到对应的兑换信息"
+msgstr ""
+
+#: inc/gift.php:647
+msgid "错误：唯一识别码没有通过验证，你确定这正确吗？"
+msgstr ""
+
+#: inc/gift.php:654
+msgid "错误：身份验证无法通过，请重试！"
+msgstr ""
+
+#: inc/gift.php:670
+msgid "查询"
+msgstr ""
+
+#: inc/gift.php:671
+msgid "刷新本页"
+msgstr ""
+
+#: inc/gift.php:679
+msgid "本功能主要用于校验兑换礼品用户身份，每个识别码都是唯一的，私密的。"
+msgstr ""
+
+#: inc/gift.php:680
+msgid "&laquo; 返回"
+msgstr ""
+
+#: inc/mail.php:46
+#, php-format
+msgid "本邮件由<a href=\"%1$s\" target=\"_blank\">%2$s</a>发送"
+msgstr ""
+
+#: inc/mail.php:89 inc/mail.php:111
+#, php-format
+msgid "%1$s在%2$s中回复你"
+msgstr ""
+
+#: inc/mail.php:91 inc/mail.php:113
+#, php-format
+msgid ""
+"%1$s在文章<a href=\"%2$s\" target=\"_blank\">%3$s</a>中回复你了，快去看看"
+"吧：<br> %4$s"
+msgstr ""
+
+#: inc/mail.php:124
+#, php-format
+msgid "%1$s上的文章有了新的回复"
+msgstr ""
+
+#: inc/mail.php:125
+#, php-format
+msgid "%1$s管理员，你好！"
+msgstr ""
+
+#: inc/mail.php:126
+#, php-format
+msgid ""
+"%1$s回复了文章<a href=\"%2$s\" target=\"_blank\">%3$s</a>，快去看看吧："
+"<br> %4$s"
+msgstr ""
+
+#: inc/mail.php:183
+#, php-format
+msgid ""
+"有人要求重设您在%1$s的帐号密码（用户名：%2$s）。若这不是您本人要求的，请忽"
+"略本邮件，一切如常。 要重置您的密码，请打开下面的链接：%3$s"
+msgstr ""
+
+#: inc/mail.php:230
+#, php-format
+msgid "这个电子邮件地址（%s）已经被使用，请换一个。"
+msgstr ""
+
+#: inc/mail.php:236
+#, php-format
+msgid "这个电子邮件地址（%s）你已经验证，无须再次验证。"
+msgstr ""
+
+#: inc/mail.php:242
+#, php-format
+msgid ""
+"每五分钟只能申请一次，你在 %1$s 申请了验证 %2$s ，请验证这个邮箱或稍后再"
+"试。"
+msgstr ""
+
+#: inc/mail.php:251
+#, php-format
+msgid "%1$s用户邮箱验证"
+msgstr ""
+
+#: inc/mail.php:253
+#, php-format
+msgid "请点击下面的链接来验证你的邮箱地址（本链接从 %1$s 开始五分钟内有效）"
+msgstr ""
+
+#: inc/mail.php:255
+msgid "如果通过点击以上链接无法访问，请将该网址复制并粘贴至新的浏览器窗口中"
+msgstr ""
+
+#: inc/mail.php:268
+#, php-format
+msgid "验证邮件已发送到（%s）邮箱，请尽快验证（五分钟内有效）。"
+msgstr ""
+
+#: inc/mail.php:271
+msgid "请输入一个有效的电子邮件地址！！！"
+msgstr ""
+
+#: inc/mail.php:281
+msgid "邮箱认证"
+msgstr ""
+
+#: inc/mail.php:286
+#, php-format
+msgid ""
+"要验证邮箱，请先<a href=\"%1$s\">登录</a>，已在别的页面登录<a href=\"%2$s"
+"\">点击刷新</a>即可。"
+msgstr ""
+
+#: inc/mail.php:290
+#, php-format
+msgid ""
+"咦？你肯定这是你的验证链接吗？<br><br>安全认证码无效，请到<a href=\"%1$s\">"
+"个人资料页</a>重新获取链接。"
+msgstr ""
+
+#: inc/mail.php:304
+#, php-format
+msgid ""
+"邮箱信息更新出错，请重试！<br><br><a href=\"%1$s\">&laquo; 返回个人资料页</"
+"a>"
+msgstr ""
+
+#: inc/mail.php:310
+#, php-format
+msgid ""
+"恭喜！邮箱地址（%1$s）验证成功<br><br><a href=\"%2$s\">&laquo; 返回个人资料"
+"页</a>"
+msgstr ""
+
+#: inc/mail.php:318
+#, php-format
+msgid "验证链接无效<br><br><a href=\"%1$s\">&laquo; 返回个人资料页</a>"
+msgstr ""
+
+#: inc/mail.php:326
+#, php-format
+msgid "已验证邮箱 (<a href=\"%s\" target=\"_blank\">?</a>)"
+msgstr ""
+
+#: inc/message.php:20
+msgid "多梦主题提示 : "
+msgstr ""
+
+#: inc/message.php:27
+msgid "评论嵌套是必须选择的，无法改变！"
+msgstr ""
+
+#: inc/message.php:46
+msgid "图标和按钮效果"
+msgstr ""
+
+#: inc/message.php:47
+msgid ""
+"请您留意：菜单项图标和按钮效果属于多梦主题专属功能，这代表着当你切换到其他"
+"主题，图表和按钮效果将不复存在。"
+msgstr ""
+
+#: inc/message.php:48
+msgid ""
+"首先，请您缩小“帮助”选项卡，并打开“显示选项”在“显示菜单高级属性”中勾上“CSS"
+"类”项，然后在编辑菜单项时填入以下内容："
+msgstr ""
+
+#: inc/message.php:49
+msgid ""
+"添加图标：在允许 Bootstrap 免费使用的200个 <a href=\"http://cdn.dmeng.net/"
+"glyphicons.html\" target=\"_blank\">Glyphicons 字体图标</a> 中挑选出你喜欢"
+"的图标，复制图标类名到”CSS类“里的第一个即可（必须是在前面第一个），如相机图"
+"标则是 <span style=\"color: #339966;\">glyphicon-camera</span> ，以此类推。"
+msgstr ""
+
+#: inc/message.php:50
+msgid "添加按钮：根据 Bootstrap 的按钮CSS类名填写到”CSS类“中即可，如："
+msgstr ""
+
+#: inc/message.php:51
+msgid ""
+"<ul><li>默认按钮（白底黑字）是 <span style=\"color: #555;\">btn btn-"
+"default</span></li><li>基本按钮（蓝底白字）是 <span style=\"color: #428bca;"
+"\">btn btn-primary</span></li><li>成功按钮（绿底白字）是 <span style="
+"\"color: #5cb85c;\">btn btn-success</span></li><li>信息按钮（青底白字）是 "
+"<span style=\"color: #5bc0de;\">btn btn-info</span></li><li>警告按钮（黄底"
+"白字）是 <span style=\"color: #f0ad4e;\">btn btn-warning</span></li><li>危"
+"险按钮（红底白字）是 <span style=\"color: #d9534f;\">btn btn-danger</"
+"span></li></ul> "
+msgstr ""
+
+#: inc/message.php:52
+msgid ""
+"如果既需要前置图标也需要按钮效果，请这样填写”CSS类“：<span style=\"color: "
+"#339966;\">glyphicon-camera btn btn-defaul</span> （图标CSS类名在第一个）"
+msgstr ""
+
+#: inc/message.php:53
+msgid ""
+"更详细的使用教程请看：<a href=\"http://www.dmeng.net/wordpress-navigation-"
+"menus.html\" target=\"_blank\">WordPress导航菜单设置</a>"
+msgstr ""
+
+#: inc/open.php:127
+msgid "微博"
+msgstr ""
+
+#: inc/open.php:144
+#, php-format
+msgid "使用%s账号登录"
+msgstr ""
+
+#: inc/open.php:174
+msgid "QQ登录"
+msgstr ""
+
+#: inc/open.php:188
+msgid "微博登录"
+msgstr ""
+
+#: inc/open.php:284
+msgid "登录失败！ "
+msgstr ""
+
+#: inc/open.php:294
+msgid "请完善账号信息"
+msgstr ""
+
+#: inc/open.php:294
+#, php-format
+msgid ""
+"欢迎来到%1$s，请<a href=\"%2$s\">完善资料</a>，其中电子邮件尤为重要，许多信"
+"息都将通过电子邮件通知您！"
+msgstr ""
+
+#: inc/open.php:341
+#, php-format
+msgid ""
+"你正在试图解除%1$s绑定，确定这样做吗？<a href=\"%2$s\">点击继续</a> <p>不知"
+"道这是哪里？<a href=\"%3$s\">点击返回</a></p>"
+msgstr ""
+
+#: inc/open.php:342
+msgid "解除账号绑定"
+msgstr ""
+
+#: inc/open.php:360
+msgid "服务器无法连接开放平台，请重试或联系管理员！"
+msgstr ""
+
+#: inc/open.php:360
+msgid "无法连接开发平台"
+msgstr ""
+
+#: inc/post-meta.php:53
+msgid "版权声明"
+msgstr ""
+
+#: inc/post-meta.php:123 inc/settings-general.php:107
+#: inc/settings-general.php:134 inc/settings-general.php:154
+#: inc/settings-home.php:291 inc/settings-reading.php:114
+#: inc/settings-writing.php:131 inc/settings-writing.php:171
+msgid "显示"
+msgstr ""
+
+#: inc/post-meta.php:125 inc/settings-general.php:108
+#: inc/settings-general.php:122 inc/settings-general.php:135
+#: inc/settings-general.php:155 inc/settings-home.php:293
+#: inc/settings-home.php:323 inc/settings-reading.php:115
+#: inc/settings-reading.php:130 inc/settings-reading.php:144
+#: inc/settings-writing.php:133 inc/settings-writing.php:173
+msgid "不显示"
+msgstr ""
+
+#: inc/post-meta.php:131
+msgid ""
+"版权声明内容，文章链接用{link}表示，文章标题用{title}表示，站点地址用{url}"
+"表示，站点名称用{name}表示。"
+msgstr ""
+
+#: inc/recent-user.php:30
+msgid "没有记录"
+msgstr ""
+
+#: inc/seo.php:41
+msgid "分类目录"
+msgstr ""
+
+#: inc/seo.php:45 inc/widget.php:47 inc/widget.php:521
+msgid "标签"
+msgstr ""
+
+#: inc/seo.php:49 inc/widget.php:49
+msgid "作者"
+msgstr ""
+
+#: inc/seo.php:57 inc/seo.php:117 inc/widget.php:51
+msgid "搜索"
+msgstr ""
+
+#: inc/settings-credit.php:109 inc/settings-discussion.php:65
+#: inc/settings-gift.php:87 inc/settings-home.php:147
+#: inc/settings-open.php:89 inc/settings-reading.php:97
+#: inc/settings-slide.php:187 inc/settings-smtp.php:167
+#: inc/settings-tool.php:203 inc/settings-writing.php:97
+msgid "WordPress MoMo"
+msgstr ""
+
+#: inc/settings-credit.php:119
+msgid "把次数设置为0即全部没有积分奖励。"
+msgstr ""
+
+#: inc/settings-credit.php:129
+msgid "新用户注册奖励"
+msgstr ""
+
+#: inc/settings-credit.php:141
+msgid "投稿一次得分"
+msgstr ""
+
+#: inc/settings-credit.php:153
+msgid "每天投稿次数"
+msgstr ""
+
+#: inc/settings-credit.php:165
+msgid "评论一次得分"
+msgstr ""
+
+#: inc/settings-credit.php:177
+msgid "每天评论次数"
+msgstr ""
+
+#: inc/settings-credit.php:189
+msgid "推广"
+msgstr ""
+
+#: inc/settings-credit.php:199
+msgid "注册推广一次得分"
+msgstr ""
+
+#: inc/settings-credit.php:211
+msgid "每天注册推广次数"
+msgstr ""
+
+#: inc/settings-credit.php:223
+msgid "访问推广一次得分"
+msgstr ""
+
+#: inc/settings-credit.php:235
+msgid "每天访问推广次数"
+msgstr ""
+
+#: inc/settings-discussion.php:89
+msgid "“置顶评论”标题文本"
+msgstr ""
+
+#: inc/settings-discussion.php:101
+msgid "“置顶”按钮文本"
+msgstr ""
+
+#: inc/settings-discussion.php:113
+msgid "隐藏邮箱地址"
+msgstr ""
+
+#: inc/settings-discussion.php:115
+msgid "自动隐藏评论中的邮箱地址，只有评论作者、文章作者或更高权限的用户可见"
+msgstr ""
+
+#: inc/settings-discussion.php:125
+msgid "隐藏"
+msgstr ""
+
+#: inc/settings-discussion.php:127
+msgid "不隐藏"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "请设置您主题的颜色"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "推荐是橘色，效果最好"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "橘色（默认）"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "蓝色"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "棕色"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "红色"
+msgstr ""
+
+#: inc/settings-general.php:71
+msgid "青色"
+msgstr ""
+
+#: inc/settings-general.php:74
+msgid "ICP备案号"
+msgstr ""
+
+#: inc/settings-general.php:74
+msgid "备案号将出现在网站底部"
+msgstr ""
+
+#: inc/settings-general.php:80
+msgid "头部HEAD代码"
+msgstr ""
+
+#: inc/settings-general.php:81
+msgid "如添加meta信息验证网站所有权。"
+msgstr ""
+
+#: inc/settings-general.php:87
+msgid "脚部统计代码"
+msgstr ""
+
+#: inc/settings-general.php:88
+msgid ""
+"放置统计代码或安全网站认证小图标等。注意：如果是JS代码请添加一个data-no-"
+"instant属性，如&lt;script type=\"text/javascript\" data-no-instant&gt; 。"
+msgstr ""
+
+#: inc/settings-general.php:94
+msgid "自定义CSS"
+msgstr ""
+
+#: inc/settings-general.php:95
+msgid ""
+"以下内容会被放置在&lt;style&gt;标签之内，无需输入&lt;style type=\"text/css"
+"\"&gt;和&lt;/style&gt;"
+msgstr ""
+
+#: inc/settings-general.php:101
+msgid "顶部资料卡"
+msgstr ""
+
+#: inc/settings-general.php:102
+msgid "是否显示右上角用户登录&个人资料展示（假如显示顶部的话）"
+msgstr ""
+
+#: inc/settings-general.php:114
+msgid "导航条搜索框"
+msgstr ""
+
+#: inc/settings-general.php:115
+msgid "选择导航条搜索框的显示方式"
+msgstr ""
+
+#: inc/settings-general.php:120
+msgid "靠左显示"
+msgstr ""
+
+#: inc/settings-general.php:121
+msgid "靠右显示"
+msgstr ""
+
+#: inc/settings-general.php:128
+msgid "是否显示浮动按钮"
+msgstr ""
+
+#: inc/settings-general.php:129
+msgid "选择是否显示到顶部、刷新、到底部等浮动按钮"
+msgstr ""
+
+#: inc/settings-general.php:141
+msgid "设置页面滚动速度"
+msgstr ""
+
+#: inc/settings-general.php:142
+msgid "设置页面滚动到顶部、底部等位置所用的时间（以毫秒为单位，默认800ms）"
+msgstr ""
+
+#: inc/settings-general.php:148
+msgid "是否显示二维码"
+msgstr ""
+
+#: inc/settings-general.php:149
+msgid "选择是否在浮动按钮中显示二维码"
+msgstr ""
+
+#: inc/settings-general.php:161
+msgid "预加载"
+msgstr ""
+
+#: inc/settings-general.php:162
+msgid ""
+"InstantClick 功能仅供测试，没有开发经验的请保持默认值 0 ，否则会出错！！！"
+msgstr ""
+
+#: inc/settings-general.php:169
+msgid "登录安全"
+msgstr ""
+
+#: inc/settings-general.php:175
+msgid "黑名单"
+msgstr ""
+
+#: inc/settings-general.php:177
+msgid ""
+"请使用 | 分隔开，而且 | 前后都不要留空格。请慎重！黑名单里的用户名都不能用"
+"来注册，也不能登录。<span style=\"color:#a94442\">推荐把管理员用户名添加进"
+"来，然后使用邮箱登录，此举可以大量减少暴力破解可能会浪费的服务器资源。</"
+"span>"
+msgstr ""
+
+#: inc/settings-gift.php:103
+msgid "积分换礼地址是："
+msgstr ""
+
+#: inc/settings-gift.php:115
+msgid "开启积分换礼"
+msgstr ""
+
+#: inc/settings-gift.php:117
+msgid "启用积分换礼功能"
+msgstr ""
+
+#: inc/settings-gift.php:129 inc/settings-gift.php:169
+msgid "开启"
+msgstr ""
+
+#: inc/settings-gift.php:131 inc/settings-gift.php:171
+#: inc/settings-open.php:123 inc/settings-open.php:171
+#: inc/settings-reading.php:165
+msgid "关闭"
+msgstr ""
+
+#: inc/settings-gift.php:143
+msgid "积分范围"
+msgstr ""
+
+#: inc/settings-gift.php:145
+msgid ""
+"上方筛选条件中的积分筛选，以英文 , 号分割，0-100代表100以下，100-1000代表"
+"100至1000，10000-0代表10000以上"
+msgstr ""
+
+#: inc/settings-gift.php:157
+msgid "定时发布"
+msgstr ""
+
+#: inc/settings-gift.php:159
+msgid "显示定时发布的礼品"
+msgstr ""
+
+#: inc/settings-gift.php:183
+msgid "显示礼品数量"
+msgstr ""
+
+#: inc/settings-gift.php:185
+msgid ""
+"列表页一页显示的礼品数量。因为一排3列，所以推荐设置可以被3整除的数字，默认"
+"是12"
+msgstr ""
+
+#: inc/settings-gift.php:197 single-gift.php:198
+msgid "温馨提示"
+msgstr ""
+
+#: inc/settings-gift.php:199
+msgid "礼品详细信息下的提示语"
+msgstr ""
+
+#: inc/settings-gift.php:211 single-gift.php:237
+msgid "兑换须知"
+msgstr ""
+
+#: inc/settings-gift.php:213
+msgid "单独显示在礼品信息下的兑换须知"
+msgstr ""
+
+#: inc/settings-home.php:169
+msgid "首页关键词"
+msgstr ""
+
+#: inc/settings-home.php:171
+msgid "网站首页的网页关键词"
+msgstr ""
+
+#: inc/settings-home.php:183
+msgid "首页描述"
+msgstr ""
+
+#: inc/settings-home.php:185
+msgid "网站首页的网页描述，推荐200字以内"
+msgstr ""
+
+#: inc/settings-home.php:197
+msgid "幻灯片下方三个页面的设置"
+msgstr ""
+
+#: inc/settings-home.php:199
+msgid "第一个页面"
+msgstr ""
+
+#: inc/settings-home.php:217
+msgid "第二个页面"
+msgstr ""
+
+#: inc/settings-home.php:235
+msgid "第三个页面"
+msgstr ""
+
+#: inc/settings-home.php:253
+msgid "分类列表排版"
+msgstr ""
+
+#: inc/settings-home.php:255
+msgid "首页分类列表显示方式"
+msgstr ""
+
+#: inc/settings-home.php:265
+msgid "一列"
+msgstr ""
+
+#: inc/settings-home.php:267
+msgid "两列"
+msgstr ""
+
+#: inc/settings-home.php:279
+msgid "分类信息"
+msgstr ""
+
+#: inc/settings-home.php:281
+msgid "显示分类的文章数量"
+msgstr ""
+
+#: inc/settings-home.php:305
+msgid "文章列表"
+msgstr ""
+
+#: inc/settings-home.php:307
+msgid "首页文章列表"
+msgstr ""
+
+#: inc/settings-home.php:317
+msgid "最新发表的"
+msgstr ""
+
+#: inc/settings-home.php:319
+msgid "最后更新的"
+msgstr ""
+
+#: inc/settings-home.php:321
+msgid "评论最多的"
+msgstr ""
+
+#: inc/settings-home.php:335
+msgid "文章列表标题"
+msgstr ""
+
+#: inc/settings-home.php:337
+msgid "如：最新文章。留空不显示"
+msgstr ""
+
+#: inc/settings-home.php:349
+msgid "排除置顶文章"
+msgstr ""
+
+#: inc/settings-home.php:351
+msgid "不置顶显示置顶文章"
+msgstr ""
+
+#: inc/settings-home.php:361
+msgid "可以置顶"
+msgstr ""
+
+#: inc/settings-home.php:363
+msgid "不置顶"
+msgstr ""
+
+#: inc/settings-home.php:365
+msgid "单独显示在分类列表之上"
+msgstr ""
+
+#: inc/settings-home.php:377
+msgid "置顶文章标题格式"
+msgstr ""
+
+#: inc/settings-home.php:379
+msgid ""
+"如果让置顶文章单独显示在分类列表之上，那么可以设置一个标题格式，其中{title}"
+"代表原来的文章标题"
+msgstr ""
+
+#: inc/settings-home.php:391
+msgid "文章列表排除分类"
+msgstr ""
+
+#: inc/settings-home.php:393
+msgid "选择排除的分类，留空则不排除任何分类"
+msgstr ""
+
+#: inc/settings-log.php:65
+msgid "搜索量"
+msgstr ""
+
+#: inc/settings-log.php:67
+msgid "投票"
+msgstr ""
+
+#: inc/settings-log.php:89
+msgid "WordPress MoMo主题部分数据记录"
+msgstr ""
+
+#: inc/settings-log.php:123
+#, php-format
+msgid "正在查看从第%1$s条到第%2$s条数据"
+msgstr ""
+
+#: inc/settings-log.php:127
+msgid "没有找到数据"
+msgstr ""
+
+#: inc/settings-log.php:155
+#, php-format
+msgid "%1$s 在 %2$s %3$s"
+msgstr ""
+
+#: inc/settings-log.php:197
+msgid "点击进入兑换信息查询（使用唯一识别码）"
+msgstr ""
+
+#: inc/settings-log.php:205
+#, php-format
+msgid "%1$s 在 %2$s 兑换了 %3$s，唯一识别码是 %4$s"
+msgstr ""
+
+#: inc/settings-log.php:253
+#, php-format
+msgid "%1$s %2$s 给 %3$s 发私信：%4$s"
+msgstr ""
+
+#: inc/settings-log.php:305
+msgid ""
+"请注意：因为小工具有缓存，所以删除记录并不会马上反映在小工具中。手动更新小"
+"工具缓存：重新点击一下保存小工具即可。"
+msgstr ""
+
+#: inc/settings-log.php:309
+#, php-format
+msgid ""
+"（关键词）%1$s （搜索次数） %2$s 次 （操作）<a href=\"%3$s\">删除这个记录</"
+"a>"
+msgstr ""
+
+#: inc/settings-log.php:357
+msgid "顶"
+msgstr ""
+
+#: inc/settings-log.php:357
+msgid "踩"
+msgstr ""
+
+#: inc/settings-log.php:381
+#, php-format
+msgid "%1$s %2$s了 %3$s"
+msgstr ""
+
+#: inc/settings-log.php:409
+#, php-format
+msgid "共有%s条数据。"
+msgstr ""
+
+#: inc/settings-log.php:409
+msgid "从"
+msgstr ""
+
+#: inc/settings-log.php:409
+msgid "开始，显示"
+msgstr ""
+
+#: inc/settings-log.php:409
+msgid "条"
+msgstr ""
+
+#: inc/settings-open.php:99
+msgid "启用社会化登录需同时设置相关开放平台参数，否则无效。"
+msgstr ""
+
+#: inc/settings-open.php:111
+msgid "启用QQ登录"
+msgstr ""
+
+#: inc/settings-open.php:111
+msgid "网站接入QQ登录申请"
+msgstr ""
+
+#: inc/settings-open.php:121 inc/settings-open.php:169
+#: inc/settings-reading.php:224 inc/settings-reading.php:237
+#: inc/settings-smtp.php:205 inc/settings-smtp.php:241
+msgid "启用"
+msgstr ""
+
+#: inc/settings-open.php:135
+msgid "QQ ID"
+msgstr ""
+
+#: inc/settings-open.php:147
+msgid "QQ KEY"
+msgstr ""
+
+#: inc/settings-open.php:159
+msgid "启用微博登录"
+msgstr ""
+
+#: inc/settings-open.php:159
+msgid "网站接入微博登录申请"
+msgstr ""
+
+#: inc/settings-open.php:183
+msgid "WEIBO KEY"
+msgstr ""
+
+#: inc/settings-open.php:195
+msgid "WEIBO SECRET"
+msgstr ""
+
+#: inc/settings-open.php:207
+msgid "默认角色"
+msgstr ""
+
+#: inc/settings-open.php:209
+msgid "新登录用户的角色，默认是投稿者"
+msgstr ""
+
+#: inc/settings-open.php:227
+msgid "记住登录状态"
+msgstr ""
+
+#: inc/settings-open.php:229
+msgid ""
+"使用QQ或微博登录的是否记住登录状态，不记住的话当关闭浏览器窗口后需要重新登"
+"录"
+msgstr ""
+
+#: inc/settings-open.php:239
+msgid "记住"
+msgstr ""
+
+#: inc/settings-open.php:241
+msgid "不记住"
+msgstr ""
+
+#: inc/settings-reading.php:108
+msgid "版权声明开关"
+msgstr ""
+
+#: inc/settings-reading.php:109
+msgid "开关网站的版权声明（选择关闭将全部不显示，无论文章页怎么设置）"
+msgstr ""
+
+#: inc/settings-reading.php:121
+msgid "锚点导航开关"
+msgstr ""
+
+#: inc/settings-reading.php:122
+msgid "开关文章的锚点导航（选择关闭将全部不显示，无论文章页怎么设置）"
+msgstr ""
+
+#: inc/settings-reading.php:127
+msgid "全部都显示"
+msgstr ""
+
+#: inc/settings-reading.php:128
+msgid "只在文章页显示"
+msgstr ""
+
+#: inc/settings-reading.php:129
+msgid "只在页面显示"
+msgstr ""
+
+#: inc/settings-reading.php:136
+msgid "缩略图"
+msgstr ""
+
+#: inc/settings-reading.php:137
+msgid "缩略图来源"
+msgstr ""
+
+#: inc/settings-reading.php:142
+msgid "只显示特色图像"
+msgstr ""
+
+#: inc/settings-reading.php:143
+msgid "没有特色图像时显示文章的第一张图片"
+msgstr ""
+
+#: inc/settings-reading.php:153
+msgid ""
+" TimThumb 截图（建议开启） | MoMo主题使用 TimThumb 来生成缩略图，请确保当前"
+"主题的根目录可写（755权限）。如果你使用的是外链图库，请在当前主题根目录下"
+"的 timthumb-config.php 添加图库的域名。"
+msgstr ""
+
+#: inc/settings-reading.php:163
+msgid "开启*"
+msgstr ""
+
+#: inc/settings-reading.php:178
+msgid "截图模式 | 推荐：等比例缩小（适应最小边，裁剪大边，不变形）"
+msgstr ""
+
+#: inc/settings-reading.php:188
+msgid "直接压缩到固定高度和宽度（不裁剪，会变形）"
+msgstr ""
+
+#: inc/settings-reading.php:190
+msgid " 等比例缩小（适应最小边，裁剪大边，不变形）*"
+msgstr ""
+
+#: inc/settings-reading.php:192
+msgid " 等比例缩小（适应最大边，小边补白，不变形）"
+msgstr ""
+
+#: inc/settings-reading.php:204
+msgid ""
+"缩略图质量 | 缩略图生成的质量（数值越大，质量越高，体积越大），最大100，默"
+"认90。"
+msgstr ""
+
+#: inc/settings-reading.php:218
+msgid "高亮代码"
+msgstr ""
+
+#: inc/settings-reading.php:219
+msgid ""
+"在内容页面载入 Google Code Prettify 高亮代码。启用后将自动高亮&lt;code&gt;"
+"标签中的内容，除此之外你也可以手动给元素添加 prettyprint CSS类实现代码高"
+"亮，支持 &lt;pre&gt; &lt;code&gt; &lt;xmp&gt; 三种标签，如&lt;pre class="
+"\"prettyprint\"&gt;。"
+msgstr ""
+
+#: inc/settings-reading.php:225 inc/settings-smtp.php:207
+#: inc/settings-smtp.php:243
+msgid "禁用"
+msgstr ""
+
+#: inc/settings-reading.php:231
+msgid "只显示一个分类"
+msgstr ""
+
+#: inc/settings-reading.php:232
+msgid ""
+"启用后归档页（分类页除外）META信息不显示分类，只在文章标题前显示第一个分类"
+msgstr ""
+
+#: inc/settings-reading.php:238
+msgid "不启用"
+msgstr ""
+
+#: inc/settings-reading.php:244
+msgid "广告"
+msgstr ""
+
+#: inc/settings-reading.php:245
+msgid "广告条最大宽度为732px"
+msgstr ""
+
+#: inc/settings-reading.php:250
+msgid "归档页"
+msgstr ""
+
+#: inc/settings-reading.php:251
+msgid "分类/标签/搜索/日期归档页顶部"
+msgstr ""
+
+#: inc/settings-reading.php:258
+msgid "分类/标签/搜索/日期归档页底部"
+msgstr ""
+
+#: inc/settings-reading.php:264
+msgid "作者页"
+msgstr ""
+
+#: inc/settings-reading.php:265
+msgid "作者页顶部"
+msgstr ""
+
+#: inc/settings-reading.php:272
+msgid "作者页底部"
+msgstr ""
+
+#: inc/settings-reading.php:278
+msgid "内容页"
+msgstr ""
+
+#: inc/settings-reading.php:279
+msgid "文章/页面/附件页顶部"
+msgstr ""
+
+#: inc/settings-reading.php:286
+msgid "文章/页面/附件页评论框上方"
+msgstr ""
+
+#: inc/settings-reading.php:293
+msgid "文章/页面/附件页底部"
+msgstr ""
+
+#: inc/settings-slide.php:73
+msgid "删除成功。"
+msgstr ""
+
+#: inc/settings-slide.php:83
+msgid "首页幻灯片已更新。"
+msgstr ""
+
+#: inc/settings-slide.php:87
+msgid "首页幻灯片已取消。"
+msgstr ""
+
+#: inc/settings-slide.php:197
+msgid "幻灯片设置"
+msgstr ""
+
+#: inc/settings-slide.php:199
+#, php-format
+msgid ""
+"小提示：为了保证最佳的用户体验，请以 750px 作为图片宽度，同一组的图片采用一"
+"致高度，图片编辑完成后使用压缩工具压缩以提升加载速度，如 %1$s 可减少图片 "
+"70%% 体积。如果你不能保证图片的尺寸和质量，那么我们不建议你使用幻灯片，糟糕"
+"的幻灯片会严重影响网站的美观性！"
+msgstr ""
+
+#: inc/settings-slide.php:272
+msgid "图片必须要有！否则前台不显示该项。"
+msgstr ""
+
+#: inc/settings-slide.php:288
+msgid "幻灯片名称"
+msgstr ""
+
+#: inc/settings-slide.php:300 inc/settings-slide.php:454
+msgid "短代码"
+msgstr ""
+
+#: inc/settings-slide.php:330
+msgid "图片（必须）"
+msgstr ""
+
+#: inc/settings-slide.php:336
+msgid "选择或上传"
+msgstr ""
+
+#: inc/settings-slide.php:338
+msgid "预览"
+msgstr ""
+
+#: inc/settings-slide.php:346
+msgid "链接"
+msgstr ""
+
+#: inc/settings-slide.php:354
+msgid "标题"
+msgstr ""
+
+#: inc/settings-slide.php:362
+msgid "描述"
+msgstr ""
+
+#: inc/settings-slide.php:370 inc/settings.php:1
+msgid "幻灯片"
+msgstr ""
+
+#: inc/settings-slide.php:374
+msgid "往上移"
+msgstr ""
+
+#: inc/settings-slide.php:376
+msgid "往下移"
+msgstr ""
+
+#: inc/settings-slide.php:380
+msgid "添加一项"
+msgstr ""
+
+#: inc/settings-slide.php:422
+msgid "新建/管理幻灯片或设置首页幻灯片。"
+msgstr ""
+
+#: inc/settings-slide.php:432
+#, php-format
+msgid ""
+"现在有 %1$s 组幻灯片，你可以选择管理或 <a href=\"%2$s\"  class=\"button\">"
+"新建幻灯片</a> 。"
+msgstr ""
+
+#: inc/settings-slide.php:434
+#, php-format
+msgid "其中 %s 已设为首页幻灯片。"
+msgstr ""
+
+#: inc/settings-slide.php:456
+msgid "操作"
+msgstr ""
+
+#: inc/settings-slide.php:456
+msgid "编辑"
+msgstr ""
+
+#: inc/settings-slide.php:462
+msgid "取消首页幻灯片"
+msgstr ""
+
+#: inc/settings-slide.php:466
+msgid "设为首页幻灯片"
+msgstr ""
+
+#: inc/settings-smtp.php:99
+msgid "多梦主题SMTP测试邮件"
+msgstr ""
+
+#: inc/settings-smtp.php:99
+msgid "恭喜，SMTP发信成功！"
+msgstr ""
+
+#: inc/settings-smtp.php:107
+msgid "发送成功，请查收！"
+msgstr ""
+
+#: inc/settings-smtp.php:119
+msgid "发送失败"
+msgstr ""
+
+#: inc/settings-smtp.php:131
+msgid "没有发送邮件，测试收信邮件地址不正确！"
+msgstr ""
+
+#: inc/settings-smtp.php:143
+msgid ""
+"嗯，这个只是测试多梦主题SMTP发信的，但是你没有开启或者说没有配置好，所以没"
+"有发送邮件，请先检查你的SMTP设置！"
+msgstr ""
+
+#: inc/settings-smtp.php:173
+msgid ""
+"WordPress是使用 stream_socket_client 函数实现SMTP发信的，但是看样子你的主机"
+"并不支持，建议你打开这个函数。"
+msgstr ""
+
+#: inc/settings-smtp.php:173
+msgid ""
+"如果不能打开，你的主机支持 fsockopen 函数，你也可以考虑使用 fsockopen 函数"
+"代替，不过这会有点麻烦，因为WordPress并没有内置接口可以修改，只能直接修改源"
+"代码（这样每次升级WordPress之后都需要重新修改一次），修改方法可以<a href="
+"\"http://www.dmeng.net/tougao-20141208.html\" target=\"_blank\">参考这里</"
+"a>。 "
+msgstr ""
+
+#: inc/settings-smtp.php:195
+msgid "启用SMTP"
+msgstr ""
+
+#: inc/settings-smtp.php:219
+msgid "发信服务器"
+msgstr ""
+
+#: inc/settings-smtp.php:231
+msgid "启用SSL"
+msgstr ""
+
+#: inc/settings-smtp.php:255
+msgid "端口号"
+msgstr ""
+
+#: inc/settings-smtp.php:267
+msgid "发信账号"
+msgstr ""
+
+#: inc/settings-smtp.php:279
+msgid "账号密码"
+msgstr ""
+
+#: inc/settings-smtp.php:291
+msgid "显示昵称"
+msgstr ""
+
+#: inc/settings-smtp.php:307
+msgid "测试SMTP发信功能"
+msgstr ""
+
+#: inc/settings-smtp.php:325
+msgid "收信邮箱"
+msgstr ""
+
+#: inc/settings-smtp.php:337
+msgid "发送测试邮件"
+msgstr ""
+
+#: inc/settings-tool.php:45 inc/settings-tool.php:251
+msgid "我确认操作"
+msgstr ""
+
+#: inc/settings-tool.php:119
+msgid "验证码有误，请重试。"
+msgstr ""
+
+#: inc/settings-tool.php:139
+msgid "缓存已清理"
+msgstr ""
+
+#: inc/settings-tool.php:151
+#, php-format
+msgid "版本检查成功，获取到的最新版本是：%s"
+msgstr ""
+
+#: inc/settings-tool.php:155
+msgid "版本检查失败，请重试！"
+msgstr ""
+
+#: inc/settings-tool.php:175
+msgid "关于"
+msgstr ""
+
+#: inc/settings-tool.php:177
+msgid "清理缓存"
+msgstr ""
+
+#: inc/settings-tool.php:179
+msgid "主题数据清理"
+msgstr ""
+
+#: inc/settings-tool.php:181
+msgid "版本升级"
+msgstr ""
+
+#: inc/settings-tool.php:217
+msgid ""
+"多梦主题数据包括版权声明、幻灯片、浏览次数、投票数据、消息、积分、礼品等。"
+"这些数据属于多梦主题私有。"
+msgstr ""
+
+#: inc/settings-tool.php:219
+msgid ""
+"清理范围包括： 删除 dmeng_message、dmeng_meta、dmeng_tracker 三个表，删除 "
+"options、postmeta、usermeta、commentmeta 表以 dmeng_ 开头为 key 的数据和 "
+"gift 文章类型和 gift_tag  分类法。注：多梦主题在 wordpress table 中存储的全"
+"部数据的 key 都是以 dmeng_ 开头的。"
+msgstr ""
+
+#: inc/settings-tool.php:221
+msgid ""
+"选择清理数据后要切换到的主题。如果选择的是多梦主题，则相当于清理现有数据，"
+"重新启用多梦主题。"
+msgstr ""
+
+#: inc/settings-tool.php:243
+msgid ""
+"如果你确定清理并停用多梦主题，请按提示输入”我确认操作”+验证字符的组合（+号"
+"也要输入），然后点击清理并停用。"
+msgstr ""
+
+#: inc/settings-tool.php:249
+msgid "请输入："
+msgstr ""
+
+#: inc/settings-tool.php:255
+msgid "请先备份数据库，以防不测。"
+msgstr ""
+
+#: inc/settings-tool.php:257
+msgid "清理并停用"
+msgstr ""
+
+#: inc/settings-tool.php:259
+msgid ""
+"清理WordPress冗余数据（如修订版本、回收站中的文章/垃圾评论等），推荐使用 "
+"WP Clean Up  。"
+msgstr ""
+
+#: inc/settings-tool.php:273
+msgid "为了您的数据安全，请不要直接复制粘贴！"
+msgstr ""
+
+#: inc/settings-tool.php:281
+msgid "确定要清理吗？你备份数据库了吗？本操作不可逆！"
+msgstr ""
+
+#: inc/settings-tool.php:399
+msgid ""
+"如果站点启用了内存对象缓存，会使用对象缓存缓存数据，否则保存成一个字段到数"
+"据库中以减少查询。建议配置 Memcached 对象缓存！"
+msgstr ""
+
+#: inc/settings-tool.php:401
+msgid "多梦主题有以下几个自定义项目使用 Transients API 缓存数据。"
+msgstr ""
+
+#: inc/settings-tool.php:405
+msgid "导航菜单"
+msgstr ""
+
+#: inc/settings-tool.php:407
+msgid "首页分类列表"
+msgstr ""
+
+#: inc/settings-tool.php:409
+msgid "小工具（最近登录用户、文章排行榜、积分排行榜、站点统计）"
+msgstr ""
+
+#: inc/settings-tool.php:413
+msgid ""
+"一般情况下，导航菜单缓存在更新菜单时会更新，首页分类列表缓存在更新首页设置"
+"时更新，小工具缓存在更新该小工具时会更新（最近登录用户在有用户登录时也会更"
+"新缓存），除此之外，全站内容缓存会每隔一小时更新一次。所以，手动刷新缓存几"
+"乎是没有必要的，仅仅是备用。"
+msgstr ""
+
+#: inc/settings-tool.php:417
+msgid "点击清理缓存"
+msgstr ""
+
+#: inc/settings-tool.php:419
+msgid "清理范围包括对象缓存、 Transients、固定链接缓存等。谨慎操作！"
+msgstr ""
+
+#: inc/settings-tool.php:433
+msgid "下载多梦主题最新版本请点击："
+msgstr ""
+
+#: inc/settings-tool.php:441
+#, php-format
+msgid "当前版本是：%s "
+msgstr ""
+
+#: inc/settings-tool.php:445
+#, php-format
+msgid "上次检查版本是：%s "
+msgstr ""
+
+#: inc/settings-tool.php:453
+#, php-format
+msgid "下次自动检查时间是：%s"
+msgstr ""
+
+#: inc/settings-tool.php:461
+msgid "如果你已经升级，但还是提示升级，你可以点击这里刷新版本数据。"
+msgstr ""
+
+#: inc/settings-tool.php:465
+msgid "刷新版本数据"
+msgstr ""
+
+#: inc/settings-writing.php:119
+msgid "（默认）版权声明开关"
+msgstr ""
+
+#: inc/settings-writing.php:121
+msgid "在文章/页面内容下的版权声明"
+msgstr ""
+
+#: inc/settings-writing.php:145
+msgid "（默认）版权声明内容"
+msgstr ""
+
+#: inc/settings-writing.php:147
+msgid ""
+"版权声明内容，文章链接用{link}表示，文章标题用{title}表示，站点地址用{url}"
+"表示，站点名称用{name}表示"
+msgstr ""
+
+#: inc/settings-writing.php:159
+msgid "（默认）锚点导航开关"
+msgstr ""
+
+#: inc/settings-writing.php:161
+msgid "选择是时将把文章页和页面内容中的H标题生成锚点导航目录"
+msgstr ""
+
+#: inc/settings-writing.php:197
+msgid "允许投稿的分类"
+msgstr ""
+
+#: inc/settings-writing.php:199
+msgid "不选择任何分类则不开放投稿"
+msgstr ""
+
+#: inc/settings-writing.php:217
+msgid "投稿的最少字数"
+msgstr ""
+
+#: inc/settings-writing.php:219
+msgid ""
+"限制最少字数，一篇文章少于这个字数不允许投稿。一条微博是140，所以默认是140"
+"字。"
+msgstr ""
+
+#: inc/settings-writing.php:231
+msgid "投稿的最多字数"
+msgstr ""
+
+#: inc/settings-writing.php:233
+msgid ""
+"限制最多字数，一篇文章超过这个字数不允许投稿。刊物文章一般是2200-12000，所"
+"以默认12000字。"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "MoMo设置"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "高级"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "数据记录"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "常规设置"
+msgstr ""
+
+#: inc/settings.php:1 inc/widget.php:53
+msgid "首页"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "撰写"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "阅读"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "讨论"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "开放平台"
+msgstr ""
+
+#: inc/settings.php:1
+msgid "SMTP发信"
+msgstr ""
+
+#: inc/shortcode.php:24
+msgid "此处包含隐私内容"
+msgstr ""
+
+#: inc/shortcode.php:49
+#, php-format
+msgid " 此处内容需要 <a href=\"%s\">登录</a> 才可见"
+msgstr ""
+
+#: inc/shortcode.php:76
+#, php-format
+msgid "此处内容需要登录并 <a href=\"%s\">发表评论</a> 才可见"
+msgstr ""
+
+#: inc/shortcode.php:89
+msgid "登录可见"
+msgstr ""
+
+#: inc/shortcode.php:89
+msgid "需要登录才可见"
+msgstr ""
+
+#: inc/shortcode.php:90
+msgid "登录并评论"
+msgstr ""
+
+#: inc/shortcode.php:90
+msgid "需要登录发表评论才可见"
+msgstr ""
+
+#: inc/shortcode.php:91
+msgid "alert-success"
+msgstr ""
+
+#: inc/shortcode.php:92
+msgid "alert-info"
+msgstr ""
+
+#: inc/shortcode.php:93
+msgid "alert-warning"
+msgstr ""
+
+#: inc/shortcode.php:94
+msgid "alert-danger"
+msgstr ""
+
+#: inc/user-page.php:148 inc/user-page.php:150
+msgid "用户名或邮箱地址"
+msgstr ""
+
+#: inc/user-page.php:170
+msgid "【重要】请添加正确的邮箱以保证账户安全"
+msgstr ""
+
+#: inc/user-page.php:176
+msgid "【重要】请验证一个邮箱用以接收通知"
+msgstr ""
+
+#: inc/user-page.php:187
+msgid "管理后台"
+msgstr ""
+
+#: inc/user-page.php:242
+msgid "未读"
+msgstr ""
+
+#: inc/user-page.php:259
+msgid "本页推广链接"
+msgstr ""
+
+#: inc/version.php:61
+#, php-format
+msgid "多梦主题有了更新的版本，请<a href=\"%s\">到版本升级了解详情</a>！"
+msgstr ""
+
+#: inc/widget.php:43
+msgid "页面"
+msgstr ""
+
+#: inc/widget.php:45 inc/widget.php:519
+msgid "分类"
+msgstr ""
+
+#: inc/widget.php:55
+msgid "其他页面"
+msgstr ""
+
+#: inc/widget.php:57 inc/widget.php:167
+msgid "PC"
+msgstr ""
+
+#: inc/widget.php:59 inc/widget.php:171
+msgid "Moblie"
+msgstr ""
+
+#: inc/widget.php:83
+msgid "设置显示位置/终端"
+msgstr ""
+
+#: inc/widget.php:85
+msgid "全选"
+msgstr ""
+
+#: inc/widget.php:87
+msgid "全不选"
+msgstr ""
+
+#: inc/widget.php:93
+msgid "显示位置"
+msgstr ""
+
+#: inc/widget.php:97
+msgid ""
+"勾上代表在该项对应页面显示，后面输入框输入排除的ID，以逗号隔开，如果只输入"
+"ID而不勾选该项则代表只在这些ID页面显示。"
+msgstr ""
+
+#: inc/widget.php:163
+msgid "显示终端"
+msgstr ""
+
+#: inc/widget.php:461
+msgid " 站点统计"
+msgstr ""
+
+#: inc/widget.php:461
+msgid "站点统计信息"
+msgstr ""
+
+#: inc/widget.php:523
+msgid "用户"
+msgstr ""
+
+#: inc/widget.php:527 inc/widget.php:609
+msgid "浏览总数"
+msgstr ""
+
+#: inc/widget.php:529 inc/widget.php:611
+msgid "搜索次数"
+msgstr ""
+
+#: inc/widget.php:539
+msgid "统计时间"
+msgstr ""
+
+#: inc/widget.php:539
+#, php-format
+msgid "统计数据最后更新时间：%s"
+msgstr ""
+
+#: inc/widget.php:581 inc/widget.php:769 inc/widget.php:943
+#: inc/widget.php:1507
+msgid "标题："
+msgstr ""
+
+#: inc/widget.php:587 inc/widget.php:775 inc/widget.php:1345
+msgid "选择要显示的项目。"
+msgstr ""
+
+#: inc/widget.php:599
+msgid "文章总数"
+msgstr ""
+
+#: inc/widget.php:601
+msgid "文章分类"
+msgstr ""
+
+#: inc/widget.php:603
+msgid "文章标签"
+msgstr ""
+
+#: inc/widget.php:605
+msgid "用户总数"
+msgstr ""
+
+#: inc/widget.php:607
+msgid "评论总数"
+msgstr ""
+
+#: inc/widget.php:675
+msgid "登录和资料"
+msgstr ""
+
+#: inc/widget.php:675
+msgid "用户登录&个人资料展示"
+msgstr ""
+
+#: inc/widget.php:719
+msgid "使用QQ账号登录"
+msgstr ""
+
+#: inc/widget.php:727
+msgid "使用微博账号登录"
+msgstr ""
+
+#: inc/widget.php:735
+msgid "使用本地账号登录"
+msgstr ""
+
+#: inc/widget.php:785
+msgid "显示QQ登录（如果有启用QQ登录）"
+msgstr ""
+
+#: inc/widget.php:787
+msgid "显示微博登录（如果有启用微博登录）"
+msgstr ""
+
+#: inc/widget.php:789
+msgid "显示本地登录"
+msgstr ""
+
+#: inc/widget.php:847
+msgid " 积分排行榜"
+msgstr ""
+
+#: inc/widget.php:847
+msgid "用户可用积分排行榜"
+msgstr ""
+
+#: inc/widget.php:951
+msgid "除了："
+msgstr ""
+
+#: inc/widget.php:957
+msgid "用户ID，多个ID请用英文逗号（,）隔开"
+msgstr ""
+
+#: inc/widget.php:999
+msgid " 排行榜"
+msgstr ""
+
+#: inc/widget.php:999
+msgid "热门文章/热议文章/搜索排行榜"
+msgstr ""
+
+#: inc/widget.php:1089 search.php:28
+#, php-format
+msgid "%s次搜索"
+msgstr ""
+
+#: inc/widget.php:1105
+#, php-format
+msgid "搜索次数最多的%s个关键词"
+msgstr ""
+
+#: inc/widget.php:1133
+#, php-format
+msgid "%s条评论"
+msgstr ""
+
+#: inc/widget.php:1151
+#, php-format
+msgid "最多人评论的%s篇内容"
+msgstr ""
+
+#: inc/widget.php:1179
+#, php-format
+msgid "%s人投票"
+msgstr ""
+
+#: inc/widget.php:1195
+#, php-format
+msgid "按投票率排行的%s篇内容"
+msgstr ""
+
+#: inc/widget.php:1237
+#, php-format
+msgid "按浏览次数排行的%s篇内容"
+msgstr ""
+
+#: inc/widget.php:1355
+msgid "搜索次数最多的关键词"
+msgstr ""
+
+#: inc/widget.php:1357
+msgid "评论最多的内容"
+msgstr ""
+
+#: inc/widget.php:1359
+msgid "最多人投票的内容"
+msgstr ""
+
+#: inc/widget.php:1361
+msgid "浏览次数最多的内容"
+msgstr ""
+
+#: inc/widget.php:1383 inc/widget.php:1515
+msgid "显示数量："
+msgstr ""
+
+#: inc/widget.php:1405
+msgid " 最近登录用户"
+msgstr ""
+
+#: inc/widget.php:1405
+msgid "显示最近登录用户头像"
+msgstr ""
+
+#: page-login.php:225 reg-page.php:179
+msgid "用户名 &hellip;"
+msgstr ""
+
+#: page-login.php:227
+msgid "密码 &hellip;"
+msgstr ""
+
+#: reg-page.php:191
+msgid "电子邮件 &hellip;"
+msgstr ""
+
+#: reg-page.php:203
+msgid "密码(至少6位) &hellip;"
+msgstr ""
+
+#: reg-page.php:215
+msgid "重复密码 &hellip;"
+msgstr ""
+
+#: single-gift.php:15
+#, php-format
+msgid "《%s》全部兑换记录"
+msgstr ""
+
+#: single-gift.php:24 single-gift.php:222
+#, php-format
+msgid " %1$s 在 %2$s 兑换了一个，唯一识别码是 %3$s "
+msgstr ""
+
+#: single-gift.php:33
+msgid "没有找到兑换记录"
+msgstr ""
+
+#: single-gift.php:39
+msgid "当前帐号没有查看权限"
+msgstr ""
+
+#: single-gift.php:43
+msgid "&laquo; 返回查看内容"
+msgstr ""
+
+#: single-gift.php:43 single-gift.php:230
+msgid "查询兑换信息"
+msgstr ""
+
+#: single-gift.php:110
+msgid "立即兑换"
+msgstr ""
+
+#: single-gift.php:118
+msgid "请先登录"
+msgstr ""
+
+#: single-gift.php:123
+msgid "免费兑换"
+msgstr ""
+
+#: single-gift.php:129
+msgid "库存不足"
+msgstr ""
+
+#: single-gift.php:137
+msgid "积分余额不足"
+msgstr ""
+
+#: single-gift.php:145
+msgid "已达到最大兑换数"
+msgstr ""
+
+#: single-gift.php:153
+#, php-format
+msgid "你已兑换 %s 次，"
+msgstr ""
+
+#: single-gift.php:154
+msgid "可以无限量兑换"
+msgstr ""
+
+#: single-gift.php:154
+#, php-format
+msgid "每人最多兑换 %s 次"
+msgstr ""
+
+#: single-gift.php:168
+msgid "市场价格"
+msgstr ""
+
+#: single-gift.php:173
+msgid "所需积分"
+msgstr ""
+
+#: single-gift.php:178
+msgid "库存数量"
+msgstr ""
+
+#: single-gift.php:179
+msgid "不限量"
+msgstr ""
+
+#: single-gift.php:183
+msgid "兑换人次"
+msgstr ""
+
+#: single-gift.php:188
+msgid "浏览次数"
+msgstr ""
+
+#: single-gift.php:193
+msgid "物流配送"
+msgstr ""
+
+#: single-gift.php:223
+msgid "你"
+msgstr ""
+
+#: single-gift.php:230
+msgid "查看全部记录"
+msgstr ""
+
+#: single-gift.php:233
+msgid "兑换记录"
+msgstr ""
+
+#: single-gift.php:242
+msgid "兑换后可见的内容"
+msgstr ""
+
+#: single-gift.php:243
+#, php-format
+msgid "，其中包括 %s 个附件"
+msgstr ""
+
+#: single-gift.php:250
+msgid "下载附件"
+msgstr ""
+
+#: single-gift.php:255
+#, php-format
+msgid "<li><a href=\"%s\" target=\"_blank\">%s</a> | %s | %s </li>"
+msgstr ""
+
+#: single-gift.php:260
+msgid "要查看内容请先兑换。"
+msgstr ""
+
+#: single-gift.php:268
+msgid "礼品介绍"
+msgstr ""
+
+#: single-gift.php:278
+#, php-format
+msgid "你正在兑换“%s”，请确认操作。"
+msgstr ""
+
+#: single-gift.php:278
+#, php-format
+msgid "需要花费 %s 积分"
+msgstr ""
+
+#: single-gift.php:280
+msgid "取消"
+msgstr ""
+
+#: single-gift.php:280
+msgid "确认兑换"
+msgstr ""

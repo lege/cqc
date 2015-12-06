@@ -1,0 +1,34 @@
+/* ie6 fixed by http://huilang.me  2013-10-28*/
+.navbar .nav{_width: 474px;_padding-top: 20px;_height: 70px;_overflow: hidden;}
+.header, .container, .footer{width: 1003px;margin:0 auto;}
+.navbar .nav li ul{_display:none}
+.speedbar{margin:10px auto;_width:963px}
+.excerpt{_padding: 20px 20px 20px 20px;}
+.excerpt .focus{_display:block;}
+.excerpt:hover{_padding-left: 0px;}
+.excerpt .focus {_margin-left: 0px;_margin-right: 10px}
+.navbar .nav li {_margin-top: 20px;_position: static;_float: left;_margin-right: 1px;}
+.widgetzry{margin-left: -50px;_margin-left:0;}
+.widgetzry ul{margin-left: -10px;_margin-left:-22px;}
+.widgetzry{_width: 180px;_overflow: hidden;_margin-left: -35px}
+.widgetzry li{_margin-top: 2px;}
+.widgetzrz{_width: 130px;_overflow: hidden;}
+.dropup, .dropdow,.pagination ul > li{position: static;}
+.pagination ul li{_float: left;_min-width: 30px;_display: block;_padding: 4px 12px 3px;}
+.search-submit{width: 60px;}
+.pagination ul li a, .pagination ul li > span{_float: none;_padding: 0;}
+.article-content{width: 663px;overflow: hidden;}
+.article-content p{width: 640px;}
+.article-content img {max-width:630px;_width: expression(this.width > 630 ? '630px': true);text-indent:0em;}
+.article-nav{width: 663px;height: 21px;}
+.relates ul{position: static;width: 704px;height: 164px}
+#baidshare{width: 663px;height: 22px;}
+.sticky li{width: 351px;_width: 352px;}
+.navbar .nav{width: 493px}
+.btn-group{_width:38px;margin-top: -1px;_margin-top:0px;}
+.search-form{_width:200px;}
+.search-submit{_width:30px;}
+.btn{_padding: 6px 6px 4px;}
+input.search-input{width:140px;height: 20px;_height: 27px;}
+.hl_excerpt{width: 400px}
+.hl_excerpt .note{height: 96px;overflow: hidden;}

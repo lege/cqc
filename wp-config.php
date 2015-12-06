@@ -15,15 +15,15 @@
 
 // ** MySQL 设置 - 具体信息来自您正在使用的主机 ** //
 /** WordPress数据库的名称 */
-define( 'WPCACHEHOME', '/var/www/cqc/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
+define( 'WPCACHEHOME', '/var/www/lege/wp-content/plugins/wp-super-cache/' ); //Added by WP-Cache Manager
 define('WP_CACHE', true); //Added by WP-Cache Manager
-define('DB_NAME', 'cqc');
+define('DB_NAME', 'myblog');
 
 /** MySQL数据库用户名 */
 define('DB_USER', 'root');
 
 /** MySQL数据库密码 */
-define('DB_PASSWORD', '940629cqc');
+define('DB_PASSWORD', 'legeblog');
 
 /** MySQL主机 */
 define('DB_HOST', 'localhost');
